@@ -1,0 +1,59 @@
+# QMD project-local index (binario, grande)
+.qmd/
+
+# Artefatos de teste (Playwright, Vitest, etc.)
+test-results/
+playwright-report/
+coverage/
+
+# SDD nao-trackea estado de build (apenas docs SDD)
+project_sdd/_legado/
+
+# .env e secrets
+.env
+.env.*
+*.local
+
+# Node
+node_modules/
+dist/
+build/
+
+# Java
+target/
+*.class
+
+# Go
+*.exe
+*.test
+*.out
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Platform backend (NestJS)
+backend/dist/
+backend/.env
+backend/coverage/
+
+# Platform frontend (Next.js)
+frontend/.next/
+frontend/out/
+frontend/.env*.local
+
+# Prisma
+backend/prisma/migrations/*/migration_lock.toml.bak
+
+# Lockfiles (uncomment to ignore)
+# backend/package-lock.json
+# frontend/package-lock.json
+
+# Docker volumes
+postgres_data/
+redis_data/

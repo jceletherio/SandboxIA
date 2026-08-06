@@ -1,0 +1,162 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Status colors */
+  --color-status-running: var(--status-running);
+  --color-status-waiting: var(--status-waiting);
+  --color-status-done: var(--status-done);
+  --color-status-error: var(--status-error);
+  --color-status-idle: var(--status-idle);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+:root {
+  color-scheme: dark;
+
+  /* Core palette — near-black backgrounds, zinc neutrals, cyan accent */
+  --background: oklch(0.10 0 0);
+  --foreground: oklch(0.92 0 0);
+
+  --card: oklch(0.13 0 0);
+  --card-foreground: oklch(0.92 0 0);
+
+  --popover: oklch(0.15 0 0);
+  --popover-foreground: oklch(0.92 0 0);
+
+  /* Cyan/teal brand accent */
+  --primary: oklch(0.72 0.15 195);
+  --primary-foreground: oklch(0.10 0 0);
+
+  --secondary: oklch(0.18 0 0);
+  --secondary-foreground: oklch(0.75 0 0);
+
+  --muted: oklch(0.17 0 0);
+  --muted-foreground: oklch(0.50 0 0);
+
+  --accent: oklch(0.19 0.02 195);
+  --accent-foreground: oklch(0.72 0.15 195);
+
+  --destructive: oklch(0.65 0.22 27);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 18%);
+  --ring: oklch(0.72 0.15 195 / 50%);
+
+  --radius: 0.5rem;
+
+  /* Sidebar */
+  --sidebar: oklch(0.12 0 0);
+  --sidebar-foreground: oklch(0.75 0 0);
+  --sidebar-primary: oklch(0.72 0.15 195);
+  --sidebar-primary-foreground: oklch(0.10 0 0);
+  --sidebar-accent: oklch(0.17 0 0);
+  --sidebar-accent-foreground: oklch(0.92 0 0);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.72 0.15 195 / 50%);
+
+  /* Status indicator tokens */
+  --status-running: oklch(0.72 0.15 195);
+  --status-waiting: oklch(0.78 0.16 75);
+  --status-done: oklch(0.68 0.18 145);
+  --status-error: oklch(0.65 0.22 27);
+  --status-idle: oklch(0.45 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    /* iOS aumenta a fonte sozinho ao girar para landscape se isso não estiver
+       travado — e a UI aqui é calibrada em text-[10px]/text-xs. */
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  select option {
+    background-color: oklch(0.13 0 0);
+    color: oklch(0.92 0 0);
+  }
+
+  /* Toque: mata o flash cinza do Android no tap e o atraso de ~300ms que o
+     navegador espera para decidir se foi duplo toque. */
+  @media (pointer: coarse) {
+    a,
+    button,
+    [role='button'],
+    summary {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    /* Campo com fonte < 16px faz o Safari dar zoom ao focar, e a página fica
+       torta depois. 16px no mobile, densidade original no desktop. */
+    input:not([type='checkbox']):not([type='radio']),
+    select,
+    textarea {
+      font-size: max(1rem, 1em);
+    }
+  }
+}
+
+/* Helpers de área segura (notch, barra de gestos). Usados por elementos fixos
+   que a Shell não envolve — modais, drawers, barras flutuantes. */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(1 0 0 / 12%);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(1 0 0 / 20%);
+}

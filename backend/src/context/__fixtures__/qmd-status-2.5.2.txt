@@ -1,0 +1,60 @@
+QMD Status
+
+Index: /home/monke/.cache/qmd/index.sqlite
+Size:  9.7 MB
+
+Documents
+  Total:    291 files indexed
+  Vectors:  440 embedded
+  Pending:  234 need embedding (run 'qmd embed')
+  Updated:  1h ago
+
+AST Chunking
+  Status:   active
+  Languages: typescript, tsx, javascript, python, go, rust
+
+Collections
+  sdd (qmd://sdd/)
+    Pattern:  **/*.md
+    Files:    0 (updated 70d ago)
+    Contexts: 8
+      /01-context: Contexto base do projeto SGC/OneSpace: arquitetura, visão...
+      /02-discovery: Discovery de features: perguntas em aberto (questions.md)...
+      /03-specs: Especificações técnicas das features. Contém critérios de...
+      /04-prompts: Prompts e templates de contexto usados pelos agentes de I...
+      /05-tasks: Tarefas planejadas por feature: backlog, estimativas e or...
+      /06-validation: Critérios de validação e definition of done do projeto
+      /07-decisions: ADRs (Architecture Decision Records): decisões técnicas e...
+      /08-handoffs: Handoffs entre fases ou membros do time: estado atual, o ...
+  todo-list-docs (qmd://todo-list-docs/)
+    Pattern:  **/*.md
+    Files:    23 (updated 7d ago)
+  todo-list-code (qmd://todo-list-code/)
+    Pattern:  **/*.md
+    Files:    25 (updated 7d ago)
+  planning-development-orquestrator-docs (qmd://planning-development-orquestrator-docs/)
+    Pattern:  **/*.md
+    Files:    31 (updated 1h ago)
+  planning-development-orquestrator-code (qmd://planning-development-orquestrator-code/)
+    Pattern:  **/*.{ts,tsx,js,jsx,py,go,rs}
+    Files:    212 (updated 1h ago)
+
+Examples
+  # List files in a collection
+  qmd ls sdd
+  # Get a document
+  qmd get qmd://sdd/path/to/file.md
+  # Search within a collection
+  qmd search "query" -c sdd
+
+Models
+  Embedding:   https://huggingface.co/ggml-org/embeddinggemma-300M-GGUF
+  Reranking:   https://huggingface.co/ggml-org/Qwen3-Reranker-0.6B-Q8_0-GGUF
+  Generation:  https://huggingface.co/tobil/qmd-query-expansion-1.7B-gguf
+
+Tips
+  Add context to collections for better search results: todo-list-docs, todo-list-code, planning-development-orquestrator-docs +1 more
+    qmd context add qmd://<name>/ "What this collection contains"
+    qmd context add qmd://<name>/meeting-notes "Weekly team meeting notes"
+  Add update commands to keep collections fresh: sdd, todo-list-docs, todo-list-code +2 more
+    qmd collection update-cmd <name> 'git stash && git pull --rebase --ff-only && git stash pop'

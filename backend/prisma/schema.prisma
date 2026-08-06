@@ -1,0 +1,511 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum SessionStatus {
+  initializing
+  running
+  waiting
+  paused
+  completed
+  stopped
+  failed
+  timeout
+}
+
+model CliProfile {
+  id                String   @id @default(uuid())
+  name              String   @unique
+  binary            String
+  interactiveArgs   Json     @map("interactive_args")
+  resumeArgs        Json?    @map("resume_args")
+  mcpConfigFile     String   @map("mcp_config_file")
+  mcpConfigTemplate Json     @map("mcp_config_template")
+  env               Json?
+  defaultModel      String?  @map("default_model")
+  builtin           Boolean  @default(false)
+  isDefault         Boolean  @default(false) @map("is_default")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  agents           Agent[]
+  phaseAssignments PhaseModelAssignment[]
+
+  @@map("cli_profiles")
+}
+
+model Project {
+  id           String   @id @default(uuid())
+  name         String
+  description  String?
+  repoUrl      String   @map("repo_url")
+  mainPath     String   @map("main_path")
+  worktreeBase String   @map("worktree_base")
+  maxSessions  Int      @default(3) @map("max_sessions")
+  settings     Json?
+  isTemplate   Boolean  @default(false) @map("is_template")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  pipelines          Pipeline[]
+  macroTasks         MacroTask[]
+  agents             Agent[]
+  logs               LogEntry[]
+  mcps               ProjectMCP[]
+  stackConfigs       StackConfig[]
+  requirementsHealthChecks RequirementsHealthCheck[]
+  screens            ScreenDescription[]
+  sddSpecs           SddSpec[]
+  testPlans          TestPlan[]
+
+  @@map("projects")
+}
+
+model Pipeline {
+  id          String   @id @default(uuid())
+  projectId   String   @map("project_id")
+  name        String
+  description String?
+  stages      Json
+  isActive    Boolean  @default(false) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  project    Project     @relation(fields: [projectId], references: [id])
+  macroTasks MacroTask[]
+
+  @@map("pipelines")
+}
+
+model MacroTask {
+  id          String   @id @default(uuid())
+  projectId   String   @map("project_id")
+  pipelineId  String   @map("pipeline_id")
+  title       String
+  description String?
+  status      String   @default("pending")
+  priority    Int      @default(0)
+  metadata    Json?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  project   Project   @relation(fields: [projectId], references: [id])
+  pipeline  Pipeline  @relation(fields: [pipelineId], references: [id])
+  sessions  Session[]
+
+  @@index([projectId])
+  @@index([status])
+  @@map("macro_tasks")
+}
+
+model Session {
+  id            String   @id @default(uuid())
+  macroTaskId   String   @map("macro_task_id")
+  agentId       String   @map("agent_id")
+  branchName    String   @map("branch_name")
+  worktreePath  String   @map("worktree_path")
+  status        SessionStatus @default(initializing)
+  currentStage  String   @map("current_stage")
+  stageData     Json?    @map("stage_data")
+  context       Json?
+  tmuxSession   String?  @unique @map("tmux_session")
+  pid           Int?
+  mcpToken      String   @unique @default(uuid()) @map("mcp_token")
+  exitCode      Int?     @map("exit_code")
+  stalledAt     DateTime? @map("stalled_at")
+  startedAt     DateTime @default(now()) @map("started_at")
+  completedAt   DateTime? @map("completed_at")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  macroTask   MacroTask    @relation(fields: [macroTaskId], references: [id])
+  agent       Agent        @relation(fields: [agentId], references: [id])
+  questions   Question[]
+  artifacts   SDDArtifact[]
+  logs        LogEntry[]
+
+  @@index([status])
+  @@index([macroTaskId])
+  @@index([startedAt])
+  @@map("sessions")
+}
+
+model Agent {
+  id           String   @id @default(uuid())
+  projectId    String   @map("project_id")
+  name         String
+  type         String   @default("claude")
+  model        String   @default("sonnet")
+  status       String   @default("idle")
+  mcpEndpoint  String?  @map("mcp_endpoint")
+  cliProfileId String?  @map("cli_profile_id")
+  metadata     Json?
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  project    Project     @relation(fields: [projectId], references: [id])
+  cliProfile CliProfile? @relation(fields: [cliProfileId], references: [id])
+  sessions   Session[]
+
+  @@map("agents")
+}
+
+model Question {
+  id          String   @id @default(uuid())
+  sessionId   String   @map("session_id")
+  agentId     String?  @map("agent_id")
+  question    String
+  answer      String?
+  status      String   @default("pending")
+  priority    String   @default("normal")
+  metadata    Json?
+  createdAt   DateTime @default(now()) @map("created_at")
+  answeredAt  DateTime? @map("answered_at")
+
+  session Session @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, status])
+  @@index([status])
+  @@map("questions")
+}
+
+model SDDArtifact {
+  id          String   @id @default(uuid())
+  sessionId   String   @map("session_id")
+  type        String
+  path        String
+  content     String?
+  metadata    Json?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  session Session @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  // Composto e não só `sessionId` porque as três leituras do serviço
+  // (`findAll`, `findTaskReport`, o dedup do backlog-ingest) filtram por
+  // sessão e ordenam por `createdAt desc` — a segunda coluna evita o sort
+  // depois do lookup. Como `sessionId` é a coluna à esquerda, serve igual
+  // para quem filtra só por sessão.
+  @@index([sessionId, createdAt])
+  @@map("sdd_artifacts")
+}
+
+model ScheduledJob {
+  id          String   @id @default(uuid())
+  type        String
+  payload     Json
+  /// Escopo do job. Coluna solta (sem relation) e nullable de propósito: job de
+  /// escopo de sessão (stage_timeout, cleanup_worktrees) não tem projeto, e job
+  /// histórico não deve sumir junto com o projeto. Consultas por projeto usam
+  /// ESTA coluna, nunca `payload->projectId` filtrado em memória.
+  projectId   String?  @map("project_id")
+  notes       String?
+  scheduledAt DateTime @map("scheduled_at")
+  status      String   @default("pending")
+  result      Json?
+  createdAt   DateTime @default(now()) @map("created_at")
+  executedAt  DateTime? @map("executed_at")
+
+  @@index([status, scheduledAt])
+  @@index([type, status, projectId])
+  @@map("scheduled_jobs")
+}
+
+model LogEntry {
+  id          String   @id @default(uuid())
+  projectId   String?  @map("project_id")
+  sessionId   String?  @map("session_id")
+  level       String   @default("info")
+  message     String
+  metadata    Json?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  project Project? @relation(fields: [projectId], references: [id])
+  session Session? @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, createdAt])
+  @@index([projectId])
+  @@map("log_entries")
+}
+
+model MCP {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  endpoint    String?
+  connected   Boolean  @default(false)
+  metadata    Json?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  projects ProjectMCP[]
+
+  @@map("mcps")
+}
+
+model ProjectMCP {
+  projectId String
+  mcpId     String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  mcp       MCP     @relation(fields: [mcpId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@id([projectId, mcpId])
+  @@map("project_mcps")
+}
+
+model SessionHistory {
+  id             String    @id @default(uuid())
+  sessionId      String    @unique @map("session_id")
+  macroTaskId    String?   @map("macro_task_id")
+  projectId      String    @map("project_id")
+  status         String
+  branch         String?
+  startedAt      DateTime  @map("started_at")
+  completedAt    DateTime? @map("completed_at")
+  artifactsCount Int       @default(0) @map("artifacts_count")
+  createdAt      DateTime  @default(now()) @map("created_at")
+
+  @@index([projectId])
+  @@index([macroTaskId])
+  @@map("session_history")
+}
+
+model LLMModel {
+  id          String   @id @default(uuid())
+  provider    String
+  name        String
+  contextSize Int?     @map("context_size")
+  notes       String?
+  enabled     Boolean  @default(true)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  assignments PhaseModelAssignment[]
+
+  @@map("llm_models")
+}
+
+model PhaseModelAssignment {
+  id           String   @id @default(uuid())
+  phase        String
+  modelId      String   @map("model_id")
+  cliProfileId String?  @map("cli_profile_id")
+  reason       String?
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  model      LLMModel    @relation(fields: [modelId], references: [id])
+  cliProfile CliProfile? @relation(fields: [cliProfileId], references: [id])
+
+  @@map("phase_model_assignments")
+}
+
+model ChatMessage {
+  id        String   @id @default(uuid())
+  role      String
+  content   String
+  projectId String?  @map("project_id")
+  /**
+   * Chat de uma Session do orquestrador (P3.1). Nulo nas mensagens do Master.
+   * Sem relação/FK de propósito: uma FK Restrict quebraria o delete de sessões
+   * (mesma armadilha do B0 em Project→Pipeline/Agent/MacroTask).
+   */
+  sessionId     String?  @map("session_id")
+  /**
+   * Thread de conversa com o Master (P3.2). É só agrupamento de mensagens —
+   * NÃO existe um runtime/pane de Master por conversa. Mensagens pré-migração
+   * receberam uma conversa sintética por projeto no backfill.
+   */
+  chatSessionId String?  @map("chat_session_id")
+  timestamp DateTime @default(now()) @map("timestamp")
+  metadata  Json?
+
+  @@index([projectId])
+  @@index([sessionId])
+  @@index([chatSessionId])
+  @@index([projectId, chatSessionId])
+  @@map("chat_messages")
+}
+
+/**
+ * Config global do governor de sessões (MT-10) — teto de sessões da MÁQUINA
+ * inteira (soma de todos os projetos) + limiares de CPU/memória. Não é
+ * `Project.settings` porque nada aqui pertence a um projeto específico.
+ *
+ * Singleton de verdade: `id` fixo travado por schema (não por disciplina) —
+ * duas linhas são impossíveis, não só "não deveriam existir". Se a linha não
+ * existir (banco novo, antes do primeiro deploy rodar), o código usa os
+ * defaults abaixo e nunca lança — um governor que falha fechado sem config
+ * travaria TODA sessão do sistema, o que é pior que não ter governor.
+ */
+model GovernorSettings {
+  id                String   @id @default("global")
+  /** Teto de sessões `running|waiting|initializing` somando TODOS os projetos. 4 = mesma workstation onde o usuário trabalha enquanto as sessões rodam. */
+  globalMaxSessions Int      @default(4) @map("global_max_sessions")
+  /** Load average (1min) por núcleo acima do qual novas sessões são adiadas. */
+  cpuLoadThreshold  Float    @default(1.5) @map("cpu_load_threshold")
+  /** Memória disponível (MemAvailable, não freemem — ver resource-guard.ts) abaixo da qual novas sessões são adiadas. */
+  minFreeMemMb      Int      @default(1024) @map("min_free_mem_mb")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  @@map("governor_settings")
+}
+
+/**
+ * Config de notificação push do orquestrador. Global, não por projeto: quem
+ * recebe é uma pessoa, e o projeto vai no título da notificação.
+ *
+ * Singleton pelo mesmo desenho de `GovernorSettings` — `id` fixo por schema. Se
+ * a linha não existir, o service usa os defaults e não notifica nada (nenhum
+ * canal configurado), então banco novo nunca falha por causa disso.
+ */
+model NotificationSettings {
+  id      String  @id @default("global")
+  /** Mata todas as notificações de uma vez sem perder a config dos canais. */
+  enabled Boolean @default(true)
+
+  /** Base pública da UI para o deep-link da notificação (ex. http://192.168.1.48:3000). Sem isso a notificação não é clicável. */
+  publicBaseUrl String? @map("public_base_url")
+
+  /** Janela de dedup por `tag` — watchdog reavalia sessão travada em loop, e sem isso seria um alarme por ciclo. */
+  dedupeWindowSec Int @default(300) @map("dedupe_window_sec")
+
+  // --- ntfy: push real no celular sem exigir HTTPS no orquestrador ---
+  ntfyEnabled   Boolean @default(false) @map("ntfy_enabled")
+  ntfyServerUrl String  @default("https://ntfy.sh") @map("ntfy_server_url")
+  ntfyTopic     String? @map("ntfy_topic")
+  /** Token de acesso para tópico protegido. Fica em claro no banco — é config local, mesmo nível dos outros segredos do .env. */
+  ntfyToken     String? @map("ntfy_token")
+
+  // --- webhook genérico: Telegram/Slack/Gotify/n8n via adaptador externo ---
+  webhookEnabled Boolean @default(false) @map("webhook_enabled")
+  webhookUrl     String? @map("webhook_url")
+  webhookSecret  String? @map("webhook_secret")
+
+  // --- quais eventos notificam (chaves de NotificationEventKey) ---
+  notifyQuestion         Boolean @default(true) @map("notify_question")
+  notifyEscalation       Boolean @default(true) @map("notify_escalation")
+  notifyStalled          Boolean @default(true) @map("notify_stalled")
+  notifyStageFailed      Boolean @default(true) @map("notify_stage_failed")
+  notifySessionFailed    Boolean @default(true) @map("notify_session_failed")
+  /** Sucesso é o único que vem desligado: em fila de macro tasks isso notifica a cada poucos minutos. */
+  notifySessionCompleted Boolean @default(false) @map("notify_session_completed")
+
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("notification_settings")
+}
+
+/**
+ * Stack configuration per project. Defines which technology stacks are active
+ * for a project, and which agents are available.
+ */
+model StackConfig {
+  id         String   @id @default(uuid())
+  projectId  String   @map("project_id")
+  project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  stack      String   // angular | nodejs | spring | go | postgres
+  isActive   Boolean  @default(false) @map("is_active")
+  agentCount Int      @default(0) @map("agent_count")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@unique([projectId, stack])
+  @@map("stack_configs")
+}
+
+/**
+ * Health check snapshot for requirements document. Versioned history of health checks.
+ */
+model RequirementsHealthCheck {
+  id            String   @id @default(uuid())
+  projectId     String   @map("project_id")
+  project       Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  version       Int      // v001, v002, ...
+  score         Int      // 0-100
+  verdict       String   // healthy | needs_revision | blocked
+  context       String   // greenfield | migration | doc-update
+  dimensions    Json     // 8 dimensions detailed scores
+  findings      Json     // array of findings
+  recommendations Json
+  sourceFile    String?  @map("source_file") // source file checked
+  docHash       String?  @map("doc_hash")    // hash of requirements.md
+  checkedAt     DateTime @default(now()) @map("checked_at")
+
+  @@index([projectId, version])
+  @@map("requirements_health_checks")
+}
+
+/**
+ * Screen description from visual artifacts (PNG/FIG/XD).
+ */
+model ScreenDescription {
+  id           String   @id @default(uuid())
+  projectId    String   @map("project_id")
+  project      Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  screenId     String   @map("screen_id") // S-001, S-002
+  source       String   // req/screens/orders-list.png
+  title        String
+  layout       Json     // structure of zones
+  components   Json     // list of expected components
+  paths        Json     // interaction paths
+  states       Json     // loading/error/empty states
+  a11y         Json     // accessibility requirements
+  dataConsumed Json     // endpoints + httpResource
+  relatedScreens String[] @map("related_screens") // IDs S-NNN
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@unique([projectId, screenId])
+  @@map("screen_descriptions")
+}
+
+/**
+ * SDD Spec tracking - tracks spec.md files per trail.
+ */
+model SddSpec {
+  id          String   @id @default(uuid())
+  projectId   String   @map("project_id")
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  nnn         String   // 001, 002
+  slug        String   // orders-api
+  variant     String   // feature | bug-fix | investigation | doc-update
+  stack       String   // angular | nodejs | spring | go | postgres | multi
+  status      String   // open | blocked | ready
+  content     String?  @db.Text // spec.md raw content
+  tasks       Json?    // structured tasks
+  contracts   Json?    // contracts touched
+  premises    Json?    // assumptions
+  dependsOn   String[] @map("depends_on") // NNNs this trail depends on
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@unique([projectId, nnn])
+  @@map("sdd_specs")
+}
+
+/**
+ * Test plan per project per stack.
+ */
+model TestPlan {
+  id          String   @id @default(uuid())
+  projectId   String   @map("project_id")
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  stack       String
+  level       String   // unit | functional | integration | system | acceptance | e2e
+  scenarios   Json     // acceptance criteria from spec
+  traceArtifacts String? @map("trace_artifacts") // path to trace.zip, junit.xml
+  testCount   Int      @default(0) @map("test_count")
+  passCount   Int      @default(0) @map("pass_count")
+  failCount   Int      @default(0) @map("fail_count")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([projectId, stack])
+  @@map("test_plans")
+}

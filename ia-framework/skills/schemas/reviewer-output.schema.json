@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Reviewer output",
+  "description": "Recibo do agente reviewer (fase 4 — Review + Testes).",
+  "type": "object",
+  "required": ["stack", "checks", "tests", "findings", "verdict"],
+  "properties": {
+    "stack": { "type": "string" },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item", "status"],
+        "properties": {
+          "item": { "type": "string" },
+          "status": { "enum": ["ok", "falta", "requires_human"] },
+          "evidence": { "type": "string", "description": "arquivo:linha" },
+          "fix": { "type": "string" }
+        }
+      }
+    },
+    "tests": {
+      "type": "object",
+      "required": ["ran"],
+      "properties": {
+        "ran": { "type": "boolean" },
+        "passed": { "type": "boolean" },
+        "cmd": { "type": "string" }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": { "type": "string", "description": "fora de escopo, vira backlog" }
+    },
+    "verdict": { "enum": ["ready", "blocked"] },
+    "requires_human_validation": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

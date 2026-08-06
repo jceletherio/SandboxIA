@@ -1,0 +1,25 @@
+# v0 sandbox internal files
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+.snowflake/
+.v0-trash/
+.vercel/
+
+# Environment variables
+.env
+.env*.local
+
+# Common ignores
+node_modules
+.next/
+.DS_Store
+
+# Gerado pelo Next e declarado por ele como "should not be edited". Era
+# versionado e o `next build` alternava a linha de import entre
+# `./.next/dev/types/routes.d.ts` (o que o `next dev` grava) e
+# `./.next/types/routes.d.ts`, sujando o repo a cada build — em worktree e no
+# checkout principal. Repo sujo no checkout principal derruba o merge de TODAS
+# as sessões (ver 01-CONTRATOS.md §9). Destrackeado pela MT-25; o `next dev` /
+# `next build` regenera.
+next-env.d.ts
