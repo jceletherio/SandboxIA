@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Body, Param, Delete, Patch, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Patch, Query, Put } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { ProjectFilesService } from './project-files.service';
+import { StackConfigService } from './stack-config.service';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { CloneProjectDto } from './dto/clone-project.dto';
@@ -10,6 +11,7 @@ export class ProjectsController {
   constructor(
     private readonly projectsService: ProjectsService,
     private readonly projectFilesService: ProjectFilesService,
+    private readonly stackConfigService: StackConfigService,
   ) {}
 
   @Post()
@@ -88,5 +90,25 @@ export class ProjectsController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.projectsService.remove(id);
+  }
+
+  // === SandboxIA: Stack Config ===
+
+  @Get(':id/stacks')
+  getStacks(@Param('id') id: string) {
+    return this.stackConfigService.getStacks(id);
+  }
+
+  @Put(':id/stacks')
+  updateStacks(@Param('id') id: string, @Body() body: { stacks: { stack: string; isActive: boolean }[] }) {
+    const stacks = Array.isArray(body) ? body : body.stacks;
+    return this.stackConfigService.updateStacks(id, stacks);
+  }
+
+  // === SandboxIA: Project State ===
+
+  @Get(':id/state')
+  getProjectState(@Param('id') id: string) {
+    return this.stackConfigService.getProjectState(id);
   }
 }
