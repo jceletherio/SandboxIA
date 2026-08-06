@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Architect output",
+  "description": "Recibo do agente <stack>-arquiteto (fase de arquitetura).",
+  "type": "object",
+  "required": ["status", "stack", "decisions", "blockers"],
+  "properties": {
+    "status": { "enum": ["feito", "bloqueado"] },
+    "stack": { "type": "string" },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["topic", "decision", "reason"],
+        "properties": {
+          "topic": { "type": "string" },
+          "decision": { "type": "string" },
+          "reason": { "type": "string" },
+          "alternatives": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "contracts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["signature"],
+        "properties": {
+          "signature": { "type": "string" },
+          "ref": { "type": "string" }
+        }
+      }
+    },
+    "blockers": { "type": "array", "items": { "type": "string" } },
+    "adr_proposed": { "type": "boolean", "default": false }
+  }
+}

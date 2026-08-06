@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Security output",
+  "description": "Recibo do agente <stack>-seguranca (revisão de segurança).",
+  "type": "object",
+  "required": ["status", "stack", "findings", "verdict"],
+  "properties": {
+    "status": { "enum": ["feito", "bloqueado"] },
+    "stack": { "type": "string" },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "severity", "category", "evidence", "fix"],
+        "properties": {
+          "id": { "type": "string" },
+          "severity": { "enum": ["critical", "high", "medium", "low", "info"] },
+          "category": {
+            "enum": ["injection", "authz", "authn", "secrets", "xss", "csrf",
+                     "rls", "rate_limit", "info_leak", "misconfig", "dependency", "other"]
+          },
+          "evidence": { "type": "string", "description": "arquivo:linha ou trecho" },
+          "fix": { "type": "string" },
+          "owasp": { "type": "string", "description": "ex.: A03:2021 Injection" }
+        }
+      }
+    },
+    "verdict": { "enum": ["ready", "blocked"] },
+    "blockers": { "type": "array", "items": { "type": "string" } }
+  }
+}

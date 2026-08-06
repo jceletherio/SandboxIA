@@ -1,0 +1,126 @@
+# .pre-commit-config.template.yaml
+#
+# Template de hooks pre-commit para projetos baseados em ia-framework.
+# Copie para `.pre-commit-config.yaml` na raiz do repo, ajuste stacks ativas
+# (comente linhas irrelevantes), e rode uma vez:
+#
+#   pip install pre-commit      # se ainda nao tem
+#   pre-commit install          # instala hooks no .git/hooks/
+#   pre-commit autoupdate       # periodicamente para atuzalizar versoes
+#
+# Para rodar manualmente sem commit:
+#   pre-commit run --all-files
+#
+# Para pular um hook em commit raro (nao faca em SDD):
+#   git commit --no-verify      (requer aprovacao explicita do usuario)
+
+repos:
+  # Hooks basicos (whitespace, large files, secrets)
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ['--maxkb=512']
+      - id: detect-private-key
+      - id: check-case-conflict
+      - id: mixed-line-ending
+        args: ['--fix=lf']
+
+  # Gitleaks - secret scan
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.0
+    hooks:
+      - id: gitleaks
+        args: ['--config=.gitleaks.toml']  # opcional; default cobre o essencial
+
+  # Angular (frontend/)
+  # Descomente quando `frontend/` existir com package.json
+  # - repo: local
+  #   hooks:
+  #     - id: angular-eslint
+  #       name: Angular ESLint
+  #       entry: bash -c 'cd frontend && npx ng lint'
+  #       language: system
+  #       files: ^frontend/.*\.(ts|html)$
+  #       pass_filenames: false
+  #     - id: angular-tsc
+  #       name: Angular tsc --noEmit
+  #       entry: bash -c 'cd frontend && npx tsc --noEmit'
+  #       language: system
+  #       files: ^frontend/.*\.ts$
+  #       pass_filenames: false
+
+  # Node.js (backend/nodejs/)
+  # - repo: local
+  #   hooks:
+  #     - id: nodejs-eslint
+  #       name: Node.js ESLint
+  #       entry: bash -c 'cd backend/nodejs && npx eslint . --max-warnings=0'
+  #       language: system
+  #       files: ^backend/nodejs/.*\.(ts|js)$
+  #       pass_filenames: false
+  #     - id: nodejs-tsc
+  #       name: Node.js tsc
+  #       entry: bash -c 'cd backend/nodejs && npx tsc --noEmit'
+  #       language: system
+  #       files: ^backend/nodejs/.*\.ts$
+  #       pass_filenames: false
+
+  # Spring Boot (backend/spring/)
+  # Descomente quando `backend/spring/` existir com pom.xml
+  # - repo: local
+  #   hooks:
+  #     - id: spring-compile
+  #       name: Spring mvnw test-compile
+  #       entry: bash -c 'cd backend/spring && ./mvnw test-compile -q'
+  #       language: system
+  #       files: ^backend/spring/.*\.(java|xml)$
+  #       pass_filenames: false
+
+  # Go (backend/go/)
+  # - repo: local
+  #   hooks:
+  #     - id: go-vet
+  #       name: go vet
+  #       entry: bash -c 'cd backend/go && go vet ./...'
+  #       language: system
+  #       files: ^backend/go/.*\.go$
+  #       pass_filenames: false
+  #     - id: go-build
+  #       name: go build
+  #       entry: bash -c 'cd backend/go && go build ./...'
+  #       language: system
+  #       files: ^backend/go/.*\.go$
+  #       pass_filenames: false
+  #     - id: golangci-lint
+  #       name: golangci-lint
+  #       entry: bash -c 'cd backend/go && golangci-lint run'
+  #       language: system
+  #       files: ^backend/go/.*\.go$
+  #       pass_filenames: false
+
+  # SQL (BD/sql/)
+  # Verificacao de sintaxe basica. Para pgtap real, rode via /tests-run --level=unit
+  # - repo: local
+  #   hooks:
+  #     - id: sql-basic-check
+  #       name: SQL basico - sem SELECT * em migrations
+  #       entry: bash -c '! grep -rn "SELECT \*" BD/sql/migrations/'
+  #       language: system
+  #       files: ^BD/sql/.*\.sql$
+  #       pass_filenames: false
+
+  # SDD: impedir commit de segredos em .docx/.pdf de req/
+  - repo: local
+    hooks:
+      - id: req-no-executable
+        name: req/ sem binarios executaveis
+        entry: bash -c '! find req/ -type f \( -name '*.exe' -o -name '*.dll' -o -name '*.so' \) 2>/dev/null | head -1 | grep -q .'
+        language: system
+        pass_filenames: false
+        always_run: true

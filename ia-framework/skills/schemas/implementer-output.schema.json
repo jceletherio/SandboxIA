@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Implementer output",
+  "description": "Recibo do agente <stack>-implementador (fase de implementação).",
+  "type": "object",
+  "required": ["status", "stack", "files", "blockers"],
+  "properties": {
+    "status": { "enum": ["feito", "bloqueado"] },
+    "stack": { "type": "string" },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "change"],
+        "properties": {
+          "path": { "type": "string" },
+          "change": { "type": "string", "description": "resumo de 1 linha" }
+        }
+      }
+    },
+    "blockers": { "type": "array", "items": { "type": "string" } },
+    "how_to_validate": { "type": "string" }
+  }
+}
