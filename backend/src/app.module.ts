@@ -31,6 +31,7 @@ import { GithubModule } from './integrations/github/github.module';
 import { EventsModule } from './events/events.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { RequirementsModule } from './requirements/requirements.module';
+import { SddSpecsModule } from './sdd-specs/sdd-specs.module';
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { RequirementsModule } from './requirements/requirements.module';
     EventsModule,
     NotificationsModule,
     RequirementsModule,
+    SddSpecsModule,
   ],
 })
 export class AppModule {}
