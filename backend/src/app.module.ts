@@ -30,6 +30,7 @@ import { CliFilesModule } from './cli-files/cli-files.module';
 import { GithubModule } from './integrations/github/github.module';
 import { EventsModule } from './events/events.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { RequirementsModule } from './requirements/requirements.module';
 
 @Module({
   imports: [
@@ -64,6 +65,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     GithubModule,
     EventsModule,
     NotificationsModule,
+    RequirementsModule,
   ],
 })
 export class AppModule {}
