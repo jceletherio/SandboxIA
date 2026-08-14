@@ -115,9 +115,16 @@ function Invoke-Init($root) {
     $p = Join-Path $root $d
     if (-not (Test-Path $p)) { New-Item -ItemType Directory -Path $p | Out-Null }
   }
+  # subpastas de entrada (telas vision + prototipo) — mantidas com .gitkeep
+  foreach ($d in @('01-context\screens', '01-context\prototype\designs', '01-context\prototype\review')) {
+    $p = Join-Path $root $d
+    if (-not (Test-Path $p)) { New-Item -ItemType Directory -Path $p -Force | Out-Null }
+    $keep = Join-Path $p '.gitkeep'
+    if (-not (Test-Path $keep)) { New-Item -ItemType File -Path $keep | Out-Null }
+  }
   Copy-ContextTemplates $root
   Write-StatusFile $root
-  Write-Host "init ok -> $root (STATUS.md + 01-context/ templates + 02-specs/ + 03-decisions/)"
+  Write-Host "init ok -> $root (STATUS.md + 01-context/ templates + 02-specs/ + 03-decisions/ + screens/ + prototype/)"
 }
 
 function Invoke-New {

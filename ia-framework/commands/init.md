@@ -79,7 +79,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File ia-framework/skills/scaffold
 ```
 
 ou `bash ia-framework/skills/scaffold.sh init project_sdd`. Output copia templates de
-`01-context/` e gera `STATUS.md`.
+`01-context/` e gera `STATUS.md`. O scaffold também cria as subpastas de entrada:
+`01-context/screens/` (telas vision) e `01-context/prototype/{designs,review}/`
+(protótipo de telas) — cada uma com `.gitkeep`.
 
 ### QMD (se confirmado)
 
@@ -135,16 +137,17 @@ template). Se já existe, apenas garante que `.qmd/` está incluído via `Edit`.
 init OK em <repoRoot>
 
 Stacks ativas: angular, nodejs, postgres
-Árvore SDD: project_sdd/ criada (01-context/ 6 templates, 02-specs/, 03-decisions/, STATUS.md)
+Árvore SDD: project_sdd/ criada (01-context/ 6 templates + screens/ + prototype/, 02-specs/, 03-decisions/, STATUS.md)
 QMD: instalado e indexado | pulado (rodar `/setup-tooling --qmd` depois)
 Pre-commit: template copiado e hooks instalados | pulado (rodar /setup-tooling --hooks depois)
 .gitignore: criado com .qmd/
 
 Próximos passos:
   1. /req-add <caminho-do-arquivo.docx>      para copiar seus requisitos
-  2. /setup-tooling --deps                    para instalar deps das stacks
-  3. /plan-from-requirements req/<file>        para gerar plano SDD
-  4. /sdd --stack=<id> <tipo> <slug>          por trilha
+  2. /setup-tooling --apps                     para criar o skeleton dos apps (ng new, npm init, go mod init, Spring)
+  3. /setup-tooling --deps                    para instalar deps das stacks
+  4. /plan-from-requirements req/<file>        para gerar plano SDD
+  5. /sdd --stack=<id> <tipo> <slug>          por trilha
 
 Em qualquer dúvida sobre estado: /state
 ```

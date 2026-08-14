@@ -27,6 +27,10 @@ A qualquer momento: `/state` para diagnóstico read-only do setup.
 - `agents/requirements-doctor.md` — verifica a saúde do documento de requisitos (gate pré-planejamento)
 - `agents/requirements-doctor.md` — verifica a saúde do documento de requisitos (gate pré-planejamento)
 - `agents/sdd-planner.md` — gera trilhas SDD a partir de requisitos
+- `agents/prototype-planner.md` — divide requisitos em partes P-NNN do protótipo de telas
+- `agents/prototype-designer.md` — desenha telas com Material Design 3 + contrato de mock
+- `agents/prototype-builder.md` — implementa partes do protótipo com mock estruturado p/ backend
+- `agents/prototype-reviewer.md` — revisa completude RF/US + conformidade M3 do protótipo
 - `agents/architecture-writer.md` — persiste decisões em `docs/architecture/`
 - `agents/screens-reader.md` — descreve telas visuais via LLM vision
 - `agents/test-setup.md` — prepara tooling de testes por stack
@@ -61,6 +65,7 @@ A qualquer momento: `/state` para diagnóstico read-only do setup.
 - `skills/memory/SKILL.md` — índice token-efficient + QMD opcional
 - `skills/protocol/SKILL.md` — protocolo de aprovação 4 fases (`/plan-from-prompt`)
 - `skills/screens/SKILL.md` — ingestão de telas via vision
+- `skills/prototyping/SKILL.md` — protótipo de telas (M3 + mock estruturado p/ backend)
 
 ## Commands
 
@@ -71,7 +76,7 @@ A qualquer momento: `/state` para diagnóstico read-only do setup.
 | `/init` | Wizard de bootstrap (stacks, QMD, hooks, .gitignore). Caminho primário. |
 | `/state` | Diagnóstico read-only do estado do projeto. |
 | `/req-add <source-path>` | Copia arquivo externo para `req/` (docs) ou `req/screens/` (telas). |
-| `/setup-tooling [--deps\|--qmd\|--pdftotext\|--hooks\|--all]` | Instala ferramental por sub-operação; cada uma pede confirmação. |
+| `/setup-tooling [--apps\|--deps\|--qmd\|--pdftotext\|--hooks\|--all]` | Scaffold de apps + instala ferramental por sub-operação; cada uma pede confirmação. `--apps` cria o skeleton dos apps (ng new/npm init/go mod init/Spring). |
 
 ### SDD — fluxo de 5 fases
 
@@ -90,10 +95,11 @@ A qualquer momento: `/state` para diagnóstico read-only do setup.
 | Command | Descrição |
 |---|---|
 | `/load-requirements <file>` | Carrega `.docx/.pdf/.md` em `01-context/requirements.md`; health-check embutido |
-| `/plan-from-requirements <file>` | Pipeline: carrega + gate doctor + gera trilhas SDD + plano |
+| `/plan-from-requirements <file>` | Pipeline: carrega + gate doctor + gera trilhas SDD + plano. Se existir protótipo (`01-context/prototype/`), reusa partes P-NNN nas trilhas frontend e DTOs do mock como contrato backend. |
 | `/requirements-doctor [<file>] [--strict] [--migration] [--no-save]` | Verifica saúde do documento de requisitos; gate pré-planejamento |
 | `/load-screens <dir>` | Descreve telas `.png/.fig/.xd` via LLM vision |
 | `/plan-from-prompt "<desc>"` | Plano via prompt com aprovação em 4 fases |
+| `/prototype-screens [<escopo>\|--part=P-NNN]` | Protótipo de telas a partir de requisitos (M3 + mock estruturado p/ backend) |
 
 ### Testes
 

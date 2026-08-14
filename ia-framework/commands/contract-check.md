@@ -22,13 +22,23 @@ Confere o contrato backend ↔ frontend antes de liberar release.
 >
 > Extra: se `01-context/api-context.md` ausente (não há contrato publicado), abort e
 > sugira `/generate-architecture` primeiro antes do contract-check.
+>
+> Extra protótipo: se `01-context/prototype/` existir (partes `P-NNN`) mas `api-context.md`
+> ainda vazio, use os **DTOs do mock** (`frontend/src/app/prototype/core/api/*.gateway.ts`)
+> como a fonte esperada de contrato — o backend real deve entregar o que o mock prometeu
+> (ver `skills/prototyping/references/feeding-sdd.md` §release). Não aborte nesse caso.
 
 ## Condução
 
-1. Garanta `01-context/api-context.md` existe e está atualizado (não rely on stale data —
-   rode `/sdd-context` ou peça ao `context-curator` para refresh se precisou).
+1. Determine a fonte do contrato:
+   - `01-context/api-context.md` populado → contrato publicado (fonte principal).
+   - `api-context.md` vazio **mas** `01-context/prototype/` existe → use os DTOs do mock
+     (`frontend/src/app/prototype/core/api/*.gateway.ts`) como contrato esperado; informe
+     no recibo que `checked_against` é o mock.
+   - Ambos ausentes → abort (não há contrato para conferir).
 2. Delegue ao agente `contract-checker`:
-   - Lê `ia-framework/STACK.md` e `api-context.md`.
+   - Lê `ia-framework/STACK.md` e a fonte do contrato (passa `api-context.md` e/ou os
+     paths dos gateways do protótipo quando usados como fonte).
    - Varre frontend (`httpResource`, `HttpClient`) e backend (handlers/controllers/routes).
    - Compara paths, verbs, schemas, status codes.
    - Devolve JSON com findings (critical/high/medium/low) e verdict.

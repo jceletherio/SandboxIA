@@ -1,6 +1,6 @@
 ---
-description: Instala ferramental de runtime/devops via flags modulares. Instala deps de runtime por stack (--deps), QMD local com autoindex (--qmd), pdftotext via package manager do SO (--pdftotext), pre-commit hooks (--hooks). Sem flags: pergunta interativamente quais rodar. Sempre pede confirmação explícita antes de qualquer sub-operação que mexa no sistema (lockfiles, package manager global, binary global).
-args: [--deps] [--qmd] [--pdftotext] [--hooks] [--all]
+description: Instala ferramental de runtime/devops via flags modulares. Cria o skeleton de aplicações por stack ativa (--apps), instala deps de runtime por stack (--deps), QMD local com autoindex (--qmd), pdftotext via package manager do SO (--pdftotext), pre-commit hooks (--hooks). Sem flags: pergunta interativamente quais rodar. Sempre pede confirmação explícita antes de qualquer sub-operação que mexa no sistema (lockfiles, package manager global, binary global).
+args: [--apps] [--deps] [--qmd] [--pdftotext] [--hooks] [--all]
 ---
 
 Setup de ferramental. Modular via flags; sempre com confirmação explícita.
@@ -24,13 +24,51 @@ Setup de ferramental. Modular via flags; sempre com confirmação explícita.
 
 - `$ARGUMENTS` contém zero ou mais flags listadas acima.
 - Zero flags (sem `--`): **ENTER modo interativo** — pergunte "Quais passos rodar?"
-  (multi-select via `AskUserQuestion`: deps, qmd, pdftotext, hooks).
-- `--all`: rodar todos os 4 (cada com confirmação própria).
+  (multi-select via `AskUserQuestion`: apps, deps, qmd, pdftotext, hooks).
+- `--all`: rodar todos os 5 (cada com confirmação própria).
 - Combinar flags: `--deps --hooks` roda ambos; cada pede confirmação separada.
 - Em ambientes Sem `AskUserQuestion`: printe pergunta no chat e leia próxima resposta.
 
 Para cada sub-operação abaixo, mostre o comando real que vai rodar e pergunte "Confirmar
 [Y/N]?". Se "N", skip aquele step com recibo "pulado pelo usuário".
+
+### Passo 1.5 — Sub-operação `--apps` (scaffold de aplicações)
+
+**Quando:** em projeto greenfield, o `/init` cria só a árvore SDD (docs) — as aplicações
+reais (`frontend/package.json`, `backend/nodejs/`, etc.) precisam ser criadas antes de
+qualquer implementador ou do protótipo. Este passo cria o skeleton mínimo por stack ativa.
+
+Lê `ia-framework/STACK.md`; para cada stack ativa **sem skeleton**:
+
+- **angular** (`frontend/`): se `frontend/package.json`/`angular.json` ausentes:
+  1. Limpe resíduos estranhos da pasta (ex.: `.next/`, `node_modules/` órfãos) — mostre
+     `Remove-Item` e confirme antes.
+  2. `npx -y @angular/cli@latest new frontend-app --directory <temp> --standalone
+     --style scss --routing --skip-git` (pasta temp porque o Angular CLI não aceita
+     pasta com arquivos) e mova o conteúdo para `frontend/` — ou use
+     `ng new frontend --directory frontend` se a pasta estiver vazia.
+- **nodejs** (`backend/nodejs/`): se sem `package.json`:
+  ```
+  npm init -y
+  npm pkg set type=module
+  npm install --save-dev typescript @types/node vitest
+  npx tsc --init
+  ```
+- **spring** (`backend/spring/`): se sem `pom.xml`/`build.gradle` — via Spring Initializr:
+  ```
+  curl -s https://start.spring.io/starter.tgz -d dependencies=web,data-jpa,validation \
+       -d type=maven-project -d language=java -d bootVersion=3.5.x | tar -xzf - -C backend/spring
+  ```
+  (adapte ao ambiente; se `curl` indisponível, instrua o usuário a baixar de
+  `start.spring.io` manualmente).
+- **go** (`backend/go/`): se sem `go.mod`:
+  ```
+  cd backend/go && go mod init <module>
+  ```
+  Pergunte o nome do módulo (default: `github.com/<org>/<projeto>`).
+- **postgres**: n/a (BD/ é só migrations SQL; sem skeleton).
+
+Após criar, rode `/setup-tooling --deps` (ou sugira) para instalar as deps.
 
 ### Passo 2 — Sub-operação `--deps`
 
@@ -39,13 +77,18 @@ Lê `ia-framework/STACK.md`; para cada stack ativa:
 - **angular** (`frontend/`):
   ```
   validade: frontend/package.json existe?
-  if Nao existe: abort, sugira /init
+  if Nao existe: avise e pergunte "Rodar /setup-tooling --apps antes (cria o app Angular)? [Y/N]"
+  se sim: delegue --apps (mesmo command) e retome npm install
+  se nao: abort — sem package.json o npm install nao tem o que instalar
   pergunta: "Rodar `cd frontend && npm install`?"
   se sim: Bash → npm install (output tail ao usuário)
   ```
 - **nodejs** (`backend/nodejs/`):
   ```
   validade: backend/nodejs/package.json
+  if Nao existe: avise e pergunte "Rodar /setup-tooling --apps antes (cria o app Node)? [Y/N]"
+  se sim: delegue --apps e retome
+  se nao: abort
   pergunta: "Rodar `cd backend/nodejs && npm install`?"
   se sim: Bash → npm install
   ```
@@ -149,6 +192,7 @@ pre-commit autoupdate
 
 ```
 setup-tooling →
+  --apps:    frontend Angular criado | backend/nodejs criado | pulado (já existia) | erro: <detalhe>
   --deps:    frontend/node_modules OK (instalado | já existia)
              backend/nodejs/node_modules OK
   --qmd:     instalado + 5 collections + embed completo | pulado | erro: <detalhe>

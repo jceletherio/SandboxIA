@@ -93,6 +93,11 @@ doInit() {
   local root="${1:-}"
   [[ -n "$root" ]] || { echo "uso: init <root>"; exit 2; }
   mkdir -p "$root/01-context" "$root/02-specs" "$root/03-decisions"
+  # subpastas de entrada (telas vision + prototipo) — mantidas com .gitkeep
+  mkdir -p "$root/01-context/screens" "$root/01-context/prototype/designs" "$root/01-context/prototype/review"
+  touch "$root/01-context/screens/.gitkeep" \
+        "$root/01-context/prototype/designs/.gitkeep" \
+        "$root/01-context/prototype/review/.gitkeep"
   copyContextTemplates "$root"
   writeStatus "$root"
   echo "init ok -> $root"

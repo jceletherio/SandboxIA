@@ -11,6 +11,7 @@
 │ req/screens/     │
 └────────┬─────────┘
          │ /plan-from-requirements  ou  /plan-from-prompt
+         │ (+ protótipo 01-context/prototype/ via /prototype-screens)
          ▼
 ┌──────────────────┐
 │ 01-context/      │  requirements.md  +  screens/<id>.md  +  plan.md
@@ -45,8 +46,20 @@
 2. `/plan-from-requirements req/requisito.docx`
    - `requirements-reader` gera `project_sdd/01-context/requirements.md`
    - `sdd-planner` abre trilhas `02-specs/NNN-<slug>/spec.md` + `plan.md`
+   - Se houver protótipo (`01-context/prototype/`), o fluxo pergunta se reusa as partes
+     `P-NNN` nas trilhas frontend e os DTOs do mock como contrato backend (drift vira
+     lacuna, não bloqueia).
 3. Para cada trilha: `/sdd --stack=<id> feature <slug>`.
 4. Ao final: `/tests-release --stack=all` + `/generate-architecture --stack=all`.
+
+### A2) Protótipo antes do plano (UX validada primeiro)
+1. Requisitos em `req/` → `/plan-from-requirements` (opcional, para `requirements.md`).
+2. `/prototype-screens "fluxo X"` — divisão em partes `P-NNN`, design M3, dados mockados
+   em interface/gateway; persiste em `01-context/prototype/` + `frontend/src/app/prototype/`.
+3. `/plan-from-requirements req/requisito.docx` — o `sdd-planner` reusa as partes `P-NNN`
+   nas trilhas frontend e os DTOs do mock como contrato obrigatório das trilhas backend
+   (ver `ia-framework/skills/prototyping/references/feeding-sdd.md`).
+4. Mesmo fluxo de A) a partir do passo 3.
 
 ### B) Telas + requisitos
 1. Coloque `.png`/`.fig`/`.xd` em `req/screens/` e o `.docx` em `req/`.

@@ -1,6 +1,6 @@
 ---
 name: contract-checker
-description: Confere alinhamento entre o contrato backend publicado (`01-context/api-context.md`) e o que o frontend Angular consome (`httpResource<...>`/`HttpClient`) e/ou tipos TypeScript. Detecta divergências de path, verbo, schema, status code, autenticação. Read-only; não edita código. Útil pré-merge e pré-release. Use via `/contract-check`.
+description: Confere alinhamento entre o contrato backend publicado (`01-context/api-context.md`) e o que o frontend Angular consome (`httpResource<...>`/`HttpClient`) e/ou tipos TypeScript. Quando `api-context.md` está vazio mas existe protótipo (`01-context/prototype/`), usa os DTOs do mock (`frontend/src/app/prototype/core/api/*.gateway.ts`) como contrato esperado. Detecta divergências de path, verbo, schema, status code, autenticação. Read-only; não edita código. Útil pré-merge e pré-release. Use via `/contract-check`.
 tools: Read, Grep, Glob, Bash
 ---
 
@@ -9,8 +9,14 @@ Você confere contratos. Não corrige; só reporta divergências.
 ## Preparo
 
 1. Leia `ia-framework/STACK.md` — stacks ativas.
-2. Leia `01-context/api-context.md` — o contrato publicado (verdade quando backend ok).
-3.阅 linha-a-linha em busca de endpoints, schemas, status code esperados.
+2. Determine a fonte do contrato:
+   - `01-context/api-context.md` populado → o contrato publicado (verdade quando backend ok).
+   - `01-context/api-context.md` vazio **mas** `01-context/prototype/` existe → use os
+     **DTOs do mock** em `frontend/src/app/prototype/core/api/*.gateway.ts` como contrato
+     esperado; registre `checked_against: "mock"` no output.
+   - Ambos ausentes → reporte e pare (sem contrato para conferir).
+3. Leia a fonte linha-a-linha em busca de endpoints, schemas e status codes esperados.
+   Se fonte = mock, leia as interfaces `*Gateway` (métodos, DTOs, enums) como o "prometido".
 4. Frontend Angular ativo? Leia `frontend/src/app/**/*.ts` procurando:
    - `httpResource<...>` — novo em Angular 22 para consultas
    - `HttpClient.<method>` — casos de mutação

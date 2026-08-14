@@ -134,6 +134,7 @@ próximo passo sugerido.
 | `/init` | Wizard de bootstrap (stacks + QMD + hooks + .gitignore) |
 | `/state` | Diagnóstico read-only do estado do projeto |
 | `/req-add <path>` | Copia arquivo externo para `req/` ou `req/screens/` |
+| `/setup-tooling --apps` | Cria o skeleton dos apps por stack ativa (`ng new`, `npm init`, `go mod init`, Spring Initializr) |
 | `/setup-tooling --deps` | `npm install`/`mvn install`/`go mod tidy` por stack ativa |
 | `/setup-tooling --qmd` | Instala QMD + qmd init + collections + qmd embed (~2GB) |
 | `/setup-tooling --pdftotext` | Instala poppler via package manager do SO |
