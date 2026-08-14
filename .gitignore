@@ -12,6 +12,7 @@ project_sdd/_legado/
 # .env e secrets
 .env
 .env.*
+!.env.example
 *.local
 
 # Node
