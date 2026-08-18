@@ -67,3 +67,11 @@ alvo contra o código com evidência `arquivo:linha`, e roda a suíte de testes 
 - `01-context/` desatualizado é pior que nenhum.
 - Stack do comando = stack do código tocado. Não misture convenções de stacks diferentes na
   mesma spec; se a integração cross-stack for o tema, abra uma spec por ponte.
+- **Código limpo** (regra geral, todas as stacks):
+  - Comentários **sem emojis**, breves e claros; justificam o **porquê**, nunca o quê.
+  - Nomes descritivos (sem abreviações); booleanos com prefixo `is/has/can/should`; tipos
+    explícitos (sem `any`/`var`).
+  - Funções curtas (≤ 25 linhas), uma responsabilidade, `early return`; aninhamento ≤ 2-3.
+  - Sem código comentado, magic number/string, `console.log`/`debugger`, `TODO`/`FIXME` órfãos.
+  - Formatter/lint antes do commit; DRY por regra de três (sem over-abstract/YAGNI).
+  - O `reviewer` aponta desvios como finding com `arquivo:linha`.

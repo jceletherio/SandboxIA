@@ -120,6 +120,24 @@ migrate-up:
 	migrate -path migrations -database $$DATABASE_URL up
 ```
 
+## Comentários
+
+- **Sem emojis** — nunca em comentário de código.
+- Comentários breves e claros; evite comentar o óbvio. Se comentar: PT-BR, curto, justifique o **porquê**, nunca o quê.
+
+## Código limpo (regras gerais)
+
+- **Nomes**: descritivos, sem abreviações; booleanos com prefixo `Is/Has/Can/Should`
+  (Go style); `gofmt` como fonte de verdade de formatação.
+- **Funções**: curtas, uma responsabilidade; `early return` e `defer` idiomáticos.
+- **Sem `panic`** em código de lib/handler — erro explícito (`errors`/`%w`).
+- **Sem código comentado** — delete em vez de comentar.
+- **Sem magic number/string** — constante nomeada.
+- **Sem `fmt.Println` de debug** — use `log/slog`/logger do projeto.
+- **Sem `TODO`/`FIXME` órfãos** — resolve na task ou vira backlog no review.
+- **Formatter/lint antes do commit** (`gofmt -l` + `go vet`/`golangci-lint` limpos).
+- **DRY por regra de três** — 3ª duplicação extrai; sem over-abstract antecipado (YAGNI).
+
 ## Commit
 
 `shared/git-conventions.md`. Scopes: `handler`, `service`, `repo`, `middleware`, `px`,

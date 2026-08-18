@@ -67,6 +67,23 @@ MapStruct mapper. Não usar Lombok `@Builder` em records.
 - Testcontainers: `org.testcontainers:postgresql` + `com.github.dasniko:testcontainers-keycloak`
   se JWT necessário.
 
+## Comentários
+
+- **Sem emojis** — nunca em comentário de código.
+- Comentários breves e claros; evite comentar o óbvio. Se comentar: PT-BR, curto, justifique o **porquê**, nunca o quê.
+
+## Código limpo (regras gerais)
+
+- **Nomes**: descritivos, sem abreviações; booleanos com prefixo `is/has/can/should`.
+- **Métodos**: curtos (≤ 25 linhas), uma responsabilidade; `early return`/`guard clause`.
+- **Tipos explícitos**: sem `var` em campos/assinaturas públicas; `record` para DTOs imutáveis.
+- **Sem código comentado** — delete em vez de comentar.
+- **Sem magic number/string** — constante nomeada ou `enum`.
+- **Sem `System.out.println`/print de debug** — use o logger do framework.
+- **Sem `TODO`/`FIXME` órfãos** — resolve na task ou vira backlog no review.
+- **Formatter/lint antes do commit** (checkstyle/spotless; compilação limpa).
+- **DRY por regra de três** — 3ª duplicação extrai; sem over-abstract antecipado (YAGNI).
+
 ## Commit
 
 `shared/git-conventions.md`. Scopes: `users`, `orders`, `security`, `jpa`, `migration`,

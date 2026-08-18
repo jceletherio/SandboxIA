@@ -69,6 +69,14 @@ Você revisa uma entrega verificando a spec **contra o código real**. Não impl
    **Cross-stack**: contrato de API entre a stack-alvo e seus consumidores bate (assina,
    tipo, caminho de erro). Erro no body do request 400/422 detalha campo e mensagem.
 
+   **Código limpo (todas as stacks)**: verifique desvios e reporte como `falta`/finding com
+   evidência `arquivo:linha`:
+   - Comentários **sem emojis**, breves e claros (porquê, nunca o quê); sem código comentado.
+   - Nomes descritivos (sem abreviações); booleanos com prefixo `is/has/can/should`; tipos
+     explícitos (sem `any`/`var`).
+   - Funções ≤ ~25 linhas com early return; aninhamento ≤ 2-3 níveis.
+   - Sem magic number/string; sem `console.log`/`debugger`; sem `TODO`/`FIXME` órfãos.
+
 4. `findings`: o que você viu fora do escopo — código morto, log de debug, segredo, TODO
    esquecido, `npm audit`/`govulncheck` com CVE high. Vira backlog no report, não conserto
    agora.

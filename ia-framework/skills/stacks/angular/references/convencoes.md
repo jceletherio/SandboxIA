@@ -66,7 +66,22 @@ Sem `NgModule`. `CommonModule` só em snippets legacy isoladas.
 ## Comentários
 
 - **Não adicionar** salvo solicitação. Convenção do projeto.
+- **Sem emojis** — nunca em comentário de código.
 - Se inevitável: PT-BR no corpo, ULTRA curto, justificando o porquê não o quê.
+
+## Código limpo (regras gerais)
+
+- **Nomes**: descritivos, sem abreviações; booleanos com prefixo `is/has/can/should`;
+  identificadores em inglês; comentários e mensagens em PT-BR.
+- **Funções**: curtas (≤ 25 linhas) e com uma responsabilidade; `early return` em vez de
+  `if/else` aninhado (máx. 2-3 níveis).
+- **Tipos explícitos**: sem `any`; sem `var`; estados com tipos discriminados.
+- **Sem código comentado** — delete em vez de comentar.
+- **Sem magic number/string** — constante nomeada, enum ou token.
+- **Sem `console.log`/`debugger`** — use o logger do projeto.
+- **Sem `TODO`/`FIXME` órfãos** — resolve na task ou vira backlog no review.
+- **Formatter/lint antes do commit** (prettier + eslint; typecheck limpo).
+- **DRY por regra de três** — 3ª duplicação extrai; sem over-abstract antecipado (YAGNI).
 
 ## Testes
 

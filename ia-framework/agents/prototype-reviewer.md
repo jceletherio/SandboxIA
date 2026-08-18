@@ -32,7 +32,9 @@ Você revisa uma parte do protótipo **contra os requisitos e o design spec**. N
    skeleton)? Sem `@empty` em `@for` → `falta`.
 3. **Conformidade M3/UX** — checklist do template `prototype-review-template.md`: tokens
    (sem hex), type scale/shapes, hierarquia de ações (1 filled por área), touch target,
-   contraste AA, nada só por cor, a11y.
+   contraste AA, nada só por cor, a11y. Inclui **código limpo**: comentários sem emojis e
+   breves, sem código comentado, sem magic number e sem `console.log` — desvio vira `falta`
+   com evidência `arquivo:linha`.
 4. **Contrato do mock** — componente depende da interface + token (nunca importa a classe
    mock); DTOs centralizados e espelhando o backend; fixtures cobrem dados/vazio/erro;
    seam de troca registrado no provider.

@@ -112,6 +112,20 @@
 - `src/BD/ops/restore-test.sh` script de restore PITR para 1h atrás — roda mensalmente em CI
   contra um container efêmero.
 
+## Comentários
+
+- **Sem emojis** — nunca em comentário de código.
+- Comentários breves e claros; evite comentar o óbvio. Se comentar: PT-BR, curto, justifique o **porquê**, nunca o quê.
+
+## Código limpo (SQL)
+
+- **Sem `SELECT *`** em produção — só colunas necessárias.
+- **Sem literais mágicos** em queries — parâmetros (`$1`) e constantes nomeadas.
+- **Sem SQL comentado** — delete; comentários breves, sem emoji (ver ## Comentários).
+- **Consistência de formato** — indentação/case uniformes; `pg_format`/`pgformatter` opcional.
+- **Sem `TODO`/`FIXME` órfãos** em migrations — resolve na task ou vira backlog no review.
+- **DRY por regra de três** — função/VIEW reusada 3x extrai; sem over-abstract (YAGNI).
+
 ## Commit
 
 `shared/git-conventions.md`. Scope: `schema`, `rls`, `index`, `partition`, `migration`.

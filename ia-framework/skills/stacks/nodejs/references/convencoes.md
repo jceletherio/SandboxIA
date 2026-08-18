@@ -84,6 +84,25 @@ import { OrdersService } from './orders.service.js';
 - DB real via Testcontainers (Postgres) ou `pg-mem` para unit de repository com fixture.
 - Não mocke o que não é seu (BD, Redis, HTTP externo) em testes de integração.
 
+## Comentários
+
+- **Sem emojis** — nunca em comentário de código.
+- Comentários breves e claros; evite comentar o óbvio. Se comentar: PT-BR, curto, justifique o **porquê**, nunca o quê.
+
+## Código limpo (regras gerais)
+
+- **Nomes**: descritivos, sem abreviações; booleanos com prefixo `is/has/can/should`;
+  identificadores em inglês; comentários e mensagens em PT-BR.
+- **Funções**: curtas (≤ 25 linhas) e com uma responsabilidade; `early return` em vez de
+  `if/else` aninhado (máx. 2-3 níveis).
+- **Tipos explícitos**: sem `any`; sem `var`; estados com tipos discriminados.
+- **Sem código comentado** — delete em vez de comentar.
+- **Sem magic number/string** — constante nomeada, enum ou token.
+- **Sem `console.log`/`debugger`** — use o logger do projeto (pino).
+- **Sem `TODO`/`FIXME` órfãos** — resolve na task ou vira backlog no review.
+- **Formatter/lint antes do commit** (prettier + eslint; typecheck limpo).
+- **DRY por regra de três** — 3ª duplicação extrai; sem over-abstract antecipado (YAGNI).
+
 ## Commit
 
 `shared/git-conventions.md`. Scopes: `orders`, `auth`, `users`, `rate-limit`,

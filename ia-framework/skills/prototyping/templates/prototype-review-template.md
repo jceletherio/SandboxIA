@@ -31,6 +31,7 @@ não dá para confirmar estaticamente → `requires_human_validation`.
 - [ ] Nada comunicado só por cor (ícone+texto+aria)
 - [ ] Ações hierarquizadas (1 filled por área)
 - [ ] a11y: labels/roles/`track` em @for
+- [ ] Comentários de código sem emoji, breves e claros
 
 ## Contrato do mock
 
