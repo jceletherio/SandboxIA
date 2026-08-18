@@ -31,9 +31,9 @@ Toda referência a código/doc é um **caminho relativo real**, do jeito que se 
 `grep`, com a linha quando ajudar:
 
 ```
-backend/spring/src/main/resources/db/migration/V12__add_tenant.sql:7
-frontend/src/app/features/orders/orders.component.ts:42
-BD/sql/rls/tenant_policies.sql:11
+src/backend/spring/src/main/resources/db/migration/V12__add_tenant.sql:7
+src/frontend/src/app/features/orders/orders.component.ts:42
+src/BD/sql/rls/tenant_policies.sql:11
 ```
 
 Nada de `[[spec 004]]` ou `RN-07`. Busca semântica é atalho quando existe, nunca

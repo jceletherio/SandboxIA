@@ -13,8 +13,8 @@ decisão de produto pendente.
 ## Como escolher a stack
 
 1. Se `$ARGUMENTS` contém `--stack=<id>`, use-a.
-2. Senão, leia `ia-framework/STACK.md` e infera da raiz touched (`frontend/` → angular;
-   `backend/nodejs/` → nodejs; `backend/spring/` → spring; `backend/go/` → go; `BD/` →
+2. Senão, leia `ia-framework/STACK.md` e infera da raiz touched (`src/frontend/` → angular;
+   `src/backend/nodejs/` → nodejs; `src/backend/spring/` → spring; `src/backend/go/` → go; `src/BD/` →
    postgres). Se ainda ambíguo, pergunte.
 
 ## Pipeline equivalente no orquestrador

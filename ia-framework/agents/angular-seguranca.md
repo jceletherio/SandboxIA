@@ -83,11 +83,11 @@ Contrato em `skills/schemas/security-output.schema.json`.
   "stack": "angular",
   "findings": [
     { "id": "XSS-001", "severity": "critical", "category": "xss",
-      "evidence": "frontend/src/app/orders/orders.component.html:23",
+      "evidence": "src/frontend/src/app/orders/orders.component.html:23",
       "fix": "remover [innerHTML] product.description e usar [textContent] ou pipe de saneamento",
       "owasp": "A03:2021 Injection" },
     { "id": "AUTH-001", "severity": "high", "category": "authn",
-      "evidence": "frontend/src/app/core/auth/auth.service.ts:42 (localStorage.setItem('access_token',...))",
+      "evidence": "src/frontend/src/app/core/auth/auth.service.ts:42 (localStorage.setItem('access_token',...))",
       "fix": "migrar access token para signal em memória; refresh via cookie HttpOnly",
       "owasp": "A07:2021 Identification and Auth Failures" }
   ],

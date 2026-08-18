@@ -3,7 +3,7 @@
 ## Estrutura de pastas (Fastify参考; NestJS similar)
 
 ```
-backend/nodejs/
+src/backend/nodejs/
   src/
     app.ts                          bootstrap: createServer, plugins, router, shutdown hooks
     server.ts                       buildApp() separado p/ teste

@@ -112,7 +112,7 @@ docs_root="$(cd "$sdd_root/.." && pwd)/docs"
 
   echo '## Não cobre'
   echo ''
-  echo '- Código de produção — use `grep -rn` em `frontend/`, `backend/`, `BD/`.'
+  echo '- Código de produção — use `grep -rn` em `src/frontend/`, `src/backend/`, `src/BD/`.'
   echo '- Estado de git — use `git status`/`git log`.'
 } > "$sdd_root/INDEX.md"
 

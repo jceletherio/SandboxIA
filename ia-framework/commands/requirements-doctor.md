@@ -113,7 +113,7 @@ snapshot: <path ou "não salvo (--no-save)">
 
 ## Limitação
 
-- Read-only em código de aplicação — não edita `frontend/`, `backend/`, `BD/`.
+- Read-only em código de aplicação — não edita `src/frontend/`, `src/backend/`, `src/BD/`.
 - Não substitui entrevista humana — findings de CA ausentes, por ex., não tem correção
   automatizável; recomenda `ENTREVISTAR <stakeholder>`.
 - Orquestrador com `AskUserQuestion` tool faculta pergunta natural; sem tool, usa stdin.

@@ -75,7 +75,7 @@ Tipos SQL exportados (consumidos por app via mapa manual ou `sqlc`):
 - `CREATE TYPE order_status AS ENUM ('open','paid','shipped','cancelled','returned')`
 - `TABLE orders (id uuid PK, tenant_id uuid, external_ref varchar(64), status order_status, ...)`
 
-Schema completo persistido em `BD/sql/`. Snapshot `pg_dump --schema-only` opcional em
+Schema completo persistido em `src/BD/sql/`. Snapshot `pg_dump --schema-only` opcional em
 release.
 
 ## Mapeamento para `01-context/`

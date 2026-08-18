@@ -32,7 +32,7 @@ GET /api/v1/orders?status=open → 200 { items: [...] } | 401 | 403
 
 Ordenadas, executáveis, cada uma com arquivo alvo. Paralelo só entre arquivos disjuntos.
 
-1. [ ] backend/<stack>: <tarefa> — `arquivo-alvo`
+1. [ ] src/backend/<stack>: <tarefa> — `arquivo-alvo`
 2. [ ] frontend: <tarefa> — `arquivo-alvo`
 3. [ ] BD: <tarefa> — `arquivo-alvo`
 4. [ ] testes: <tarefa>

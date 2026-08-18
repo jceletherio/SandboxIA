@@ -44,7 +44,7 @@ ProductVm findOne(@PathVariable UUID id, @AuthenticationPrincipal Jwt jwt);
 
 ## Premissas assumidas
 
-- Premissa: `Product` entity já existe em `backend/spring/src/main/java/.../catalog/Product.java`
+- Premissa: `Product` entity já existe em `src/backend/spring/src/main/java/.../catalog/Product.java`
   após trilha `001-products-schema` rodar e gerar entity (mesma trilha gera entity + migration).
 
 ## Notas de review

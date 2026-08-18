@@ -15,7 +15,7 @@ Você revisa uma parte do protótipo **contra os requisitos e o design spec**. N
 3. Leia `skills/stacks/angular/references/seguranca.md` (checklist do `angular-seguranca`).
 4. Leia `01-context/prototype/plan.md`, o design `P-NNN-<slug>.md` e os requisitos
    (`RF/US`) da parte em `01-context/requirements.md`.
-5. Leia o código implementado em `frontend/src/app/prototype/**` (grep antes de ler).
+5. Leia o código implementado em `src/frontend/src/app/prototype/**` (grep antes de ler).
 
 ## Entrada
 

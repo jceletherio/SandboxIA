@@ -75,5 +75,5 @@ Endpoints/Angular services que a tela usa. Referencia IDs de contrato em
 
 - Implementação — isso é o `/sdd` normal.
 - Decisão de design system (cor spec, tipo tipografia) — capturas da tela referem-se ao
-  que está na imagem; tokens vivem em `frontend/styles/`.
+  que está na imagem; tokens vivem em `src/frontend/styles/`.
 - Métricas de conversão ou KPIs de produto — captura técnica.

@@ -4,7 +4,7 @@
 
 ## Comportamento alvo
 
-- [x] Tela `S-001` implementada em `frontend/src/app/orders/orders.component.ts` standalone,
+- [x] Tela `S-001` implementada em `src/frontend/src/app/orders/orders.component.ts` standalone,
   signals, `@if/@for`.
 - [x] Estado loading (skeleton), erro (retry), vazio (CTA "Fazer primeiro pedido").
 - [x] `httpResource<OrdersPage>('/api/v1/orders')` com `parse` schema guard.
@@ -40,14 +40,14 @@ Ref.: `01-context/screens/S-001-orders-list.md` (UI/layout, componentes, paths, 
 
 ## Tarefas
 
-1. [ ] angular: criar `frontend/src/app/orders/orders.component.ts` standalone + signals.
+1. [ ] angular: criar `src/frontend/src/app/orders/orders.component.ts` standalone + signals.
 2. [ ] angular: `orders.routes.ts` com `loadComponent` lazy + `canMatch isAuthenticated`.
 3. [ ] angular: template `@if/@for` com estado loading/erro/vazio (ver tela S-001).
 4. [ ] angular: `app-orders-table`, `app-order-filter-panel`, `app-skeleton`,
    `app-empty-state`, `app-error-state` em `shared/ui/` (全会 components standalone).
 5. [ ] angular: `httpResource` com `parse` schema guard.
 6. [ ] angular: vitest unitário para `filter` `computed` (puro).
-7. [ ] angular: Playwright e2e em `frontend/e2e/orders.spec.ts` com 3 cenários (lista,
+7. [ ] angular: Playwright e2e em `src/frontend/e2e/orders.spec.ts` com 3 cenários (lista,
    loading, vazio) — gerado por `/tests-release --stack=angular`.
 
 ## Fora de escopo

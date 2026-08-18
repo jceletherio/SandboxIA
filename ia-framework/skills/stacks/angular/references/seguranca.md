@@ -65,7 +65,7 @@ SVG registry exige URL allowlist — não registre dinâmica.
 ```
 
 Sem `'unsafe-eval'`, sem `'unsafe-inline'` em `script-src`. Trusted Types via
-`require-trusted-types-for 'script'` exige `ng-trusted-types` policy; só se backend/CI
+`require-trusted-types-for 'script'` exige `ng-trusted-types` policy; só se src/backend/CI
 conseguir servir com nonce rotativo. Caso contrário, vira env `'wasm-unsafe-eval'` se
 for AOT (padrão Angular com Ivy) — AOT não precisa de `unsafe-eval`.
 

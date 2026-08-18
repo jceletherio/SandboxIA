@@ -13,8 +13,8 @@ kpis: { health: green }
 
 ```mermaid
 flowchart LR
-  UI[Angular 22 SPA<br/>frontend/] -->|HTTPS + JWT| API[Spring Boot 3.5<br/>backend/spring/]
-  API -->|pgxpool/JDBC + RLS| PG[(PostgreSQL 16<br/>BD/sql/)]
+  UI[Angular 22 SPA<br/>src/frontend/] -->|HTTPS + JWT| API[Spring Boot 3.5<br/>src/backend/spring/]
+  API -->|pgxpool/JDBC + RLS| PG[(PostgreSQL 16<br/>src/BD/sql/)]
 ```
 
 ## Autenticação
@@ -27,9 +27,9 @@ flowchart LR
 
 | Stack | Raiz | Doc técnico |
 | ----- | ---- | ----------- |
-| Angular 22 | `frontend/` | `docs/architecture/frontend-angular.md` |
-| Spring Boot 3.5 | `backend/spring/` | `docs/architecture/backend-spring.md` |
-| PostgreSQL 16+ | `BD/` | `docs/architecture/database-postgres.md` |
+| Angular 22 | `src/frontend/` | `docs/architecture/frontend-angular.md` |
+| Spring Boot 3.5 | `src/backend/spring/` | `docs/architecture/backend-spring.md` |
+| PostgreSQL 16+ | `src/BD/` | `docs/architecture/database-postgres.md` |
 
 ## ADRs relevantes
 

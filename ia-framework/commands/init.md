@@ -111,7 +111,7 @@ Copy-Item .pre-commit-config.template.yaml .pre-commit-config.yaml
 ```
 
 Use `Edit` para descomentar blocos (`# - repo: local...`) conforme stacks ativas
-(markers `# Angular (frontend/)` etc no template). Depois:
+(markers `# Angular (src/frontend/)` etc no template). Depois:
 
 ```
 # Detectar pre-commit binary

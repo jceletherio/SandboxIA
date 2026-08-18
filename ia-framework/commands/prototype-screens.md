@@ -27,7 +27,7 @@ o SDD Enxuto: **divisão em partes coesas** e **revisão de completude** contra 
 > rodar `/init` chained; se aceitar, delegate e retome; se não, abort com mensagem clara.
 >
 > Extra: se `01-context/requirements.md` não existir, sugira `/load-requirements
-> req/<arquivo>` chained antes de prosseguir. Se `frontend/` ainda não tem app Angular
+> req/<arquivo>` chained antes de prosseguir. Se `src/frontend/` ainda não tem app Angular
 > (sem `package.json`/`angular.json`), pergunte se quer rodar `/setup-tooling --apps`
 > chained para criar o skeleton (default) antes do builder; se não, siga só com análise
 > estática avisando que `tsc` não roda.
@@ -64,7 +64,7 @@ o SDD Enxuto: **divisão em partes coesas** e **revisão de completude** contra 
 ### F3 — Implementação (mock estruturado p/ backend)
 
 - Para cada parte, delegue ao agente `prototype-builder`:
-  - Implementa em `frontend/src/app/prototype/` componentes standalone + signals + novo
+  - Implementa em `src/frontend/src/app/prototype/` componentes standalone + signals + novo
     control flow, consumindo dados **só via interface/token**.
   - Cria `core/api/<domain>.gateway.ts` (interface + DTOs espelhando o backend) e o mock
     (fixtures + latência + erro simulado) — seam de troca registrado no provider.
@@ -103,7 +103,7 @@ o SDD Enxuto: **divisão em partes coesas** e **revisão de completude** contra 
 
 - Sem `01-context/screens/` ou sem telas descritas: o `prototype-planner` deriva telas dos
   RF/US e o designer as descreve do zero — sem dependência de `.png`/vision.
-- `frontend/` sem app Angular montado: siga com análise estática e `tsc` não roda — reporte
+- `src/frontend/` sem app Angular montado: siga com análise estática e `tsc` não roda — reporte
   `how_to_validate`; sugira `/setup-tooling --apps` para montar o app quando o usuário
   quiser validar em browser.
 
@@ -111,5 +111,5 @@ o SDD Enxuto: **divisão em partes coesas** e **revisão de completude** contra 
 
 - Não abra trilha SDD de produção nem escreva spec de produção — isso é `/plan-from-requirements` + `/sdd`.
 - Não implemente lógica de negócio real no mock (validação/autorização final é backend).
-- Não coloque mock em outro lugar que não `frontend/src/app/prototype/` (mantém descartável).
+- Não coloque mock em outro lugar que não `src/frontend/src/app/prototype/` (mantém descartável).
 - Não pule a confirmação da F1 — divisão aprovada evita retrabalho de design.

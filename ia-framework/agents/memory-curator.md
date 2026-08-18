@@ -66,5 +66,5 @@ sanity: ok (orders-api/spec.md, ARCHITECTURE_OVERVIEW.md)
 ## Não faça
 
 - Não adicione campos ao INDEX além dos definidos (`title`, `## seções`, KPIs).
-- Não abra arquivos de código (`frontend/`, `backend/`, `BD/`).
+- Não abra arquivos de código (`src/frontend/`, `src/backend/`, `src/BD/`).
 - Não sobrescreva artefato se já idêntico — diff limpo confirma idempotência.

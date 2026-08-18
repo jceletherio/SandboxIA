@@ -26,9 +26,10 @@ project_sdd/             # memória SDD (CRIADO pelo /init — não commit códi
   02-specs/              # trilhas SDD (NNN-<slug>/spec.md)
   03-decisions/          # ADRs
   INDEX.md               # índice token-efficient (~500 tokens) — consulte antes de mergulhar
-frontend/                # app Angular (criado por /setup-tooling --apps)
-backend/<stack>/         # apps backend por stack ativa
-BD/                      # migrations/RLS PostgreSQL
+src/                      # código de aplicação (criado por /setup-tooling --apps)
+  frontend/               # app Angular
+  backend/<stack>/        # apps backend por stack ativa
+  BD/                     # migrations/RLS PostgreSQL
 docs/                    # USAGE, UPDATING, architecture/, testing/ (snapshots por release)
 req/                     # requisitos (.docx/.pdf/.md) e telas (.png) — entrada
 examples/petshop/        # exemplo resolvido de ponta a ponta

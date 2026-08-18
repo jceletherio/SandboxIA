@@ -27,7 +27,7 @@ Códigos: `bad_request`, `unauthorized`, `forbidden`, `not_found`, `conflict`,
 - **Request** — `<shape>` (referência ao DTO/schema).
 - **Response 2xx** — `<shape>`.
 - **Erros** — `<code> quando <condição>`.
-- Ref.: `backend/<stack>/<arquivo:linha>`.
+- Ref.: `src/backend/<stack>/<arquivo:linha>`.
 
 ## Autenticação
 

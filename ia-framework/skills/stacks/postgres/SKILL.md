@@ -69,7 +69,7 @@ online? Particionar? JSONB ou coluna normal? Index partial ou full?
    5) functions/triggers → 6) verificação EXPLAIN.
 
 **3. Implementação.** Padrões em `references/arquitetura.md`. SQL em
-   `BD/sql/migrations/` ou ferramenta equivalente. Cada migration em arquivo próprio
+   `src/BD/sql/migrations/` ou ferramenta equivalente. Cada migration em arquivo próprio
    versionado. **Testar** com `testcontainers` se houver harness. Não rodar `migrate up`
    contra DB de prod em sessão SDD.
 

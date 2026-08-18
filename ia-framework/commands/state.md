@@ -34,8 +34,8 @@ Read ia-framework/CHANGELOG.md    → última data de changelog
 grep -E '^- \*\*(angular|nodejs|spring|go|postgres)\*\*' ia-framework/STACK.md
 ```
 
-Para cada stack ativa, registre nome + raiz de código (`frontend/` / `backend/<stack>/` /
-`BD/`).
+Para cada stack ativa, registre nome + raiz de código (`src/frontend/` / `src/backend/<stack>/` /
+`src/BD/`).
 
 ### 3. Árvore SDD
 
@@ -88,10 +88,10 @@ Test-Path .qmd/index.yml         # project-local?
 Get-Command pdftotext
 
 # Deps por stack ativa (se stack ativa)
-  stack=angular: Test-Path frontend/package.json && Test-Path frontend/node_modules
-  stack=nodejs:  Test-Path backend/nodejs/package.json && Test-Path backend/nodejs/node_modules
-  stack=spring:  Test-Path backend/spring/pom.xml && Test-Path backend/spring/target/classes/.gitkeep
-  stack=go:      Test-Path backend/go/go.mod && Test-Path backend/go/go.sum
+  stack=angular: Test-Path src/frontend/package.json && Test-Path src/frontend/node_modules
+  stack=nodejs:  Test-Path src/backend/nodejs/package.json && Test-Path src/backend/nodejs/node_modules
+  stack=spring:  Test-Path src/backend/spring/pom.xml && Test-Path src/backend/spring/target/classes/.gitkeep
+  stack=go:      Test-Path src/backend/go/go.mod && Test-Path src/backend/go/go.sum
 ```
 
 ### 7. Output tabular
@@ -102,11 +102,11 @@ Get-Command pdftotext
 Template:    ia-framework 1.2.0 (changelog mais recente 2026-08-05)
 
 Stacks ativas:
-  ✓ angular    — raiz: frontend/
-  ✓ nodejs     — raiz: backend/nodejs/
+  ✓ angular    — raiz: src/frontend/
+  ✓ nodejs     — raiz: src/backend/nodejs/
   ✗ spring     — desativado (não listar)
   ✗ go         — desativado
-  ✓ postgres   — raiz: BD/
+  ✓ postgres   — raiz: src/BD/
 
 Árvore SDD:
   ✓ project_sdd/01-context/ (6 templates)
@@ -131,8 +131,8 @@ Ferramental:
   ✓ pre-commit binary no PATH
   ✗ qmd não instalado — rode /setup-tooling --qmd
   ✓ pdftotext no PATH
-  ✓ frontend/node_modules OK
-  ✗ backend/nodejs/node_modules ausente — rode /setup-tooling --deps
+  ✓ src/frontend/node_modules OK
+  ✗ src/backend/nodejs/node_modules ausente — rode /setup-tooling --deps
 
 === Próximo passo sugerido ===
 

@@ -37,8 +37,8 @@ para queries a11y. `httpResource` mock via `provideHttpClientTesting` + `HttpTes
 
 ### E2E/Aceitação — Playwright
 
-Setup: `npm init playwright@static -- --save-dev -- brotli=false` em `frontend/e2e/`.
-`playwright.config.ts` em `frontend/`.
+Setup: `npm init playwright@static -- --save-dev -- brotli=false` em `src/frontend/e2e/`.
+`playwright.config.ts` em `src/frontend/`.
 
 ```ts
 import { defineConfig, devices } from '@playwright/test';
@@ -173,7 +173,7 @@ pool, _ := pgxpool.New(ctx, dsn)
 
 ### pgTAP
 
-`BD/sql/tests/`:
+`src/BD/sql/tests/`:
 ```sql
 BEGIN;
 SELECT plan(2);
@@ -183,7 +183,7 @@ SELECT finish();
 ROLLBACK;
 ```
 
-Runner: `pg_prove -d test_db BD/sql/tests/*.sql`.
+Runner: `pg_prove -d test_db src/BD/sql/tests/*.sql`.
 
 ### Testes de RLS
 

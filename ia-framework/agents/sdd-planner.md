@@ -56,11 +56,11 @@ Com `prototype: true` e `01-context/prototype/plan.md` presente:
 
 Cada trilha deve declarar `stack:` (ou `multi` quando cross-stack). Mapeie:
 
-- Toca `frontend/` (UI, rotas, state Angular) → `angular`.
-- Toca `backend/nodejs/` → `nodejs`.
-- Toca `backend/spring/` → `spring`.
-- Toca `backend/go/` → `go`.
-- Toca `BD/` (schema, RLS, migrations, indexes) → `postgres`.
+- Toca `src/frontend/` (UI, rotas, state Angular) → `angular`.
+- Toca `src/backend/nodejs/` → `nodejs`.
+- Toca `src/backend/spring/` → `spring`.
+- Toca `src/backend/go/` → `go`.
+- Toca `src/BD/` (schema, RLS, migrations, indexes) → `postgres`.
 - Cross: feature com endpoint + tabela + UI → uma trilha `multi` ou, preferencialmente,
   abra trilhas separadas por stack com dependência explícita na seção "Fora de escopo".
 

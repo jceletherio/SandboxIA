@@ -34,5 +34,5 @@ kpis: { health: green }
 ## Próximo passo
 
 1. Para cada parte: `prototype-designer` → `01-context/prototype/designs/P-NNN-<slug>.md`.
-2. Implementar via `prototype-builder` em `frontend/src/app/prototype/`.
+2. Implementar via `prototype-builder` em `src/frontend/src/app/prototype/`.
 3. Revisar completude via `prototype-reviewer`.

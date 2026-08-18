@@ -45,5 +45,5 @@ kpis: { health: green }
 
 ## Nao cobre
 
-- Codigo de producao - use `grep -rn` em `frontend/`, `backend/`, `BD/`.
+- Codigo de producao - use `grep -rn` em `src/frontend/`, `src/backend/`, `src/BD/`.
 - Estado de git - use `git status`/`git log`.

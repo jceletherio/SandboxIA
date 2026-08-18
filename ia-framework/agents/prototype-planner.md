@@ -25,7 +25,7 @@ nem escreve código.
 ### 1. Extrair requisitos de UI
 
 - Liste RF/US que têm face de tela (listagem, formulário, detalhe, dashboard, wizard).
-- Isole requisitos **sem** face de tela (puro backend/integração) → fora de escopo do
+- Isole requisitos **sem** face de tela (puro src/backend/integração) → fora de escopo do
   protótipo, com motivo.
 
 ### 2. Agrupar em partes coesas (P-NNN)

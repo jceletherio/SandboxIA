@@ -41,14 +41,14 @@ Roda as suítes já existentes com base nos filtros.
 4. **Rode as suítes** por stack/nível:
    - Angular unit/functional: `cd frontend && npx vitest run`
    - Angular e2e: `cd frontend && npx playwright test`
-   - Node.js: `cd backend/nodejs && npx vitest run`; integration:
+   - Node.js: `cd src/backend/nodejs && npx vitest run`; integration:
      `RUN_INTEGRATION=1 npx vitest run`
-   - Spring: `cd backend/spring && ./mvnw test`; integration se filters: `-Dgroups=integration`
-   - Go: `cd backend/go && go test -short ./...`; integration: `go test -tags=integration ./...`
-   - Postgres pgTAP: `pg_prove -d test_db BD/sql/tests/*.sql` (se BD de teste configurado)
+   - Spring: `cd src/backend/spring && ./mvnw test`; integration se filters: `-Dgroups=integration`
+   - Go: `cd src/backend/go && go test -short ./...`; integration: `go test -tags=integration ./...`
+   - Postgres pgTAP: `pg_prove -d test_db src/BD/sql/tests/*.sql` (se BD de teste configurado)
 5. **Capture failures e traces**:
-   - Playwright `trace.zip` path: `frontend/test-results/<test>/trace.zip`
-   - Vitest reporter JUnit XML: `backend/nodejs/test-results/junit.xml` (se configurado)
+   - Playwright `trace.zip` path: `src/frontend/test-results/<test>/trace.zip`
+   - Vitest reporter JUnit XML: `src/backend/nodejs/test-results/junit.xml` (se configurado)
    - JUnit5 padrão: reports em `target/surefire-reports/`
    - Go: `go test -json ./... > test-results.json`
 6. **Apresente recibo**:

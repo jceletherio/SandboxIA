@@ -70,7 +70,7 @@ done
   if [[ "$angular" == "y" ]]; then
     echo ''
     echo '- **angular** - Angular 22 (standalone, signals, novo control flow, zoneless)'
-    echo '  - Raiz do codigo: `frontend/`'
+    echo '  - Raiz do codigo: `src/frontend/`'
     echo '  - Skill: `skills/stacks/angular/SKILL.md`'
   fi
   echo ''
@@ -78,19 +78,19 @@ done
   if [[ "$nodejs" == "y" ]]; then
     echo ''
     echo '- **nodejs** - Node.js 22+ (ESM, Fastify/Express5/NestJS)'
-    echo '  - Raiz do codigo: `backend/nodejs/`'
+    echo '  - Raiz do codigo: `src/backend/nodejs/`'
     echo '  - Skill: `skills/stacks/nodejs/SKILL.md`'
   fi
   if [[ "$spring" == "y" ]]; then
     echo ''
     echo '- **spring** - Java 21+ / Spring Boot 3.5 (virtual threads, Jakarta, Spring Security 6)'
-    echo '  - Raiz do codigo: `backend/spring/`'
+    echo '  - Raiz do codigo: `src/backend/spring/`'
     echo '  - Skill: `skills/stacks/spring/SKILL.md`'
   fi
   if [[ "$go" == "y" ]]; then
     echo ''
     echo '- **go** - Go 1.23+ (modulos, context-first, interfaces no consumer-side)'
-    echo '  - Raiz do codigo: `backend/go/`'
+    echo '  - Raiz do codigo: `src/backend/go/`'
     echo '  - Skill: `skills/stacks/go/SKILL.md`'
   fi
   echo ''
@@ -98,7 +98,7 @@ done
   if [[ "$postgres" == "y" ]]; then
     echo ''
     echo '- **postgres** - PostgreSQL 16+ (RLS, particionamento declarativo, JSONB+GIN, Flyway)'
-    echo '  - Raiz do codigo: `BD/`'
+    echo '  - Raiz do codigo: `src/BD/`'
     echo '  - Skill: `skills/stacks/postgres/SKILL.md`'
   fi
   echo ''

@@ -12,7 +12,7 @@
 
 ### Frontend Angular
 
-`frontend/playwright.config.ts`:
+`src/frontend/playwright.config.ts`:
 ```ts
 import { defineConfig, devices } from '@playwright/test';
 

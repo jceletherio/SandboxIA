@@ -10,7 +10,7 @@ gerar as trilhas SDD de produção. Fonte: `01-context/prototype/`.
 | `01-context/prototype/plan.md` | Decomposição em partes `P-NNN` + RF/US mapeados → argila das trilhas frontend |
 | `01-context/prototype/designs/P-NNN-*.md` | Critério de aceite visual (M3, estados, a11y) e contrato `Gateway`/DTOs |
 | `01-context/prototype/review/P-NNN-*.md` | Completude já verificada (RF/US → telas) — reuso como evidência |
-| `frontend/src/app/prototype/core/api/*.gateway.ts` | DTOs reais do mock → "Contratos tocados" das trilhas backend |
+| `src/frontend/src/app/prototype/core/api/*.gateway.ts` | DTOs reais do mock → "Contratos tocados" das trilhas backend |
 
 ## Regras de reuso
 
@@ -40,7 +40,7 @@ Quando o backend definitivo nascer, o contrato real deve ser conferido contra o 
 mock prometeu:
 
 - Antes de `api-context.md` ser populado, os **DTOs do mock**
-  (`frontend/src/app/prototype/core/api/*.gateway.ts`) são a fonte esperada de contrato —
+  (`src/frontend/src/app/prototype/core/api/*.gateway.ts`) são a fonte esperada de contrato —
   `/contract-check` deve comparar a API real contra eles.
 - Com `api-context.md` publicado, `/contract-check` compara backend real ↔ frontend e o
   elo com o mock vira evidência histórica (se divergir do mock, ajustar o `Http<Domain>Gateway`).

@@ -67,8 +67,8 @@ Contrato em `skills/schemas/implementer-output.schema.json`.
 { "status": "feito",
   "stack": "angular",
   "files": [
-    { "path": "frontend/src/app/orders/orders.component.ts", "change": "adiciona httpResource + vm com estados loading/erro/vazio" },
-    { "path": "frontend/src/app/orders/orders.component.html", "change": "troca *ngFor por @for com track; adiciona @empty" }
+    { "path": "src/frontend/src/app/orders/orders.component.ts", "change": "adiciona httpResource + vm com estados loading/erro/vazio" },
+    { "path": "src/frontend/src/app/orders/orders.component.html", "change": "troca *ngFor por @for com track; adiciona @empty" }
   ],
   "blockers": [],
   "how_to_validate": "cd frontend && npx ng test --include='**/orders/*.spec.ts'" }

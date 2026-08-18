@@ -2,7 +2,7 @@
 
 Este template evolui independentemente dos projetos downstream. Quando você clona como
 base e depois melhoreia upstream (você ou o autor), como receber atualizações sem
-sobrescrever código de aplicação (`frontend/`, `backend/`, `BD/`) e seus artefatos SDD
+sobrescrever código de aplicação (`src/frontend/`, `src/backend/`, `src/BD/`) e seus artefatos SDD
 (`project_sdd/`, `docs/`)?
 
 ## Estratégia recomendada: git subtree
@@ -45,7 +45,7 @@ Ou faça PR no seu fork do template.
 - `ia-framework/STACK.md` (suas stacks ativas)
 - `ia-framework/VERSION` commitado via subtree (mas se divergir, marque local)
 - `project_sdd/`, `docs/architecture/`, `docs/testing/` (seu conteúdo)
-- `frontend/`, `backend/`, `BD/` (código de aplicação)
+- `src/frontend/`, `src/backend/`, `src/BD/` (código de aplicação)
 - `req/` (seus requisitos)
 - `README.md`, `AGENTS.md` raiz — você pode personalizar
 - `.pre-commit-config.yaml` (copiado de `.template` no seu setup)

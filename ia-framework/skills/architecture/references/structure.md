@@ -23,7 +23,7 @@ Onde esta stack se encaixa no fluxo. Quem consome (cidadão upstream) e o que pr
 ## 3. Componentes (com diagrama Mermaid)
 
 Diagrama `flowchart` Mermaid mostrando módulos/chaves internos e dependências. Referencie
-caminhos reais do repo (`backend/spring/src/main/java/.../`).
+caminhos reais do repo (`src/backend/spring/src/main/java/.../`).
 
 ## 4. Decisões não óbvias (com razão)
 
@@ -61,7 +61,7 @@ Sections:
 
 ## Forma geral
 
-- Caminhos relativos reais sempre (estilo `grep -rn "frontend/src/app/..."`)
+- Caminhos relativos reais sempre (estilo `grep -rn "src/frontend/src/app/..."`)
 - Mermaid em blocos ` ```mermaid ... ``` `
 - Sem Emojis, sem ASCII art, sem imagens binárias (não renderiza em diff)
 - Reaproveita o código-fonte, não paraphrase trechos longos

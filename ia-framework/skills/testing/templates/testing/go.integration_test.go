@@ -25,7 +25,7 @@ func TestCreateOrder_Endpoint(t *testing.T) {
 
 	dsn, _ := pgC.ConnectionString(ctx, "sslmode=disable")
 	pool, _ := pgxpool.New(ctx, dsn)
-	_ = runMigrations(ctx, pool) // helper applying V*.sql from BD/sql/migrations
+	_ = runMigrations(ctx, pool) // helper applying V*.sql from src/BD/sql/migrations
 
 	store := orders.NewPostgresStore(pool)
 	svc := orders.NewService(store)

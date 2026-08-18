@@ -13,14 +13,14 @@
 | Unitário | Vitest (preferido) ou Jest | `test environment: 'jsdom'`. Testa validators, pipes, mappers, `computed` selectors. |
 | Funcional | Testing Library Angular (`@testing-library/angular`) + `TestBed` | Renderiza componente mockando `httpResource` via `HttpTestingController`. |
 | Integração | `TestBed` + `provideHttpClientTesting` + providers reais | Quando feature usa `signal` store que chama outros serviços reais. |
-| Aceitação/E2E | Playwright (testDir `frontend/e2e/`) | User journeys, baseURL `http://localhost:4200`. |
+| Aceitação/E2E | Playwright (testDir `src/frontend/e2e/`) | User journeys, baseURL `http://localhost:4200`. |
 
 ## Setup项目的
 
 `test-setup` instalará:
 - `vitest`, `@angular/build`, `@vitest/coverage-v8`, `jsdom`
 - `@testing-library/angular`, `@testing-library/jest-dom`
-- `@playwright/test` em `frontend/e2e/` (numpy playwright.config.ts)
+- `@playwright/test` em `src/frontend/e2e/` (numpy playwright.config.ts)
 
 `angular.json` target `test`: `npx vitest run`.
 `angular.json` target `e2e`: `npx playwright test`.
@@ -71,7 +71,7 @@ test('mostra erro quando API falha', async () => {
 
 ## E2E/Aceitação — Playwright
 
-Pasta `frontend/e2e/`. Cenários de aceitação derivam **dos bullets da seção "Comportamento
+Pasta `src/frontend/e2e/`. Cenários de aceitação derivam **dos bullets da seção "Comportamento
 alvo"** da spec da trilha.
 
 Regis-acrecentar `--mode=production` em `webServer.command` para empacotar Angular SSR build

@@ -98,15 +98,15 @@ Contrato em `skills/schemas/security-output.schema.json`.
   "stack": "go",
   "findings": [
     { "id": "SQLI-001", "severity": "critical", "category": "injection",
-      "evidence": "backend/go/internal/orders/store.go:64",
+      "evidence": "src/backend/go/internal/orders/store.go:64",
       "fix": "substituir fmt.Sprintf(\"... ORDER BY %s\", sort) por whitelist + identifier quoted",
       "owasp": "A03:2021 Injection" },
     { "id": "AUTH-001", "severity": "high", "category": "authn",
-      "evidence": "backend/go/internal/auth/jwt.go:30 (sem validação de exp)",
+      "evidence": "src/backend/go/internal/auth/jwt.go:30 (sem validação de exp)",
       "fix": "adicionar jwt.WithExpirationRequired() no parser",
       "owasp": "A07:2021 Auth Failures" },
     { "id": "MISC-001", "severity": "medium", "category": "info_leak",
-      "evidence": "backend/go/cmd/server/main.go:12 (http.Server sem ReadHeaderTimeout)",
+      "evidence": "src/backend/go/cmd/server/main.go:12 (http.Server sem ReadHeaderTimeout)",
       "fix": "configurar ReadHeaderTimeout: 5*time.Second",
       "owasp": "A05:2021 Misconfig" }
   ],

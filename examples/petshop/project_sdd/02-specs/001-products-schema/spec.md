@@ -35,15 +35,15 @@ CREATE POLICY products_tenant_isolation ON products
   WITH CHECK (tenant_id = current_setting('app.tenant_id', true)::uuid);
 ```
 
-Ref.: `BD/sql/migrations/V01__create_products.sql` (a ser criado).
+Ref.: `src/BD/sql/migrations/V01__create_products.sql` (a ser criado).
 
 ## Tarefas
 
 1. [ ] BD: criar `categories` + `products` em `V01__create_products.sql`.
 2. [ ] BD: índices em V02 (CONCURRENTLY fora de tx usando Flyway `executeInTransaction=false`).
 3. [ ] BD: RLS + policy em `V03__products_rls.sql`.
-4. [ ] BD: grant `app_tenant` em `BD/sql/schema/30_roles.sql`.
-5. [ ] BD: pgTAP test em `BD/sql/tests/products_schema.sql`.
+4. [ ] BD: grant `app_tenant` em `src/BD/sql/schema/30_roles.sql`.
+5. [ ] BD: pgTAP test em `src/BD/sql/tests/products_schema.sql`.
 
 ## Fora de escopo
 

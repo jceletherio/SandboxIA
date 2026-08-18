@@ -17,7 +17,7 @@
 ## Setup do projeto
 
 `test-setup` adicionará:
-- `BD/sql/tests/` directory
+- `src/BD/sql/tests/` directory
 - `DB/sql/tests/pgtap.sql` scaffolding
 - Se use `goose`/`golang-migrate`: `Makefile` target `test-db` que sobe container, aplica
   migrations, roda pgTAP, derruba container
@@ -25,7 +25,7 @@
 ## pgTAP — boilerplate
 
 ```sql
--- BD/sql/tests/orders_schema.sql
+-- src/BD/sql/tests/orders_schema.sql
 BEGIN;
 -- CREATE EXTENSION IF NOT EXISTS pgtap;
 
@@ -53,12 +53,12 @@ SELECT finish();
 ROLLBACK;  -- nunca persiste
 ```
 
-Run: `pg_prove -d test_db BD/sql/tests/orders_schema.sql`.
+Run: `pg_prove -d test_db src/BD/sql/tests/orders_schema.sql`.
 
 ## RLS — test real com role
 
 ```sql
--- BD/sql/tests/orders_rls.sql
+-- src/BD/sql/tests/orders_rls.sql
 BEGIN;
 
 -- como admin bypass, pode ver tudo
@@ -98,7 +98,7 @@ ROLLBACK;
 Teste pré-release:
 
 ```sql
--- BD/sql/tests/migration_order.sql
+-- src/BD/sql/tests/migration_order.sql
 BEGIN;
 -- Aplica todas migrations V*.sql em ordem (flyway migrate --baselineOnMigrate=false)
 -- Em seguida: schema está íntegro

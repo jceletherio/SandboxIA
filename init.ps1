@@ -75,7 +75,7 @@ $lines += '## Frontend'
 if ($angular) {
   $lines += ''
   $lines += '- **angular** - Angular 22 (standalone, signals, novo control flow, zoneless)'
-  $lines += '  - Raiz do codigo: `frontend/`'
+  $lines += '  - Raiz do codigo: `src/frontend/`'
   $lines += '  - Skill: `skills/stacks/angular/SKILL.md`'
 }
 $lines += ''
@@ -83,19 +83,19 @@ $lines += '## Backend (escolha um ou mais)'
 if ($nodejs) {
   $lines += ''
   $lines += '- **nodejs** - Node.js 22+ (ESM, Fastify/Express5/NestJS)'
-  $lines += '  - Raiz do codigo: `backend/nodejs/`'
+  $lines += '  - Raiz do codigo: `src/backend/nodejs/`'
   $lines += '  - Skill: `skills/stacks/nodejs/SKILL.md`'
 }
 if ($spring) {
   $lines += ''
   $lines += '- **spring** - Java 21+ / Spring Boot 3.5 (virtual threads, Jakarta, Spring Security 6)'
-  $lines += '  - Raiz do codigo: `backend/spring/`'
+  $lines += '  - Raiz do codigo: `src/backend/spring/`'
   $lines += '  - Skill: `skills/stacks/spring/SKILL.md`'
 }
 if ($go) {
   $lines += ''
   $lines += '- **go** - Go 1.23+ (modulos, context-first, interfaces no consumer-side)'
-  $lines += '  - Raiz do codigo: `backend/go/`'
+  $lines += '  - Raiz do codigo: `src/backend/go/`'
   $lines += '  - Skill: `skills/stacks/go/SKILL.md`'
 }
 $lines += ''
@@ -103,7 +103,7 @@ $lines += '## Banco de Dados'
 if ($postgres) {
   $lines += ''
   $lines += '- **postgres** - PostgreSQL 16+ (RLS, particionamento declarativo, JSONB+GIN, Flyway)'
-  $lines += '  - Raiz do codigo: `BD/`'
+  $lines += '  - Raiz do codigo: `src/BD/`'
   $lines += '  - Skill: `skills/stacks/postgres/SKILL.md`'
 }
 $lines += ''

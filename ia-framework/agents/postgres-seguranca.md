@@ -42,7 +42,7 @@ Você é o analista de segurança de PostgreSQL 16+ deste monorepo. Revisa, não
 - Em migrations e functions (`DO`/`EXECUTE`): usar `format()` com `%L` para literal e `%I`
   para identifier. **Nunca** `||`.
 - Em app (pós-validação: Backend NodeJS/Spring/Go): bind parameters (`$1`) — verifique
-  queries na app também se tocar DB; mas foco primário é SQL no repo `BD/`.
+  queries na app também se tocar DB; mas foco primário é SQL no repo `src/BD/`.
 - `CREATE FUNCTION ... SECURITY DEFINER` é finding médio — confira se há `SEARCH_PATH`
   explícito e qual o owner. SECURITY INVOKER default é mais seguro.
 
@@ -100,15 +100,15 @@ Contrato em `skills/schemas/security-output.schema.json`.
   "stack": "postgres",
   "findings": [
     { "id": "RLS-001", "severity": "critical", "category": "rls",
-      "evidence": "BD/sql/tables/orders.sql (RLS não habilitada)",
+      "evidence": "src/BD/sql/tables/orders.sql (RLS não habilitada)",
       "fix": "ALTER TABLE orders ENABLE ROW LEVEL SECURITY; ALTER TABLE orders FORCE ROW LEVEL SECURITY; CREATE POLICY ...",
       "owasp": "A01:2021 Broken Access Control" },
     { "id": "PRIV-001", "severity": "high", "category": "misconfig",
-      "evidence": "BD/sql/schema/30_roles.sql: GRANT ALL ON SCHEMA public TO app_tenant",
+      "evidence": "src/BD/sql/schema/30_roles.sql: GRANT ALL ON SCHEMA public TO app_tenant",
       "fix": "trocar por grants granulares por tabela",
       "owasp": "A05:2021 Misconfig" },
     { "id": "INJ-001", "severity": "medium", "category": "injection",
-      "evidence": "BD/sql/functions/recompute_summary.sql: EXECUTE '...' || v_schema",
+      "evidence": "src/BD/sql/functions/recompute_summary.sql: EXECUTE '...' || v_schema",
       "fix": "usar format('%I', v_schema) e %L para literals",
       "owasp": "A03:2021 Injection" }
   ],
@@ -121,5 +121,5 @@ Contrato em `skills/schemas/security-output.schema.json`.
 ## Limitação
 
 Sem cluster Postgres vivo: `EXPLAIN ANALYZE` e `pgaudit` output não disponíveis. Verifica
-pelos artefatos SQL no repo (`BD/sql/`). Para confirmar lock/policy runtime, exige teste
+pelos artefatos SQL no repo (`src/BD/sql/`). Para confirmar lock/policy runtime, exige teste
 pelo usuário em cluster vivo.

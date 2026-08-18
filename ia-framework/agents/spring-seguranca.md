@@ -104,11 +104,11 @@ Contrato em `skills/schemas/security-output.schema.json`.
   "stack": "spring",
   "findings": [
     { "id": "SQLI-001", "severity": "critical", "category": "injection",
-      "evidence": "backend/spring/src/main/java/.../orders/OrderRepository.java:78",
+      "evidence": "src/backend/spring/src/main/java/.../orders/OrderRepository.java:78",
       "fix": "trocar String concatenada em @Query por :filter parameterized e bind",
       "owasp": "A03:2021 Injection" },
     { "id": "MISC-001", "severity": "high", "category": "misconfig",
-      "evidence": "backend/spring/src/main/resources/application-prod.yml:12 (include-stacktrace=always)",
+      "evidence": "src/backend/spring/src/main/resources/application-prod.yml:12 (include-stacktrace=always)",
       "fix": "mudar para never",
       "owasp": "A05:2021 Security Misconfiguration" }
   ],

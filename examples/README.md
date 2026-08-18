@@ -55,7 +55,7 @@ petshop/
 
 ### Não incluído no exemplo
 
-- Código de produção (`frontend/`, `backend/spring/`, `BD/sql/`) — o template gera plano,
+- Código de produção (`src/frontend/`, `src/backend/spring/`, `src/BD/sql/`) — o template gera plano,
   não código.
 - `protocol.md` de `/plan-from-prompt` — petshop usou `/plan-from-requirements`.
 - ADRs (`03-decisions/ADR-*.md`) — exemplos de arquitetura não tomaram decisão irreversível.

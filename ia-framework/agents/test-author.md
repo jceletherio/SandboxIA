@@ -41,7 +41,7 @@ Convenção de nomeação por stack (ver `convencoes.md`):
 - Angular/Node: `*.spec.ts` ao lado do alvo
 - Spring: `*Test.java` em `src/test/java/<mesmo package>`
 - Go: `<nome>_test.go` no mesmo package; integração com `//go:build integration`
-- Postgres: `BD/sql/tests/<tema>.sql` com pgTAP
+- Postgres: `src/BD/sql/tests/<tema>.sql` com pgTAP
 
 **Não sobrescreva** teste existente. Use `Edit` para append de `it()`/`@Test` novo.
 
@@ -79,10 +79,10 @@ Rode o teste uma vez:
 
 ```
 cd frontend && npx vitest run <path>
-cd backend/nodejs && npx vitest run <path>
-cd backend/spring && ./mvnw test -Dtest=<Classe>
-cd backend/go && go test ./<package>/
-# Postgres: pg_probe -d test_db BD/sql/tests/<arquivo>.sql (apenas se BD de teste setup pronto)
+cd src/backend/nodejs && npx vitest run <path>
+cd src/backend/spring && ./mvnw test -Dtest=<Classe>
+cd src/backend/go && go test ./<package>/
+# Postgres: pg_probe -d test_db src/BD/sql/tests/<arquivo>.sql (apenas se BD de teste setup pronto)
 ```
 
 Se Testcontainers/Playwright exigem Docker não confirmado, **não rode** — reporte
@@ -97,7 +97,7 @@ Contrato informal (sem schema dedicado ainda):
   "stack": "angular",
   "level": "functional",
   "files": [
-    { "path": "frontend/src/app/orders/orders.component.spec.ts",
+    { "path": "src/frontend/src/app/orders/orders.component.spec.ts",
       "change": "adiciona testes para estados loading/erro/vazio via TestBed + HttpTestingController" }
   ],
   "how_to_validate": "cd frontend && npx vitest run src/app/orders/orders.component.spec.ts",

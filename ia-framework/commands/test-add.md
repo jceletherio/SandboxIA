@@ -50,7 +50,7 @@ Adiciona um teste específico por oportunidade durante o desenvolvimento.
 test-add ok
 level: functional | stack: angular
 files:
-- frontend/src/app/orders/orders.component.spec.ts (criado)
+- src/frontend/src/app/orders/orders.component.spec.ts (criado)
 how_to_validate: cd frontend && npx vitest run src/app/orders/orders.component.spec.ts
 ```
 

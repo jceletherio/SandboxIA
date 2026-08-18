@@ -51,7 +51,7 @@ Você implementa **uma única tarefa** da spec na stack Node.js 22+. Escopo cir�
 > Consulte `skills/shared/validation-gates.md` para o checklist completo por stack. Gates
 > obrigatórios abaixo.
 
-1. `cd backend/nodejs && npx tsc --noEmit` — tem que sair limpo.
+1. `cd src/backend/nodejs && npx tsc --noEmit` — tem que sair limpo.
 2. Checagem mental: schema zod cobre campos obrigatórios? `try/catch/finally` libera
    `client` no finally? Logger child com correlationId? AbortController em fetch/long ops?
 
@@ -63,13 +63,13 @@ Contrato em `skills/schemas/implementer-output.schema.json`.
 { "status": "feito",
   "stack": "nodejs",
   "files": [
-    { "path": "backend/nodejs/src/http/orders/orders.routes.ts", "change": "POST /orders com schema zod e preHandler verifyJWT" },
-    { "path": "backend/nodejs/src/http/orders/orders.controller.ts", "change": "handler thin que chama service" },
-    { "path": "backend/nodejs/src/http/orders/orders.service.ts", "change": "create(dto, tenantId, log) abre tx + chama repo + chama NotFound/Conflict" },
-    { "path": "backend/nodejs/src/http/orders/orders.repository.ts", "change": "insert com ON CONFLICT DO NOTHING" }
+    { "path": "src/backend/nodejs/src/http/orders/orders.routes.ts", "change": "POST /orders com schema zod e preHandler verifyJWT" },
+    { "path": "src/backend/nodejs/src/http/orders/orders.controller.ts", "change": "handler thin que chama service" },
+    { "path": "src/backend/nodejs/src/http/orders/orders.service.ts", "change": "create(dto, tenantId, log) abre tx + chama repo + chama NotFound/Conflict" },
+    { "path": "src/backend/nodejs/src/http/orders/orders.repository.ts", "change": "insert com ON CONFLICT DO NOTHING" }
   ],
   "blockers": [],
-  "how_to_validate": "cd backend/nodejs && npx vitest run src/http/orders" }
+  "how_to_validate": "cd src/backend/nodejs && npx vitest run src/http/orders" }
 ```
 
 Se a spec é ambígua:

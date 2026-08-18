@@ -60,10 +60,10 @@ O teste **deve falhar antes do fix** (red). Documente no teste:
 
 ```
 cd frontend && npx vitest run <test-file>
-cd backend/nodejs && npx vitest run <test-file>
-cd backend/spring && ./mvnw test -Dtest=<Teste>
-cd backend/go && go test ./<package>/ -run TestRegression
-# Postgres: pg_prove -d test_db BD/sql/tests/<arquivo>.sql
+cd src/backend/nodejs && npx vitest run <test-file>
+cd src/backend/spring && ./mvnw test -Dtest=<Teste>
+cd src/backend/go && go test ./<package>/ -run TestRegression
+# Postgres: pg_prove -d test_db src/BD/sql/tests/<arquivo>.sql
 ```
 
 **Não rode** Testcontainers/Playwright sem confirmação — reporte `how_to_validate` e peça.
@@ -100,10 +100,10 @@ Após fix (de outro agente), o owner:
   "stack": "nodejs",
   "level": "integration",
   "files": [
-    { "path": "backend/nodejs/src/http/orders/orders.regression.spec.ts",
+    { "path": "src/backend/nodejs/src/http/orders/orders.regression.spec.ts",
       "change": "reproduz INSERT sem externalRef deve retornar 400 bad_request; antes do fix retorna 500" }
   ],
-  "how_to_validate": "cd backend/nodejs && RUN_INTEGRATION=1 npx vitest run src/http/orders/orders.regression.spec.ts",
+  "how_to_validate": "cd src/backend/nodejs && RUN_INTEGRATION=1 npx vitest run src/http/orders/orders.regression.spec.ts",
   "red_confirmed": true,
   "blockers": [] }
 ```

@@ -13,7 +13,7 @@ implementa app.
 2. Leia `skills/stacks/postgres/SKILL.md`, `skills/stacks/postgres/references/arquitetura.md`,
    `seguranca.md`, `convencoes.md`.
 3. Leia `01-context/` (`ARCHITECTURE_OVERVIEW.md`, `constraints.md`).
-4. Leia `BD/sql/` estrutura e migrations já aplicadas (tool de migrate `info`).
+4. Leia `src/BD/sql/` estrutura e migrations já aplicadas (tool de migrate `info`).
 
 ## O que você decide
 
@@ -90,7 +90,7 @@ Contrato em `skills/schemas/architect-output.schema.json`.
   ],
   "contracts": [
     { "signature": "CREATE TABLE orders (id uuid PK, tenant_id uuid NOT NULL, external_ref varchar(64), status order_status NOT NULL, ...)",
-      "ref": "BD/sql/migrations/V01__create_orders.sql" }
+      "ref": "src/BD/sql/migrations/V01__create_orders.sql" }
   ],
   "blockers": [],
   "adr_proposed": false }

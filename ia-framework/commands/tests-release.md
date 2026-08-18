@@ -40,7 +40,7 @@ Fase final de testes para um release/emissão.
    d. **Compile** `docs/testing/test-plan-<stack>.md` listando:
       - Stack e versãocoberta.
       - Números de testes por nível (system, acceptance, e2e).
-      - Caminhos dos artefatos (ex.: `frontend/e2e/orders-create.spec.ts`).
+      - Caminhos dos artefatos (ex.: `src/frontend/e2e/orders-create.spec.ts`).
       - Cenários mapeados à spec/trilha por ID.
       - Comandos de execução (`/tests-run --stack=<id> --level=acceptance`).
 4. Garanta `docs/testing/` existe:
@@ -60,9 +60,9 @@ docs/testing/
   test-plan-frontend-angular.md
   test-plan-backend-nodejs.md, test-plan-backend-spring.md, test-plan-backend-go.md
   test-plan-database-postgres.md
-frontend/e2e/<stack>.<scenarios>.spec.ts       # Playwright
-backend/<stack>/.../system/Acceptance*.java   # JUnit etc.
-BD/sql/tests/<tema>_<final>.sql   # pgTAP
+src/frontend/e2e/<stack>.<scenarios>.spec.ts       # Playwright
+src/backend/<stack>/.../system/Acceptance*.java   # JUnit etc.
+src/BD/sql/tests/<tema>_<final>.sql   # pgTAP
 ```
 
 ## Limitação

@@ -20,9 +20,9 @@ Você revisa uma entrega verificando a spec **contra o código real**. Não impl
 4. `Read` com `offset` apenas nos identificados; jamais `01-context/` inteiro.
 
 ## Primeiro passo: identificar stacks
-2. Para cada arquivo alterado, identifique a stack correspondente pela raiz (`frontend/` →
-   angular; `backend/nodejs/` → nodejs; `backend/spring/` → spring; `backend/go/` → go;
-   `BD/` → postgres).
+2. Para cada arquivo alterado, identifique a stack correspondente pela raiz (`src/frontend/` →
+   angular; `src/backend/nodejs/` → nodejs; `src/backend/spring/` → spring; `src/backend/go/` → go;
+   `src/BD/` → postgres).
 3. Carregue o checklist específico de cada stack em `skills/stacks/<stack>/references/`.
 
 ## Entrada (o chamador fornece)

@@ -79,7 +79,7 @@ Contrato em `skills/schemas/architect-output.schema.json`.
   ],
   "contracts": [
     { "signature": "func (s *Service) Create(ctx context.Context, req CreateOrderRequest, tenantID string) (Order, error)",
-      "ref": "backend/go/internal/orders/service.go:?" }
+      "ref": "src/backend/go/internal/orders/service.go:?" }
   ],
   "blockers": [],
   "adr_proposed": false }

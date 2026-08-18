@@ -108,8 +108,8 @@
 
 ## Backup / restore — scripts versionados
 
-- `BD/ops/backup.sh` script para WAL archive target; em repo, só não-segredos.
-- `BD/ops/restore-test.sh` script de restore PITR para 1h atrás — roda mensalmente em CI
+- `src/BD/ops/backup.sh` script para WAL archive target; em repo, só não-segredos.
+- `src/BD/ops/restore-test.sh` script de restore PITR para 1h atrás — roda mensalmente em CI
   contra um container efêmero.
 
 ## Commit

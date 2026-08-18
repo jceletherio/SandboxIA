@@ -35,38 +35,38 @@ Para cada sub-operação abaixo, mostre o comando real que vai rodar e pergunte 
 ### Passo 1.5 — Sub-operação `--apps` (scaffold de aplicações)
 
 **Quando:** em projeto greenfield, o `/init` cria só a árvore SDD (docs) — as aplicações
-reais (`frontend/package.json`, `backend/nodejs/`, etc.) precisam ser criadas antes de
+reais (`src/frontend/package.json`, `src/backend/nodejs/`, etc.) precisam ser criadas antes de
 qualquer implementador ou do protótipo. Este passo cria o skeleton mínimo por stack ativa.
 
 Lê `ia-framework/STACK.md`; para cada stack ativa **sem skeleton**:
 
-- **angular** (`frontend/`): se `frontend/package.json`/`angular.json` ausentes:
+- **angular** (`src/frontend/`): se `src/frontend/package.json`/`angular.json` ausentes:
   1. Limpe resíduos estranhos da pasta (ex.: `.next/`, `node_modules/` órfãos) — mostre
      `Remove-Item` e confirme antes.
   2. `npx -y @angular/cli@latest new frontend-app --directory <temp> --standalone
      --style scss --routing --skip-git` (pasta temp porque o Angular CLI não aceita
-     pasta com arquivos) e mova o conteúdo para `frontend/` — ou use
+     pasta com arquivos) e mova o conteúdo para `src/frontend/` — ou use
      `ng new frontend --directory frontend` se a pasta estiver vazia.
-- **nodejs** (`backend/nodejs/`): se sem `package.json`:
+- **nodejs** (`src/backend/nodejs/`): se sem `package.json`:
   ```
   npm init -y
   npm pkg set type=module
   npm install --save-dev typescript @types/node vitest
   npx tsc --init
   ```
-- **spring** (`backend/spring/`): se sem `pom.xml`/`build.gradle` — via Spring Initializr:
+- **spring** (`src/backend/spring/`): se sem `pom.xml`/`build.gradle` — via Spring Initializr:
   ```
   curl -s https://start.spring.io/starter.tgz -d dependencies=web,data-jpa,validation \
-       -d type=maven-project -d language=java -d bootVersion=3.5.x | tar -xzf - -C backend/spring
+       -d type=maven-project -d language=java -d bootVersion=3.5.x | tar -xzf - -C src/backend/spring
   ```
   (adapte ao ambiente; se `curl` indisponível, instrua o usuário a baixar de
   `start.spring.io` manualmente).
-- **go** (`backend/go/`): se sem `go.mod`:
+- **go** (`src/backend/go/`): se sem `go.mod`:
   ```
-  cd backend/go && go mod init <module>
+  cd src/backend/go && go mod init <module>
   ```
   Pergunte o nome do módulo (default: `github.com/<org>/<projeto>`).
-- **postgres**: n/a (BD/ é só migrations SQL; sem skeleton).
+- **postgres**: n/a (src/BD/ é só migrations SQL; sem skeleton).
 
 Após criar, rode `/setup-tooling --deps` (ou sugira) para instalar as deps.
 
@@ -74,40 +74,40 @@ Após criar, rode `/setup-tooling --deps` (ou sugira) para instalar as deps.
 
 Lê `ia-framework/STACK.md`; para cada stack ativa:
 
-- **angular** (`frontend/`):
+- **angular** (`src/frontend/`):
   ```
-  validade: frontend/package.json existe?
+  validade: src/frontend/package.json existe?
   if Nao existe: avise e pergunte "Rodar /setup-tooling --apps antes (cria o app Angular)? [Y/N]"
   se sim: delegue --apps (mesmo command) e retome npm install
   se nao: abort — sem package.json o npm install nao tem o que instalar
   pergunta: "Rodar `cd frontend && npm install`?"
   se sim: Bash → npm install (output tail ao usuário)
   ```
-- **nodejs** (`backend/nodejs/`):
+- **nodejs** (`src/backend/nodejs/`):
   ```
-  validade: backend/nodejs/package.json
+  validade: src/backend/nodejs/package.json
   if Nao existe: avise e pergunte "Rodar /setup-tooling --apps antes (cria o app Node)? [Y/N]"
   se sim: delegue --apps e retome
   se nao: abort
-  pergunta: "Rodar `cd backend/nodejs && npm install`?"
+  pergunta: "Rodar `cd src/backend/nodejs && npm install`?"
   se sim: Bash → npm install
   ```
-- **spring** (`backend/spring/`):
+- **spring** (`src/backend/spring/`):
   ```
-  validade: backend/spring/pom.xml (ou build.gradle)
-  pergunta: "Rodar `./mvnw -DskipTests` (ou `./gradlew build -x test`) em backend/spring?"
-  se sim: Bash → cd backend/spring && ./mvnw -DskipTests -q (ou gradlew)
+  validade: src/backend/spring/pom.xml (ou build.gradle)
+  pergunta: "Rodar `./mvnw -DskipTests` (ou `./gradlew build -x test`) em src/backend/spring?"
+  se sim: Bash → cd src/backend/spring && ./mvnw -DskipTests -q (ou gradlew)
   ```
-- **go** (`backend/go/`):
+- **go** (`src/backend/go/`):
   ```
-  validade: backend/go/go.mod
-  pergunta: "Rodar `cd backend/go && go mod tidy`?"
+  validade: src/backend/go/go.mod
+  pergunta: "Rodar `cd src/backend/go && go mod tidy`?"
   se sim: Bash → go mod tidy
   ```
 - **postgres**: n/a (sem runtime deps para instalar).
 
-Idempotente: skip se `frontend/node_modules` já existe e `package-lock.json`/total size
-confirma completo. (Heurística: `Test-Path frontend/node_modules/`.)
+Idempotente: skip se `src/frontend/node_modules` já existe e `package-lock.json`/total size
+confirma completo. (Heurística: `Test-Path src/frontend/node_modules/`.)
 
 ### Passo 3 — Sub-operação `--qmd`
 
@@ -192,9 +192,9 @@ pre-commit autoupdate
 
 ```
 setup-tooling →
-  --apps:    frontend Angular criado | backend/nodejs criado | pulado (já existia) | erro: <detalhe>
-  --deps:    frontend/node_modules OK (instalado | já existia)
-             backend/nodejs/node_modules OK
+  --apps:    frontend Angular criado | src/backend/nodejs criado | pulado (já existia) | erro: <detalhe>
+  --deps:    src/frontend/node_modules OK (instalado | já existia)
+             src/backend/nodejs/node_modules OK
   --qmd:     instalado + 5 collections + embed completo | pulado | erro: <detalhe>
   --pdftotext: instalado (winget) | já disponível | falha: <pacote manager ausente>
   --hooks:   .pre-commit-config.yaml criado + pre-commit install OK | pulado

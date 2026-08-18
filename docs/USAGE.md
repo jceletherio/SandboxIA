@@ -55,7 +55,7 @@
 ### A2) Protótipo antes do plano (UX validada primeiro)
 1. Requisitos em `req/` → `/plan-from-requirements` (opcional, para `requirements.md`).
 2. `/prototype-screens "fluxo X"` — divisão em partes `P-NNN`, design M3, dados mockados
-   em interface/gateway; persiste em `01-context/prototype/` + `frontend/src/app/prototype/`.
+   em interface/gateway; persiste em `01-context/prototype/` + `src/frontend/src/app/prototype/`.
 3. `/plan-from-requirements req/requisito.docx` — o `sdd-planner` reusa as partes `P-NNN`
    nas trilhas frontend e os DTOs do mock como contrato obrigatório das trilhas backend
    (ver `ia-framework/skills/prototyping/references/feeding-sdd.md`).

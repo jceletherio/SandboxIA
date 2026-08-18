@@ -10,7 +10,7 @@ Nada de mock espalhado nos componentes. Toda consulta passa por uma **interface 
 espelha o contrato futuro:
 
 ```ts
-// frontend/src/app/prototype/core/api/<domain>.gateway.ts
+// src/frontend/src/app/prototype/core/api/<domain>.gateway.ts
 export interface OrderGateway {
   listOrders(params: OrderListParams): Promise<OrderPage>;
   getOrder(id: string): Promise<Order>;
@@ -35,7 +35,7 @@ export interface OrderGateway {
 
 ## Fixtures
 
-- Vivem em `frontend/src/app/prototype/core/api/fixtures/<domain>.ts`, 1 arquivo por domínio.
+- Vivem em `src/frontend/src/app/prototype/core/api/fixtures/<domain>.ts`, 1 arquivo por domínio.
 - Cada fixture cobre os 3 cenários do componente: **lista com dados**, **lista vazia**,
   **erro** (lançar/expor para o estado de erro).
 - Dados plausíveis de negócio (nomes reais, valores coerentes) para validar layout real.

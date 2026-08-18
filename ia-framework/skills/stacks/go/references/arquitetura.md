@@ -3,7 +3,7 @@
 ## Layout de projeto (standard Go project layout)
 
 ```
-backend/go/
+src/backend/go/
   cmd/
     <app>/
       main.go                    bootstrap: config, server, signals

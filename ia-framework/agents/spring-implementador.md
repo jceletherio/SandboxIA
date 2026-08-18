@@ -53,9 +53,9 @@ Você implementa **uma única tarefa** da spec na stack Spring Boot 3.5. Escopo 
 > Consulte `skills/shared/validation-gates.md` para o checklist completo por stack. Gates
 > obrigatórios abaixo.
 
-1. `cd backend/spring && ./mvnw compile -q` (ou `./gradlew compileJava`) — tem que sair
+1. `cd src/backend/spring && ./mvnw compile -q` (ou `./gradlew compileJava`) — tem que sair
    limpo.
-2. `cd backend/spring && ./mvnw test -Dtest=<classe>` para o teste novo (se aplicável).
+2. `cd src/backend/spring && ./mvnw test -Dtest=<classe>` para o teste novo (se aplicável).
 3. Checagem mental: `@Valid` em `@RequestBody`? `@Transactional` no service (não em
    `private`/`final`)? Migration novo não edita anterior? `@EntityGraph`/`JOIN FETCH`
    cobre associações usadas no hot path?
@@ -68,15 +68,15 @@ Contrato em `skills/schemas/implementer-output.schema.json`.
 { "status": "feito",
   "stack": "spring",
   "files": [
-    { "path": "backend/spring/src/main/resources/db/migration/V05__add_order_items.sql",
+    { "path": "src/backend/spring/src/main/resources/db/migration/V05__add_order_items.sql",
       "change": "Cria tabela order_items com FK ON DELETE CASCADE em order_id" },
-    { "path": "backend/spring/src/main/java/com/acme/orders/OrderItemRepository.java",
+    { "path": "src/backend/spring/src/main/java/com/acme/orders/OrderItemRepository.java",
       "change": "extends JpaRepository<OrderItem, UUID>" },
-    { "path": "backend/spring/src/main/java/com/acme/orders/OrderService.java",
+    { "path": "src/backend/spring/src/main/java/com/acme/orders/OrderService.java",
       "change": "addItem(...) @Transactional, checa ConflictException e atualiza versão" }
   ],
   "blockers": [],
-  "how_to_validate": "cd backend/spring && ./mvnw test -Dtest=OrderServiceTest" }
+  "how_to_validate": "cd src/backend/spring && ./mvnw test -Dtest=OrderServiceTest" }
 ```
 
 Se a spec é ambígua:

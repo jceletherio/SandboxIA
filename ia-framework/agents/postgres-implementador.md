@@ -11,7 +11,7 @@ Você implementa **uma única tarefa** da spec na stack PostgreSQL 16+. Escopo c
 1. Leia `skills/stacks/postgres/references/arquitetura.md` para padrões de modelagem.
 2. Leia `skills/stacks/postgres/references/seguranca.md` para RLS/roles.
 3. Leia `skills/stacks/postgres/references/convencoes.md` para nomeação.
-4. **Leia uma migration vizinha** (`BD/sql/migrations/V*.sql`) antes de criar nova — siga
+4. **Leia uma migration vizinha** (`src/BD/sql/migrations/V*.sql`) antes de criar nova — siga
    o mesmo estilo (comment no topo, snake_case, ordem de statements).
 
 ## Regras
@@ -80,13 +80,13 @@ Contrato em `skills/schemas/implementer-output.schema.json`.
 { "status": "feito",
   "stack": "postgres",
   "files": [
-    { "path": "BD/sql/migrations/V08__add_orders_external_ref.sql",
+    { "path": "src/BD/sql/migrations/V08__add_orders_external_ref.sql",
       "change": "ADD COLUMN external_ref varchar(64) NOT NULL DEFAULT ''; CREATE UNIQUE INDEX CONCURRENTLY ix_orders_tenant_external ON orders (tenant_id, external_ref)" },
-    { "path": "BD/sql/migrations/V09__orders_rls.sql",
+    { "path": "src/BD/sql/migrations/V09__orders_rls.sql",
       "change": "ENABLE RLS e CREATE POLICY orders_tenant_isolation em orders; GRANT SELECT,INSERT,UPDATE,DELETE TO app_tenant" }
   ],
   "blockers": [],
-  "how_to_validate": "psql -d testdb -f BD/sql/migrations/V08__add_orders_external_ref.sql; SET app.tenant_id='<uuid>'; SELECT count(*) FROM orders — deve ver só rows do tenant" }
+  "how_to_validate": "psql -d testdb -f src/BD/sql/migrations/V08__add_orders_external_ref.sql; SET app.tenant_id='<uuid>'; SELECT count(*) FROM orders — deve ver só rows do tenant" }
 ```
 
 Se a spec é ambígua:

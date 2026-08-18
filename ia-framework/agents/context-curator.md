@@ -24,11 +24,11 @@ front-matter conforme as stacks ativas do monorepo. Quando uma doc cobre múltip
    ```
    Lista `.md` da app com front-matter + outline. Escolha o que vale ler de fato.
 2. **Investigue o código** (respeitando stacks do manifesto):
-   - Frontend Angular: `frontend/src/app/<feature>/`, `app.config.ts`, rotas, designs.
-   - Backend NodeJS: `backend/nodejs/src/`, `package.json`, plugins, rotas.
-   - Backend Spring: `backend/spring/src/main/java/`, `pom.xml`/`build.gradle`, controllers.
-   - Backend Go: `backend/go/cmd/`, `internal/`, `go.mod`.
-   - BD Postgres: `BD/sql/`, migrations, RLS, índices.
+   - Frontend Angular: `src/frontend/src/app/<feature>/`, `app.config.ts`, rotas, designs.
+   - Backend NodeJS: `src/backend/nodejs/src/`, `package.json`, plugins, rotas.
+   - Backend Spring: `src/backend/spring/src/main/java/`, `pom.xml`/`build.gradle`, controllers.
+   - Backend Go: `src/backend/go/cmd/`, `internal/`, `go.mod`.
+   - BD Postgres: `src/BD/sql/`, migrations, RLS, índices.
 3. **Sintetize** em `01-context/`: `project-map.md` (stack + diretórios-chave + quem é
    dono), `product-vision.md`, `constraints.md`, `ARCHITECTURE_OVERVIEW.md` (com camadas
    das stacks ativas), `api-context.md` (contratos públicos cruzando stacks quando for o

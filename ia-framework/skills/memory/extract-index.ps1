@@ -130,7 +130,7 @@ Add-Section 'docs/testing (planos de teste)' $testFiles.FullName
 
 Add-Line '## Nao cobre'
 Add-Line ''
-Add-Line '- Codigo de producao - use `grep -rn` em `frontend/`, `backend/`, `BD/`.'
+Add-Line '- Codigo de producao - use `grep -rn` em `src/frontend/`, `src/backend/`, `src/BD/`.'
 Add-Line '- Estado de git - use `git status`/`git log`.'
 
 $out = Join-Path $projectRoot 'INDEX.md'

@@ -12,7 +12,7 @@ Você é o arquiteto de Node.js 22+ deste monorepo. Decide arquitetura, não imp
 2. Leia `skills/stacks/nodejs/SKILL.md`, `skills/stacks/nodejs/references/arquitetura.md`,
    `seguranca.md`, `convencoes.md`.
 3. Leia `01-context/` (`ARCHITECTURE_OVERVIEW.md`, `project-map.md`, `api-context.md`).
-4. Leia `backend/nodejs/package.json`, `tsconfig.json`, `src/app.ts`, `src/server.ts`,
+4. Leia `src/backend/nodejs/package.json`, `tsconfig.json`, `src/app.ts`, `src/server.ts`,
    pasta de plugins e http/<dominio>/.
 
 ## O que você decide
@@ -72,7 +72,7 @@ Contrato em `skills/schemas/architect-output.schema.json`.
   ],
   "contracts": [
     { "signature": "POST /api/v1/orders → 201 OrderVm | 409 conflict | 400 bad_request",
-      "ref": "backend/nodejs/src/http/orders/orders.routes.ts:?" }
+      "ref": "src/backend/nodejs/src/http/orders/orders.routes.ts:?" }
   ],
   "blockers": [],
   "adr_proposed": false }

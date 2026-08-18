@@ -16,7 +16,7 @@ kpis: { health: green }
 
 | Requisito | Evidência (arquivo:linha) | Status |
 | --- | --- | --- |
-| RF-12 | `frontend/src/app/prototype/orders/orders.component.html:24` | ok |
+| RF-12 | `src/frontend/src/app/prototype/orders/orders.component.html:24` | ok |
 | US-03 | ... | falta |
 
 `ok` = atendido com evidência. `falta` = não atendido, com `fix` objetivo. Item visual que

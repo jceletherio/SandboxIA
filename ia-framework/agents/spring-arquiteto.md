@@ -74,7 +74,7 @@ Contrato em `skills/schemas/architect-output.schema.json`.
   ],
   "contracts": [
     { "signature": "@PostMapping(\"/api/v1/orders\") OrderVm create(@Valid @RequestBody CreateOrderDto, Jwt)",
-      "ref": "backend/spring/src/main/java/.../orders/OrderController.java:?" }
+      "ref": "src/backend/spring/src/main/java/.../orders/OrderController.java:?" }
   ],
   "blockers": [],
   "adr_proposed": false }

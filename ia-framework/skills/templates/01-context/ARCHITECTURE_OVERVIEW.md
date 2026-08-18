@@ -13,7 +13,7 @@ kpis: { health: green }
 
 ```
 [ Angular SPA ]  ──HTTPS/JWT──▶  [ Backend REST ]  ──SQL/pool──▶  [ PostgreSQL ]
- frontend/                          backend/{nodejs|spring|go}/       BD/
+ src/frontend/                          src/backend/{nodejs|spring|go}/       src/BD/
 ```
 
 Cada backend expõe contratos versionados (`/api/v1/...`). Frontend nunca acessa BD direto.

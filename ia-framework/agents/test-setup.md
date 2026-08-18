@@ -20,31 +20,31 @@ Você prepara o projeto para rodar testes. Não escreve testes.
 
 ## Passos por stack
 
-### Angular (frontend/)
+### Angular (src/frontend/)
 
-1. Leia `frontend/package.json`. Adicione ao `devDependencies` (sem instalar — usuário roda
+1. Leia `src/frontend/package.json`. Adicione ao `devDependencies` (sem instalar — usuário roda
    `npm install` depois):
    - `vitest`, `@angular/build`, `@vitest/coverage-v8`, `jsdom`
    - `@testing-library/angular`, `@testing-library/jest-dom`
-2. Crie `frontend/vitest.config.ts` se não existe (não sobrescreva se já existe — leia
+2. Crie `src/frontend/vitest.config.ts` se não existe (não sobrescreva se já existe — leia
    e ajuste só o que falta).
-3. Crie `frontend/src/test-setup.ts` com imports básicos.
+3. Crie `src/frontend/src/test-setup.ts` com imports básicos.
 4. Adicione `test` script em `package.json`: `"test": "vitest run"`,
    `"test:watch": "vitest"`.
-5. Em `frontend/e2e/`, crie `playwright.config.ts` (veja `references/playwright.md`).
+5. Em `src/frontend/e2e/`, crie `playwright.config.ts` (veja `references/playwright.md`).
    Adicione `@playwright/test` ao `devDependencies`.
 6. `.gitignore` adicione `test-results/`, `playwright-report/`.
 
-### Node.js (backend/nodejs/)
+### Node.js (src/backend/nodejs/)
 
-1. `backend/nodejs/package.json` devDependencies:
+1. `src/backend/nodejs/package.json` devDependencies:
    - `vitest`, `@vitest/coverage-v8`
    - `@testcontainers/postgresql` (`@testcontainers/redis` se usar)
    - `supertest` se legado Express; Fastify já vem `app.inject`.
-2. Crie `backend/nodejs/vitest.config.ts` se ausente.
+2. Crie `src/backend/nodejs/vitest.config.ts` se ausente.
 3. Script `test`: `"test": "vitest run"`, `"test:integration": "RUN_INTEGRATION=1 vitest run"`.
 
-### Spring Boot (backend/spring/)
+### Spring Boot (src/backend/spring/)
 
 1. `pom.xml`/`build.gradle` adiciona test deps:
    - `org.springframework.boot:spring-boot-starter-test` (geralmente já vem)
@@ -67,7 +67,7 @@ Você prepara o projeto para rodar testes. Não escreve testes.
    ```
 3. Atualize `Makefile` se projeto usa Make com targets `test`, `test-integration`.
 
-### Go (backend/go/)
+### Go (src/backend/go/)
 
 1. `go get` em código-fonte (não `go install`), adicionando ao `go.mod`:
    - `github.com/testcontainers/testcontainers-go`
@@ -81,17 +81,17 @@ Você prepara o projeto para rodar testes. Não escreve testes.
    test-integration:
        go test -tags=integration ./...
    ```
-3. Crie `backend/go/scripts/runMigrations.sh` se não existe (helper invocado em Testes
+3. Crie `src/backend/go/scripts/runMigrations.sh` se não existe (helper invocado em Testes
    para aplicar migrations em container).
 
-### PostgreSQL (BD/)
+### PostgreSQL (src/BD/)
 
-1. Crie `BD/sql/tests/` se ausente.
-2. Crie `BD/sql/tests/README.md` explicando: `pg_prove -d test_db BD/sql/tests/*.sql` para
+1. Crie `src/BD/sql/tests/` se ausente.
+2. Crie `src/BD/sql/tests/README.md` explicando: `pg_prove -d test_db src/BD/sql/tests/*.sql` para
    rodar pgTAP; necessidade de `CREATE EXTENSION IF NOT EXISTS pgtap` no DB de teste.
 3. Adicione `Makefile` target `test-db` (se Make estabelecido no projeto) ou script
    `scripts/test-db.sh` que sobe container, habilita extension, roda pgTAP.
-4. Sugira adicionar `pgtap` ao `BD/sql/schema/00_extensions.sql` para ambiente de testes.
+4. Sugira adicionar `pgtap` ao `src/BD/sql/schema/00_extensions.sql` para ambiente de testes.
 
 ## Encontrou tooling já configurado?
 

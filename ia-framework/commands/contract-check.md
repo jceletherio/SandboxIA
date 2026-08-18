@@ -24,7 +24,7 @@ Confere o contrato backend ↔ frontend antes de liberar release.
 > sugira `/generate-architecture` primeiro antes do contract-check.
 >
 > Extra protótipo: se `01-context/prototype/` existir (partes `P-NNN`) mas `api-context.md`
-> ainda vazio, use os **DTOs do mock** (`frontend/src/app/prototype/core/api/*.gateway.ts`)
+> ainda vazio, use os **DTOs do mock** (`src/frontend/src/app/prototype/core/api/*.gateway.ts`)
 > como a fonte esperada de contrato — o backend real deve entregar o que o mock prometeu
 > (ver `skills/prototyping/references/feeding-sdd.md` §release). Não aborte nesse caso.
 
@@ -33,7 +33,7 @@ Confere o contrato backend ↔ frontend antes de liberar release.
 1. Determine a fonte do contrato:
    - `01-context/api-context.md` populado → contrato publicado (fonte principal).
    - `api-context.md` vazio **mas** `01-context/prototype/` existe → use os DTOs do mock
-     (`frontend/src/app/prototype/core/api/*.gateway.ts`) como contrato esperado; informe
+     (`src/frontend/src/app/prototype/core/api/*.gateway.ts`) como contrato esperado; informe
      no recibo que `checked_against` é o mock.
    - Ambos ausentes → abort (não há contrato para conferir).
 2. Delegue ao agente `contract-checker`:

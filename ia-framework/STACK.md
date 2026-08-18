@@ -8,17 +8,17 @@ updated: 2026-08-05
 ## Frontend
 
 - **angular** - Angular 22 (standalone, signals, novo control flow, zoneless)
-  - Raiz do codigo: `frontend/`
+  - Raiz do codigo: `src/frontend/`
   - Skill: `skills/stacks/angular/SKILL.md`
 
 ## Backend (escolha um ou mais)
 
 - **nodejs** - Node.js 22+ (ESM, Fastify/Express5/NestJS)
-  - Raiz do codigo: `backend/nodejs/`
+  - Raiz do codigo: `src/backend/nodejs/`
   - Skill: `skills/stacks/nodejs/SKILL.md`
 
 - **go** - Go 1.23+ (modulos, context-first, interfaces no consumer-side)
-  - Raiz do codigo: `backend/go/`
+  - Raiz do codigo: `src/backend/go/`
   - Skill: `skills/stacks/go/SKILL.md`
 
 ## Banco de Dados

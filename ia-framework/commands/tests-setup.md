@@ -21,7 +21,7 @@ Setup inicial de testes em uma ou todas as stacks ativas.
 
 > Siga `skills/shared/preflight.md`. Verifique `ia-framework/STACK.md` configurado e `project_sdd/01-context/` existe. Se faltar, pergunte ao usuário se quer rodar `/init` chained; se aceitar, delegate e retome; se não, abort com mensagem clara.
 >
-> Extra: se `frontend/package.json` etc. ausente, sugira `/setup-tooling --deps`
+> Extra: se `src/frontend/package.json` etc. ausente, sugira `/setup-tooling --deps`
 > chained antes — este command cria configs mas não instala runtime deps.
 
 ## Condução
@@ -32,7 +32,7 @@ Setup inicial de testes em uma ou todas as stacks ativas.
 3. Delegue ao agente `test-setup`:
    - Para cada stack ativa:
      angular: configura `vitest.config.ts`, `test-setup.ts`, scripts `npm`,
-       `frontend/e2e/playwright.config.ts`, `.gitignore` para `test-results/` e
+       `src/frontend/e2e/playwright.config.ts`, `.gitignore` para `test-results/` e
        `playwright-report/`.
      nodejs: adiciona `vitest`, `@testcontainers/postgresql` ao `devDependencies`;
        cria `vitest.config.ts`; scripts `test`, `test:integration`.
@@ -40,15 +40,15 @@ Setup inicial de testes em uma ou todas as stacks ativas.
        cria `application-test.yml`.
      go: `go get` no módulo de `testcontainers-go`/`postgres TC module`; cria/ajusta
        `Makefile` targets `test`, `test-unit`, `test-integration`.
-     postgres: cria `BD/sql/tests/` com README pgTAP; scripts `scripts/test-db.sh` que
+     postgres: cria `src/BD/sql/tests/` com README pgTAP; scripts `scripts/test-db.sh` que
        sobe container e roda pgTAP.
 4. Receba recibo do `test-setup` (schemas do `architect-output` não se aplica — recibo é
    lista de arquivos alterados + dependências pendentes).
 5. **Apresente ao usuário** a lista de dependências que ele deve instalar:
    - `cd frontend && npm install`
-   - `cd backend/nodejs && npm install`
-   - `cd backend/spring && ./mvnw clean install -DskipTests` (resolve deps estendidas)
-   - `cd backend/go && go mod tidy`
+   - `cd src/backend/nodejs && npm install`
+   - `cd src/backend/spring && ./mvnw clean install -DskipTests` (resolve deps estendidas)
+   - `cd src/backend/go && go mod tidy`
    - `npx playwright install --with-deps chromium webkit` (frontend e2e)
    - `apt install poppler-utils` ou similar para `pg_prove` (postgres tests)
 6.**Não instale nada automaticamente.** O usuário controla banda/lockfiles/rede.

@@ -32,11 +32,11 @@ Detalhes do fluxo em cada doc técnico (`frontend-angular.md`, `backend-<stack>.
 
 | Stack | Raiz | Doc técnico |
 | ----- | ---- | ----------- |
-| Angular 22 | `frontend/` | `docs/architecture/frontend-angular.md` |
-| Node.js 22+ | `backend/nodejs/` | `docs/architecture/backend-nodejs.md` |
-| Spring Boot 3.5 | `backend/spring/` | `docs/architecture/backend-spring.md` |
-| Go 1.23+ | `backend/go/` | `docs/architecture/backend-go.md` |
-| PostgreSQL 16+ | `BD/` | `docs/architecture/database-postgres.md` |
+| Angular 22 | `src/frontend/` | `docs/architecture/frontend-angular.md` |
+| Node.js 22+ | `src/backend/nodejs/` | `docs/architecture/backend-nodejs.md` |
+| Spring Boot 3.5 | `src/backend/spring/` | `docs/architecture/backend-spring.md` |
+| Go 1.23+ | `src/backend/go/` | `docs/architecture/backend-go.md` |
+| PostgreSQL 16+ | `src/BD/` | `docs/architecture/database-postgres.md` |
 
 > Stacks inativas em `ia-framework/STACK.md` => doc omitido.
 

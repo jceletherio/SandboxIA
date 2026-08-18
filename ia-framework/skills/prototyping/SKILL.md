@@ -18,7 +18,7 @@ implementação definitiva.
   │
   ├─ F1 prototype-planner      → 01-context/prototype/plan.md   (divisão em partes P-NNN)
   ├─ F2 prototype-designer     → 01-context/prototype/designs/P-NNN-<slug>.md (M3)
-  ├─ F3 prototype-builder      → frontend/src/app/prototype/    (components + mock gateway)
+  ├─ F3 prototype-builder      → src/frontend/src/app/prototype/    (components + mock gateway)
   └─ F4 prototype-reviewer     → 01-context/prototype/review/<parte>.md (completude vs RF/US)
 ```
 
@@ -40,7 +40,7 @@ implementação definitiva.
    Toda lista tem estado loading/erro/vazio.
 5. **Sem regra de negócio no mock.** O mock só devolve fixtures plausíveis; validação final
    continua sendo do backend. O protótipo valida UX e fluxo, não autorização.
-6. **Descartável por design.** `frontend/src/app/prototype/` é código de protótipo isolado
+6. **Descartável por design.** `src/frontend/src/app/prototype/` é código de protótipo isolado
    (rota `/prototype/...`), fácil de remover/promover. Nada dele vira "fonte de verdade".
 
 ## Integração com a stack Angular
@@ -88,11 +88,11 @@ Após o protótipo validado, o fluxo de produção **reusa** seus artefatos:
 | --- | --- | --- |
 | Plano de partes | `01-context/prototype/plan.md` | F1 |
 | Design spec por tela | `01-context/prototype/designs/P-NNN-<slug>.md` | F2 |
-| Código do protótipo | `frontend/src/app/prototype/**` | F3 |
+| Código do protótipo | `src/frontend/src/app/prototype/**` | F3 |
 | Review de completude | `01-context/prototype/review/P-NNN-<slug>.md` | F4 |
 
 ## Setup
 
 Nada a instalar no repo. Requer `project_sdd/01-context/` inicializado (`/init`) e a stack
-`angular` ativa em `ia-framework/STACK.md`. Se `frontend/` ainda não tem app Angular,
+`angular` ativa em `ia-framework/STACK.md`. Se `src/frontend/` ainda não tem app Angular,
 `/init` cria; senão o builder aponta o gap no recibo.

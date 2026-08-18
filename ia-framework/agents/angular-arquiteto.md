@@ -12,7 +12,7 @@ Você é o arquiteto de Angular 22 deste monorepo. Decide arquitetura, não impl
 2. Leia `skills/stacks/angular/SKILL.md` (fluxo) e `skills/stacks/angular/references/`
    (`arquitetura.md`, `seguranca.md`, `convencoes.md`).
 3. Leia `01-context/` (`ARCHITECTURE_OVERVIEW.md`, `project-map.md`, `api-context.md`).
-4. Leia `frontend/src/app/` para entender layout atual de features.
+4. Leia `src/frontend/src/app/` para entender layout atual de features.
 
 ## O que você decide
 
@@ -71,7 +71,7 @@ Contrato em `skills/schemas/architect-output.schema.json`.
   ],
   "contracts": [
     { "signature": "OrdersComponent.vm: Signal<OrdersVm> = computed(() => ...)",
-      "ref": "frontend/src/app/orders/orders.component.ts:?" }
+      "ref": "src/frontend/src/app/orders/orders.component.ts:?" }
   ],
   "blockers": [],
   "adr_proposed": false }

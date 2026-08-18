@@ -99,11 +99,11 @@ Contrato em `skills/schemas/security-output.schema.json`.
   "stack": "nodejs",
   "findings": [
     { "id": "SQLI-001", "severity": "critical", "category": "injection",
-      "evidence": "backend/nodejs/src/http/orders/orders.repository.ts:88",
+      "evidence": "src/backend/nodejs/src/http/orders/orders.repository.ts:88",
       "fix": "trocar template string por placeholders $1/$2; mitigar ORDER BY via whitelist",
       "owasp": "A03:2021 Injection" },
     { "id": "AUTH-001", "severity": "high", "category": "authn",
-      "evidence": "backend/nodejs/src/http/auth/auth.service.ts:120 (bcrypt cost 10)",
+      "evidence": "src/backend/nodejs/src/http/auth/auth.service.ts:120 (bcrypt cost 10)",
       "fix": "migrar para argon2id (memoryCost=19456, parallelism=1, algorithm=2)",
       "owasp": "A07:2021 Auth Failures" },
     { "id": "DEP-001", "severity": "medium", "category": "dependency",

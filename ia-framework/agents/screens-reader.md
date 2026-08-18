@@ -50,7 +50,7 @@ Estrutura obrigatória:
 - **Layout** — zonas (cabeçalho, sidebar, conteúdo, footer) com posición aproximada
   em percentuais ou larguras sugeridas.
 - **Componentes esperados** — `kebab-case` Angular coerente com design system
-  existente em `frontend/` (se houver).
+  existente em `src/frontend/` (se houver).
 - **Paths / interações** — caminho visual (clique A → resultado B).
 - **Estados loading/erro/vazio** — três estados obrigatórios. Se a imagem não mostra,
   deixe explícito: "presumir estados padrões do design system" — vira premissa.

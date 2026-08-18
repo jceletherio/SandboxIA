@@ -1,6 +1,6 @@
 ---
 name: prototype-builder
-description: Implementa UMA parte (P-NNN) do protótipo Angular a partir do design spec M3 — componentes standalone + signals + novo control flow, consumindo dados via interface/gateway mockada (fixtures, latência e erro simulados) pronta para receber o backend definitivo. Persiste em `frontend/src/app/prototype/`. Fase 3 do `/prototype-screens`.
+description: Implementa UMA parte (P-NNN) do protótipo Angular a partir do design spec M3 — componentes standalone + signals + novo control flow, consumindo dados via interface/gateway mockada (fixtures, latência e erro simulados) pronta para receber o backend definitivo. Persiste em `src/frontend/src/app/prototype/`. Fase 3 do `/prototype-screens`.
 tools: Read, Edit, Write, Grep, Glob, Bash
 ---
 
@@ -17,14 +17,14 @@ M3 e o contrato de mock já definidos.
    código Angular do projeto) e `skills/shared/validation-gates.md` (gates que você roda).
 4. Leia `01-context/prototype/designs/P-NNN-<slug>.md` (fonte do que implementar) e o
    `01-context/prototype/plan.md`.
-5. Leia um arquivo vizinho em `frontend/src/app/prototype/` antes de criar algo novo —
+5. Leia um arquivo vizinho em `src/frontend/src/app/prototype/` antes de criar algo novo —
    siga a densidade de comentário, idioma e nomeação do projeto.
 6. Decisão de arquitetura Angular em aberto no meio da implementação (state, rota lazy,
    decomposição) → consulte `angular-arquiteto`; não invente no código.
 
 ## Regras de implementação
 
-1. **Local:** `frontend/src/app/prototype/` (rota `/prototype/...`). Código isolado e
+1. **Local:** `src/frontend/src/app/prototype/` (rota `/prototype/...`). Código isolado e
    descartável por design — não polui o app de produção.
 2. **Angular 22:** standalone, `inject()`, signals (`input()`, `computed()`, `signal()`),
    novo control flow `@if/@for ... track/@switch`. Sem `*ngIf/*ngFor`, sem `markForCheck`,
@@ -40,7 +40,7 @@ M3 e o contrato de mock já definidos.
    cor, touch target ≥ 48dp.
 8. **Sem regra de negócio no frontend** — validação final é do backend.
 9. **Registre a rota do protótipo** (tarefa do fluxo, não decisão): crie
-   `frontend/src/app/prototype/prototype.routes.ts` com lazy `loadComponent` e registre a
+   `src/frontend/src/app/prototype/prototype.routes.ts` com lazy `loadComponent` e registre a
    rota raiz `/prototype` no `app.routes.ts` — esta é a **única exceção** à regra de não
    mexer em rotas globais. Use o template
    `skills/prototyping/templates/prototype-routes-template.ts`.
@@ -63,12 +63,12 @@ M3 e o contrato de mock já definidos.
 prototype-builder ok
 parte: P-001 orders-list
 files:
-  frontend/src/app/prototype/orders/orders.component.ts
-  frontend/src/app/prototype/orders/orders.component.html
-  frontend/src/app/prototype/core/api/order.gateway.ts
-  frontend/src/app/prototype/core/api/fixtures/orders.ts
-  frontend/src/app/prototype/prototype.routes.ts
-  frontend/src/app/app.routes.ts (rota /prototype registrada)
+  src/frontend/src/app/prototype/orders/orders.component.ts
+  src/frontend/src/app/prototype/orders/orders.component.html
+  src/frontend/src/app/prototype/core/api/order.gateway.ts
+  src/frontend/src/app/prototype/core/api/fixtures/orders.ts
+  src/frontend/src/app/prototype/prototype.routes.ts
+  src/frontend/src/app/app.routes.ts (rota /prototype registrada)
 blockers: []
 how_to_validate: cd frontend && npx tsc --noEmit
 ```

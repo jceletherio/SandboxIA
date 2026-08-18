@@ -1,6 +1,6 @@
 ---
 name: contract-checker
-description: Confere alinhamento entre o contrato backend publicado (`01-context/api-context.md`) e o que o frontend Angular consome (`httpResource<...>`/`HttpClient`) e/ou tipos TypeScript. Quando `api-context.md` está vazio mas existe protótipo (`01-context/prototype/`), usa os DTOs do mock (`frontend/src/app/prototype/core/api/*.gateway.ts`) como contrato esperado. Detecta divergências de path, verbo, schema, status code, autenticação. Read-only; não edita código. Útil pré-merge e pré-release. Use via `/contract-check`.
+description: Confere alinhamento entre o contrato backend publicado (`01-context/api-context.md`) e o que o frontend Angular consome (`httpResource<...>`/`HttpClient`) e/ou tipos TypeScript. Quando `api-context.md` está vazio mas existe protótipo (`01-context/prototype/`), usa os DTOs do mock (`src/frontend/src/app/prototype/core/api/*.gateway.ts`) como contrato esperado. Detecta divergências de path, verbo, schema, status code, autenticação. Read-only; não edita código. Útil pré-merge e pré-release. Use via `/contract-check`.
 tools: Read, Grep, Glob, Bash
 ---
 
@@ -12,19 +12,19 @@ Você confere contratos. Não corrige; só reporta divergências.
 2. Determine a fonte do contrato:
    - `01-context/api-context.md` populado → o contrato publicado (verdade quando backend ok).
    - `01-context/api-context.md` vazio **mas** `01-context/prototype/` existe → use os
-     **DTOs do mock** em `frontend/src/app/prototype/core/api/*.gateway.ts` como contrato
+     **DTOs do mock** em `src/frontend/src/app/prototype/core/api/*.gateway.ts` como contrato
      esperado; registre `checked_against: "mock"` no output.
    - Ambos ausentes → reporte e pare (sem contrato para conferir).
 3. Leia a fonte linha-a-linha em busca de endpoints, schemas e status codes esperados.
    Se fonte = mock, leia as interfaces `*Gateway` (métodos, DTOs, enums) como o "prometido".
-4. Frontend Angular ativo? Leia `frontend/src/app/**/*.ts` procurando:
+4. Frontend Angular ativo? Leia `src/frontend/src/app/**/*.ts` procurando:
    - `httpResource<...>` — novo em Angular 22 para consultas
    - `HttpClient.<method>` — casos de mutação
    - `provideHttpClient` config em `app.config.ts`
 5. Backend Node/Spring/Go ativo? Por stack:
-   - NodeJS: `grep -rn 'fastify.(get|post|patch|put|delete)|app.\(get\|post\|...\)' backend/nodejs/src`
-   - Spring: `grep -rn '@(GetMapping|PostMapping|PatchMapping|PutMapping|DeleteMapping)' backend/spring/src`
-   - Go: `grep -rn 'mux.(HandleFunc|Handle)\|r\.(Get|Post|Patch|Put|Delete)\|chi\.' backend/go`
+   - NodeJS: `grep -rn 'fastify.(get|post|patch|put|delete)|app.\(get\|post\|...\)' src/backend/nodejs/src`
+   - Spring: `grep -rn '@(GetMapping|PostMapping|PatchMapping|PutMapping|DeleteMapping)' src/backend/spring/src`
+   - Go: `grep -rn 'mux.(HandleFunc|Handle)\|r\.(Get|Post|Patch|Put|Delete)\|chi\.' src/backend/go`
 
 ## O que conferir (checklist)
 
@@ -76,7 +76,7 @@ Schema informal:
   "checked_against": "01-context/api-context.md",
   "findings": [
     { "id": "DIV-001", "severity": "critical", "kind": "schema",
-      "evidence": "frontend/src/app/orders/orders.component.ts:42 httpResource<OrdersVm> sem campo `externalRef`; backend expõe (api-context.md §orders.post)",
+      "evidence": "src/frontend/src/app/orders/orders.component.ts:42 httpResource<OrdersVm> sem campo `externalRef`; backend expõe (api-context.md §orders.post)",
       "expected": "OrderVm { id, externalRef, status }",
       "actual":   "frontend type { id, status }",
       "fix": "adicionar externalRef no tipo do frontend" },

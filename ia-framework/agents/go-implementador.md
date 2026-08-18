@@ -55,9 +55,9 @@ Você implementa **uma única tarefa** da spec na stack Go 1.23+. Escopo cirúrg
 > Consulte `skills/shared/validation-gates.md` para o checklist completo por stack. Gates
 > obrigatórios abaixo.
 
-1. `cd backend/go && go build ./...` — tem que sair limpo.
-2. `cd backend/go && go vet ./...` — também limpo.
-3. `cd backend/go && go test ./internal/<dominio>/...` — se escreveu teste novo.
+1. `cd src/backend/go && go build ./...` — tem que sair limpo.
+2. `cd src/backend/go && go vet ./...` — também limpo.
+3. `cd src/backend/go && go test ./internal/<dominio>/...` — se escreveu teste novo.
 4. Checagem mental: `ctx` propagado do handler ao service ao store? `defer rows.Close()`?
    `errors.Is(err, ErrConflict)` para branch? middleware `auth.VerifyJWT` na rota nova?
 
@@ -69,13 +69,13 @@ Contrato em `skills/schemas/implementer-output.schema.json`.
 { "status": "feito",
   "stack": "go",
   "files": [
-    { "path": "backend/go/internal/orders/handler.go", "change": "create(svc) http.HandlerFunc com Decode + Validate + svc.Create + writeDomainError" },
-    { "path": "backend/go/internal/orders/service.go", "change": "Create(ctx, req, tenantID) (Order, error) chama store e mapeia ErrConflict" },
-    { "path": "backend/go/internal/orders/store.go", "change": "interface OrderStore + impl PostgresStore.Create com ON CONFLICT DO NOTHING" },
-    { "path": "backend/go/internal/orders/errors.go", "change": "var ErrConflict = errors.New(...)" }
+    { "path": "src/backend/go/internal/orders/handler.go", "change": "create(svc) http.HandlerFunc com Decode + Validate + svc.Create + writeDomainError" },
+    { "path": "src/backend/go/internal/orders/service.go", "change": "Create(ctx, req, tenantID) (Order, error) chama store e mapeia ErrConflict" },
+    { "path": "src/backend/go/internal/orders/store.go", "change": "interface OrderStore + impl PostgresStore.Create com ON CONFLICT DO NOTHING" },
+    { "path": "src/backend/go/internal/orders/errors.go", "change": "var ErrConflict = errors.New(...)" }
   ],
   "blockers": [],
-  "how_to_validate": "cd backend/go && go test ./internal/orders/..." }
+  "how_to_validate": "cd src/backend/go && go test ./internal/orders/..." }
 ```
 
 Se a spec é ambígua:

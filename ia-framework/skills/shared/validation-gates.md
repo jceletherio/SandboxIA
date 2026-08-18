@@ -20,19 +20,19 @@ explicitamente. O `tsc --noEmit` cobre 95% dos gates de implementador.
 
 | Gate | Comando | Quando |
 | --- | --- | --- |
-| Typecheck | `cd backend/nodejs && npx tsc --noEmit` | sempre |
-| Lint | `cd backend/nodejs && npx eslint . --max-warnings=0` | se configurado |
-| Unit | `cd backend/nodejs && npx vitest run <path>` | se escreveu teste |
-| Functional | `cd backend/nodejs && npx vitest run --dir <feature>` | quando inject fake |
+| Typecheck | `cd src/backend/nodejs && npx tsc --noEmit` | sempre |
+| Lint | `cd src/backend/nodejs && npx eslint . --max-warnings=0` | se configurado |
+| Unit | `cd src/backend/nodejs && npx vitest run <path>` | se escreveu teste |
+| Functional | `cd src/backend/nodejs && npx vitest run --dir <feature>` | quando inject fake |
 | Integration | `RUN_INTEGRATION=1 npx vitest run <path>` | quando toca BD — **requer Docker** |
 
 ## Spring Boot 3.5
 
 | Gate | Comando | Quando |
 | --- | --- | --- |
-| Compile | `cd backend/spring && ./mvnw test-compile -q` (ou `./gradlew compileTestJava`) | sempre |
-| Checkstyle | `cd backend/spring && ./mvnw checkstyle:check -q` | se configurado |
-| Unit | `cd backend/spring && ./mvnw test -Dtest=<Classe>` (ou `./gradlew test --tests <FQN>`) | se escreveu teste |
+| Compile | `cd src/backend/spring && ./mvnw test-compile -q` (ou `./gradlew compileTestJava`) | sempre |
+| Checkstyle | `cd src/backend/spring && ./mvnw checkstyle:check -q` | se configurado |
+| Unit | `cd src/backend/spring && ./mvnw test -Dtest=<Classe>` (ou `./gradlew test --tests <FQN>`) | se escreveu teste |
 | Integration | `./mvnw verify -Dspring.profiles.active=test` | quando toca BD — **requer Docker** |
 | OWASP deps | `./mvnw org.owasp:dependency-check-maven:check -DfailBuildOnCVSS=7` | **em CI**; não em SDD |
 
@@ -40,11 +40,11 @@ explicitamente. O `tsc --noEmit` cobre 95% dos gates de implementador.
 
 | Gate | Comando | Quando |
 | --- | --- | --- |
-| Build | `cd backend/go && go build ./...` | sempre |
-| Vet | `cd backend/go && go vet ./...` | sempre |
-| Lint | `cd backend/go && golangci-lint run` | se configurado |
-| Unit | `cd backend/go && go test -short ./<package>/` | se escreveu teste |
-| Integration | `cd backend/go && go test -tags=integration ./<package>/` | quando toca BD — **requer Docker** |
+| Build | `cd src/backend/go && go build ./...` | sempre |
+| Vet | `cd src/backend/go && go vet ./...` | sempre |
+| Lint | `cd src/backend/go && golangci-lint run` | se configurado |
+| Unit | `cd src/backend/go && go test -short ./<package>/` | se escreveu teste |
+| Integration | `cd src/backend/go && go test -tags=integration ./<package>/` | quando toca BD — **requer Docker** |
 | Vulnerability | `govulncheck ./...` | **em CI**; não em SDD |
 
 ## PostgreSQL 16+
@@ -52,7 +52,7 @@ explicitamente. O `tsc --noEmit` cobre 95% dos gates de implementador.
 | Gate | Comando | Quando |
 | --- | --- | --- |
 | Syntax | `psql --no-psqlrc -f <migration>.sql --dry-run` (se psql presente) | se escreveu migration |
-| pgTAP | `pg_prove -d test_db BD/sql/tests/*.sql` | **requer BD de teste** |
+| pgTAP | `pg_prove -d test_db src/BD/sql/tests/*.sql` | **requer BD de teste** |
 | Schema diff | `migra --schema-only $DATABASE_URL > after.sql && Diffado entre hashes \|走 mencapsulation` | **em CI** |
 
 Migrations SQL em trilha SDD: revise syntax com parse check mental; não há psql em

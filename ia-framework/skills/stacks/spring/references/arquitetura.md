@@ -3,7 +3,7 @@
 ## Estrutura de pastas
 
 ```
-backend/spring/
+src/backend/spring/
   src/
     main/
       java/<base-pkg>/
