@@ -181,6 +181,7 @@ manager global, binary global).
 
 ## Documentação
 
+- `docs/COMMANDS.md` — guia dos slash commands e detalhes de uso
 - `docs/USAGE.md` — fluxo detalhado com diagrama de lifecycle
 - `docs/UPDATING.md` — como receber atualizações deste template via git subtree
 - `examples/README.md` — como navegar pelo exemplo petshop
