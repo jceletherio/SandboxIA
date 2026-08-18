@@ -11,6 +11,10 @@ updated: 2026-08-05
   - Raiz do codigo: `src/frontend/`
   - Skill: `skills/stacks/angular/SKILL.md`
 
+- **react** - React 19+ (Vite + TypeScript, hooks, TanStack Query, Zustand)
+  - Raiz do codigo: `src/react/`
+  - Skill: `skills/stacks/react/SKILL.md`
+
 ## Backend (escolha um ou mais)
 
 - **nodejs** - Node.js 22+ (ESM, Fastify/Express5/NestJS)

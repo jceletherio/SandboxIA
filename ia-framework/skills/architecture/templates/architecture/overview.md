@@ -7,7 +7,7 @@ kpis: { health: green }
 
 # Arquitetura — Visão Geral
 
-> Gerado por `/generate-architecture` a partir das saídas dos 15 agentes `<stack>-arquiteto`.
+> Gerado por `/generate-architecture` a partir das saídas dos 6 agentes `<stack>-arquiteto`.
 > Atualize re-rodando o comando após mudanças irreversíveis documentadas em `03-decisions/`.
 
 ## Fluxo request → response (crítico)
@@ -33,6 +33,7 @@ Detalhes do fluxo em cada doc técnico (`frontend-angular.md`, `backend-<stack>.
 | Stack | Raiz | Doc técnico |
 | ----- | ---- | ----------- |
 | Angular 22 | `src/frontend/` | `docs/architecture/frontend-angular.md` |
+| React 19+ | `src/react/` | `docs/architecture/frontend-react.md` |
 | Node.js 22+ | `src/backend/nodejs/` | `docs/architecture/backend-nodejs.md` |
 | Spring Boot 3.5 | `src/backend/spring/` | `docs/architecture/backend-spring.md` |
 | Go 1.23+ | `src/backend/go/` | `docs/architecture/backend-go.md` |

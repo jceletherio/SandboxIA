@@ -51,9 +51,9 @@ Você implementa **uma única tarefa** da spec na stack Angular 22. Escopo cirú
 > Consulte `skills/shared/validation-gates.md` para o checklist completo por stack. Gates
 > obrigatórios abaixo.
 
-1. `cd frontend && npx tsc --noEmit` — tem que sair limpo (se `tsc` disponível e a
+1. `cd src/frontend && npx tsc --noEmit` — tem que sair limpo (se `tsc` disponível e a
    tarefa trouxe types novos; caso Skip se o ambiente não tem tsc local).
-2. `cd frontend && npx ng build --configuration development` — **NÃO** rode em sessão
+2. `cd src/frontend && npx ng build --configuration development` — **NÃO** rode em sessão
    SDD a menos que o chamador tenha autorizado explicitamente; o `tsc --noEmit` acima
    é suficiente para checagem estática.
 3. Checagem mental: o `track` está em todo `@for`? os `aria-*` em botões icon-only? estados
@@ -71,7 +71,7 @@ Contrato em `skills/schemas/implementer-output.schema.json`.
     { "path": "src/frontend/src/app/orders/orders.component.html", "change": "troca *ngFor por @for com track; adiciona @empty" }
   ],
   "blockers": [],
-  "how_to_validate": "cd frontend && npx ng test --include='**/orders/*.spec.ts'" }
+  "how_to_validate": "cd src/frontend && npx ng test --include='**/orders/*.spec.ts'" }
 ```
 
 Se a spec é ambígua na sua tarefa:

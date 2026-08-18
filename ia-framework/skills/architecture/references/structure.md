@@ -7,7 +7,7 @@
 ```yaml
 ---
 title: Arquitetura — <Stack>
-stack: angular | nodejs | spring | go | postgres
+stack: angular | react | nodejs | spring | go | postgres
 updated: 2026-08-05
 kpis: { health: green }
 ---

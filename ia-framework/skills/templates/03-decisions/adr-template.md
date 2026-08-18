@@ -5,7 +5,7 @@
 
 **Data:** YYYY-MM-DD
 **Status:** proposed | accepted | superseded by ADR-{NNN}
-**Stack:** angular | nodejs | spring | go | postgres | multi
+**Stack:** angular | react | nodejs | spring | go | postgres | multi
 
 ## Contexto
 

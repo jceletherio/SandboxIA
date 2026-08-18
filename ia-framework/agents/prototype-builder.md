@@ -51,8 +51,8 @@ M3 e o contrato de mock já definidos.
 > Consulte `skills/shared/validation-gates.md` — gates Angular (tsc, lint se houver,
 > vitest p/ lógica pura). O `reviewer` confere os mesmos na F4.
 
-1. `cd frontend && npx tsc --noEmit` — limpo (skip com motivo se não há tsc local).
-2. `cd frontend && npx ng lint` (ou `eslint .`) — se configurado.
+1. `cd src/frontend && npx tsc --noEmit` — limpo (skip com motivo se não há tsc local).
+2. `cd src/frontend && npx ng lint` (ou `eslint .`) — se configurado.
 3. Checagem mental: `track` em todo `@for`? `aria-*` em botões icon-only? estados
    loading/erro/vazio no template? componente não importa mock direto? rota `/prototype`
    registrada com lazy `loadComponent`?
@@ -70,7 +70,7 @@ files:
   src/frontend/src/app/prototype/prototype.routes.ts
   src/frontend/src/app/app.routes.ts (rota /prototype registrada)
 blockers: []
-how_to_validate: cd frontend && npx tsc --noEmit
+how_to_validate: cd src/frontend && npx tsc --noEmit
 ```
 
 Se algo está ambíguo no design spec:

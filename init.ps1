@@ -44,6 +44,7 @@ Write-Host ""
 
 # Stacks ativas (default pergunta)
 $angular  = Ask-Yes "Ativar Angular 22 (frontend)?          " $true
+$react    = Ask-Yes "Ativar React 19+ (frontend)?            " $false
 $nodejs   = Ask-Yes "Ativar Node.js 22+ (backend)?          " $true
 $spring   = Ask-Yes "Ativar Spring Boot 3.5 (backend)?     " $false
 $go       = Ask-Yes "Ativar Go 1.23+ (backend)?            " $false
@@ -77,6 +78,12 @@ if ($angular) {
   $lines += '- **angular** - Angular 22 (standalone, signals, novo control flow, zoneless)'
   $lines += '  - Raiz do codigo: `src/frontend/`'
   $lines += '  - Skill: `skills/stacks/angular/SKILL.md`'
+}
+if ($react) {
+  $lines += ''
+  $lines += '- **react** - React 19+ (Vite + TypeScript, hooks, TanStack Query, Zustand)'
+  $lines += '  - Raiz do codigo: `src/react/`'
+  $lines += '  - Skill: `skills/stacks/react/SKILL.md`'
 }
 $lines += ''
 $lines += '## Backend (escolha um ou mais)'

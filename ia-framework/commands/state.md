@@ -89,6 +89,7 @@ Get-Command pdftotext
 
 # Deps por stack ativa (se stack ativa)
   stack=angular: Test-Path src/frontend/package.json && Test-Path src/frontend/node_modules
+  stack=react:   Test-Path src/react/package.json && Test-Path src/react/node_modules
   stack=nodejs:  Test-Path src/backend/nodejs/package.json && Test-Path src/backend/nodejs/node_modules
   stack=spring:  Test-Path src/backend/spring/pom.xml && Test-Path src/backend/spring/target/classes/.gitkeep
   stack=go:      Test-Path src/backend/go/go.mod && Test-Path src/backend/go/go.sum

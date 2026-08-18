@@ -40,8 +40,9 @@ echo "(opencode ou Claude Code) em vez deste script. Esta versao .sh fica como"
 echo "alternativa terminal para orquestradores sem filesystem access."
 echo ""
 
-angular="n"; nodejs="n"; spring="n"; go="n"; postgres="n"
+angular="n"; react="n"; nodejs="n"; spring="n"; go="n"; postgres="n"
 ask_yes "Ativar Angular 22 (frontend)?          " y && angular="y"
+ask_yes "Ativar React 19+ (frontend)?            " n && react="y"
 ask_yes "Ativar Node.js 22+ (backend)?          " y && nodejs="y"
 ask_yes "Ativar Spring Boot 3.5 (backend)?      " n && spring="y"
 ask_yes "Ativar Go 1.23+ (backend)?             " n && go="y"
@@ -72,6 +73,12 @@ done
     echo '- **angular** - Angular 22 (standalone, signals, novo control flow, zoneless)'
     echo '  - Raiz do codigo: `src/frontend/`'
     echo '  - Skill: `skills/stacks/angular/SKILL.md`'
+  fi
+  if [[ "$react" == "y" ]]; then
+    echo ''
+    echo '- **react** - React 19+ (Vite + TypeScript, hooks, TanStack Query, Zustand)'
+    echo '  - Raiz do codigo: `src/react/`'
+    echo '  - Skill: `skills/stacks/react/SKILL.md`'
   fi
   echo ''
   echo '## Backend (escolha um ou mais)'

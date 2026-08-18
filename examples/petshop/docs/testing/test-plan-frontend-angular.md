@@ -32,9 +32,9 @@ kpis: { health: green }
 ## Comandos de execução
 
 ```
-cd frontend && npx vitest run                   # unitário + functional
-cd frontend && npx playwright test              # aceitação + E2E
-cd frontend && npx playwright test --grep @a11y # só a11y
+cd src/frontend && npx vitest run                   # unitário + functional
+cd src/frontend && npx playwright test              # aceitação + E2E
+cd src/frontend && npx playwright test --grep @a11y # só a11y
 ```
 
 ## Trace artefatos

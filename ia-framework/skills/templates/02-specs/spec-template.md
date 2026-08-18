@@ -4,7 +4,7 @@
 > `skills/shared/doc-structure.md`. Preencha no lugar dos placeholders.
 
 **Variante:** feature | bug-fix | investigation | doc-update
-**Stack:** angular | nodejs | spring | go | postgres | multi
+**Stack:** angular | react | nodejs | spring | go | postgres | multi
 **Slug:** {slug}
 
 ## Comportamento alvo

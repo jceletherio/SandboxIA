@@ -57,6 +57,7 @@ Com `prototype: true` e `01-context/prototype/plan.md` presente:
 Cada trilha deve declarar `stack:` (ou `multi` quando cross-stack). Mapeie:
 
 - Toca `src/frontend/` (UI, rotas, state Angular) → `angular`.
+- Toca `src/react/` (UI, hooks, state React) → `react`.
 - Toca `src/backend/nodejs/` → `nodejs`.
 - Toca `src/backend/spring/` → `spring`.
 - Toca `src/backend/go/` → `go`.

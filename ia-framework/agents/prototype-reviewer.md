@@ -38,7 +38,7 @@ Você revisa uma parte do protótipo **contra os requisitos e o design spec**. N
 4. **Contrato do mock** — componente depende da interface + token (nunca importa a classe
    mock); DTOs centralizados e espelhando o backend; fixtures cobrem dados/vazio/erro;
    seam de troca registrado no provider.
-5. **Gates (validation-gates.md)** — `cd frontend && npx tsc --noEmit` (e `ng lint` se
+5. **Gates (validation-gates.md)** — `cd src/frontend && npx tsc --noEmit` (e `ng lint` se
    configurado). Gate falho → `verdict: blocked`. Sem frontend montado → análise estática +
    `how_to_validate`.
 6. **Segurança (delegue ao `angular-seguranca`)** — dispare o agente read-only no código

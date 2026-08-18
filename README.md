@@ -7,7 +7,7 @@ faz o resto sem ir ao terminal.
 
 ## O que vem no template
 
-- **17 agentes de arquitetura/segurança/implementação** especializados por stack
+- **18 agentes de arquitetura/segurança/implementação** especializados por stack
 - **8 agentes cross-stack** (context-curator, reviewer, memory-curator, requirements-reader,
   requirements-doctor, sdd-planner, architecture-writer, screens-reader, test-setup, test-author,
   regression-author, contract-checker)
@@ -20,6 +20,7 @@ faz o resto sem ir ao terminal.
 Stacks suportadas (ativo/desativado via manifesto `ia-framework/STACK.md`):
 
 - **Angular 22** (frontend standalone signals, zoneless, `@if/@for/@switch`)
+- **React 19+** (frontend Vite + TypeScript, hooks, TanStack Query, Zustand)
 - **Node.js 22+** (backend ESM, Fastify/Express5/NestJS)
 - **Java 21+ / Spring Boot 3.5** (virtual threads, records, SecurityFilterChain)
 - **Go 1.23+** (context-first, interfaces consumer-side, pgxpool)

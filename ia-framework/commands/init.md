@@ -20,13 +20,15 @@ Pergunte ao usuário via `AskUserQuestion` (ou equivalente) em **1 rodada só** 
 ```
 Ativar quais stacks?
 [ ] Angular 22 (frontend) — default: sim
+[ ] React 19+ (frontend) — default: não
 [ ] Node.js 22+ (backend) — default: sim
 [ ] Spring Boot 3.5 (backend) — default: não
 [ ] Go 1.23+ (backend) — default: não
 [ ] PostgreSQL 16+ (banco) — default: sim
 ```
 
-Aplica defaults se usuário não especifica (`y` em tudo): Angular + Node + Postgres.
+Aplica defaults se usuário não especifica (`y` em tudo): Angular + Node + Postgres. Dois
+frontends podem coexistir (angular + react) — cada agente fica restrito à sua raiz.
 
 ### 2. QMD (default: N)
 

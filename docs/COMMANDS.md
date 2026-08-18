@@ -20,7 +20,7 @@ ia-framework/            # "cérebro": agentes, commands, skills, scaffold (não
   agents/                # LLM agents especializados (implementadores, arquitetos, revisores...)
   commands/              # definições dos slash commands
   skills/                # fluxos (SDD, requirements, prototyping, testing...) + referências
-  STACK.md               # manifesto de stacks ativas (angular/nodejs/spring/go/postgres)
+  STACK.md               # manifesto de stacks ativas (angular/react/nodejs/spring/go/postgres)
 project_sdd/             # memória SDD (CRIADO pelo /init — não commit código aqui)
   01-context/            # requirements.md, plan.md, screens/, prototype/, api-context.md
   02-specs/              # trilhas SDD (NNN-<slug>/spec.md)
@@ -28,6 +28,7 @@ project_sdd/             # memória SDD (CRIADO pelo /init — não commit códi
   INDEX.md               # índice token-efficient (~500 tokens) — consulte antes de mergulhar
 src/                      # código de aplicação (criado por /setup-tooling --apps)
   frontend/               # app Angular
+  react/                  # app React (Vite + TypeScript)
   backend/<stack>/        # apps backend por stack ativa
   BD/                     # migrations/RLS PostgreSQL
 docs/                    # USAGE, UPDATING, architecture/, testing/ (snapshots por release)
@@ -147,8 +148,8 @@ partes nas trilhas de produção (frontend referencia `P-NNN`; backend herda os 
 ### Manifesto de stacks (`ia-framework/STACK.md`)
 
 Define quais stacks estão ativas. Agentes **recusam** tarefa em stack inativa. Use
-`--stack=<id>` quando o comando precisa de uma stack (`angular`, `nodejs`, `spring`, `go`,
-`postgres`); sem isso, a stack é inferida da raiz do código tocado.
+`--stack=<id>` quando o comando precisa de uma stack (`angular`, `react`, `nodejs`,
+`spring`, `go`, `postgres`); sem isso, a stack é inferida da raiz do código tocado.
 
 ### Memória token-efficient
 

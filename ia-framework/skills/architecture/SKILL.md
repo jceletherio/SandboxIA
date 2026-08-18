@@ -1,12 +1,12 @@
 ---
 name: architecture
-description: Gera e mantém documentação de arquitetura do projeto em `docs/architecture/` — overview cross-stack + um doc por stack ativa, em Markdown + Mermaid. Delega decisões aos 15 agentes `<stack>-arquiteto` existentes e persiste as saídas em templates de longa vida. Reutilizado por `/generate-architecture`. Gatilhos: "gerar arquitetura", "documentar arquitetura", "/generate-architecture", "escrever ADR", "diagrama Mermaid".
+description: Gera e mantém documentação de arquitetura do projeto em `docs/architecture/` — overview cross-stack + um doc por stack ativa, em Markdown + Mermaid. Delega decisões aos 6 agentes `<stack>-arquiteto` existentes e persiste as saídas em templates de longa vida. Reutilizado por `/generate-architecture`. Gatilhos: "gerar arquitetura", "documentar arquitetura", "/generate-architecture", "escrever ADR", "diagrama Mermaid".
 ---
 
 # Arquitetura — Persistindo Decisões em `docs/architecture/`
 
 Conduz a **persistência** de decisões arquiteturais em `docs/architecture/`. Não decide
-arquitetura — isso é com os 15 agentes `<stack>-arquiteto` existentes em `agents/`. Aqui,
+arquitetura — isso é com os 6 agentes `<stack>-arquiteto` existentes em `agents/`. Aqui,
 compilamos suas saídas em templates de longa vida.
 
 ## Pipeline
@@ -46,6 +46,7 @@ compilamos suas saídas em templates de longa vida.
 | --- | ----- |
 | `overview.md` | Sempre — cross-stack, diagrama, fluxo crítico, ADRs relevantes |
 | `frontend-angular.md` | Stack `angular` ativa em STACK.md |
+| `frontend-react.md` | Stack `react` ativa em STACK.md |
 | `backend-nodejs.md` | Stack `nodejs` ativa |
 | `backend-spring.md` | Stack `spring` ativa |
 | `backend-go.md` | Stack `go` ativa |

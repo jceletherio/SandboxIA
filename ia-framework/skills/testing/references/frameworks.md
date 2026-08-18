@@ -6,7 +6,7 @@
 
 Setup (instalado por `test-setup`):
 ```bash
-cd frontend && ng add @angular/vitest-schematics || npm install --save-dev vitest @angular/build @vitest/coverage-v8 jsdom
+cd src/frontend && ng add @angular/vitest-schematics || npm install --save-dev vitest @angular/build @vitest/coverage-v8 jsdom
 ```
 
 `vitest.config.ts`:
@@ -52,6 +52,36 @@ export default defineConfig({
   ],
   webServer: { command: 'npm run dev', url: 'http://localhost:4200', reuseExistingServer: true, timeout: 60_000 },
 });
+```
+
+## React 19+
+
+### Unitário — Vitest + jsdom
+
+`vitest.config.ts`:
+```ts
+import { defineConfig } from 'vitest/config';
+export default defineConfig({
+  test: { environment: 'jsdom', globals: true, setupFiles: ['src/test-setup.ts'] },
+  resolve: { alias: { '@': '/src' } },
+});
+```
+`src/test-setup.ts`: `import '@testing-library/jest-dom/vitest';`
+Run: `npx vitest run`.
+
+### Funcional — Testing Library React
+
+`npm install --save-dev @testing-library/react @testing-library/user-event`.
+
+Renderiza com `render(<Comp />)` + `screen.getByRole(...)` (a11y-first). QueryClient mock
+para componentes que usam `useQuery`: `new QueryClient({ defaultOptions: { queries: { retry: false } } })`
+e mock do módulo `api/` via `vi.mock`. `user-event` para interações reais (foco/blur).
+
+### E2E/Aceitação — Playwright
+
+Pasta `src/react/e2e/`. `playwright.config.ts`:
+```ts
+webServer: { command: 'npm run dev -- --port 5173', url: 'http://localhost:5173', reuseExistingServer: true },
 ```
 
 ## Node.js

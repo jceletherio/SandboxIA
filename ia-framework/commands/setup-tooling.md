@@ -47,6 +47,12 @@ Lê `ia-framework/STACK.md`; para cada stack ativa **sem skeleton**:
      --style scss --routing --skip-git` (pasta temp porque o Angular CLI não aceita
      pasta com arquivos) e mova o conteúdo para `src/frontend/` — ou use
      `ng new frontend --directory frontend` se a pasta estiver vazia.
+- **react** (`src/react/`): se `src/react/package.json`/`vite.config.ts` ausentes:
+  1. `npm create vite@latest <temp> -- --template react-ts` e mova o conteúdo para
+     `src/react/` (Vite não aceita pasta com arquivos; ou `npm create vite@latest . -- --template
+     react-ts` em pasta vazia).
+  2. Instale deps do stack: `@tanstack/react-query react-router-dom` (+ `zustand` se o
+     arquiteto decidir client state cross-feature).
 - **nodejs** (`src/backend/nodejs/`): se sem `package.json`:
   ```
   npm init -y
@@ -80,7 +86,16 @@ Lê `ia-framework/STACK.md`; para cada stack ativa:
   if Nao existe: avise e pergunte "Rodar /setup-tooling --apps antes (cria o app Angular)? [Y/N]"
   se sim: delegue --apps (mesmo command) e retome npm install
   se nao: abort — sem package.json o npm install nao tem o que instalar
-  pergunta: "Rodar `cd frontend && npm install`?"
+  pergunta: "Rodar `cd src/frontend && npm install`?"
+  se sim: Bash → npm install (output tail ao usuário)
+  ```
+- **react** (`src/react/`):
+  ```
+  validade: src/react/package.json existe?
+  if Nao existe: avise e pergunte "Rodar /setup-tooling --apps antes (cria o app React)? [Y/N]"
+  se sim: delegue --apps (mesmo command) e retome npm install
+  se nao: abort — sem package.json o npm install nao tem o que instalar
+  pergunta: "Rodar `cd src/react && npm install`?"
   se sim: Bash → npm install (output tail ao usuário)
   ```
 - **nodejs** (`src/backend/nodejs/`):
@@ -192,8 +207,9 @@ pre-commit autoupdate
 
 ```
 setup-tooling →
-  --apps:    frontend Angular criado | src/backend/nodejs criado | pulado (já existia) | erro: <detalhe>
+  --apps:    frontend Angular criado | frontend React criado | backend/nodejs criado | pulado (já existia) | erro: <detalhe>
   --deps:    src/frontend/node_modules OK (instalado | já existia)
+             src/react/node_modules OK (instalado | já existia)
              src/backend/nodejs/node_modules OK
   --qmd:     instalado + 5 collections + embed completo | pulado | erro: <detalhe>
   --pdftotext: instalado (winget) | já disponível | falha: <pacote manager ausente>

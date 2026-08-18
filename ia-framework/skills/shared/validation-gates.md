@@ -8,12 +8,24 @@ recibo e que o `reviewer` confere antes de `verdict: ready`. Sem um gate passar,
 
 | Gate | Comando | Quando |
 | --- | --- | --- |
-| Typecheck | `cd frontend && npx tsc --noEmit` | sempre |
-| Lint | `cd frontend && npx ng lint` (ou `eslint .`) | se configurado |
-| Unit puro | `cd frontend && npx vitest run --reporter=dot` (somente specs alterados) | se lógica pura |
+| Typecheck | `cd src/frontend && npx tsc --noEmit` | sempre |
+| Lint | `cd src/frontend && npx ng lint` (ou `eslint .`) | se configurado |
+| Unit puro | `cd src/frontend && npx vitest run --reporter=dot` (somente specs alterados) | se lógica pura |
 | Build (release) | `npx ng build --configuration production` | **NÃO rodar em sessão SDD** — CI caret |
 
 **Não rode** `ng serve`/`ng build` em sessão SDD a menos que o chamador autorize
+explicitamente. O `tsc --noEmit` cobre 95% dos gates de implementador.
+
+## React 19+
+
+| Gate | Comando | Quando |
+| --- | --- | --- |
+| Typecheck | `cd src/react && npx tsc --noEmit` | sempre |
+| Lint | `cd src/react && npx eslint . --max-warnings=0` | se configurado |
+| Unit puro | `cd src/react && npx vitest run --reporter=dot` (somente specs alterados) | se lógica pura |
+| Build (release) | `cd src/react && npm run build` | **NÃO rodar em sessão SDD** — CI caret |
+
+**Não rode** `npm run dev`/`npm run build` em sessão SDD a menos que o chamador autorize
 explicitamente. O `tsc --noEmit` cobre 95% dos gates de implementador.
 
 ## Node.js 22+

@@ -34,6 +34,10 @@ Setup inicial de testes em uma ou todas as stacks ativas.
      angular: configura `vitest.config.ts`, `test-setup.ts`, scripts `npm`,
        `src/frontend/e2e/playwright.config.ts`, `.gitignore` para `test-results/` e
        `playwright-report/`.
+     react: adiciona `vitest`, `jsdom`, `@testing-library/react`, `@testing-library/jest-dom`,
+       `@testing-library/user-event` ao `devDependencies`; configura `vitest.config.ts`,
+       `src/test-setup.ts`, `src/react/e2e/playwright.config.ts`, `.gitignore` para
+       `test-results/` e `playwright-report/`.
      nodejs: adiciona `vitest`, `@testcontainers/postgresql` ao `devDependencies`;
        cria `vitest.config.ts`; scripts `test`, `test:integration`.
      spring: adiciona testcontainers+junit-jupiter+postgresql ao `pom.xml`/`build.gradle`;
@@ -45,7 +49,8 @@ Setup inicial de testes em uma ou todas as stacks ativas.
 4. Receba recibo do `test-setup` (schemas do `architect-output` não se aplica — recibo é
    lista de arquivos alterados + dependências pendentes).
 5. **Apresente ao usuário** a lista de dependências que ele deve instalar:
-   - `cd frontend && npm install`
+   - `cd src/frontend && npm install`
+   - `cd src/react && npm install`
    - `cd src/backend/nodejs && npm install`
    - `cd src/backend/spring && ./mvnw clean install -DskipTests` (resolve deps estendidas)
    - `cd src/backend/go && go mod tidy`

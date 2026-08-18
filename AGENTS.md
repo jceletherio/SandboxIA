@@ -43,6 +43,11 @@ A qualquer momento: `/state` para diagnóstico read-only do setup.
 - `agents/angular-seguranca.md` — revisão de segurança Angular
 - `agents/angular-implementador.md` — implementa UMA tarefa da spec
 
+### React 19+
+- `agents/react-arquiteto.md` — decisões de arquitetura React (Query, Zustand, rotas)
+- `agents/react-seguranca.md` — revisão de segurança React (XSS, CSP, tokens)
+- `agents/react-implementador.md` — implementa UMA tarefa da spec
+
 ### Node.js 22+
 - `agents/nodejs-arquiteto.md`, `agents/nodejs-seguranca.md`, `agents/nodejs-implementador.md`
 
@@ -58,7 +63,7 @@ A qualquer momento: `/state` para diagnóstico read-only do setup.
 ## Skills (fluxos)
 
 - `skills/shared/flow.md` — 5 fases do SDD Enxuto
-- `skills/stacks/<stack>/SKILL.md` — fluxo específico por stack (5 stacks)
+- `skills/stacks/<stack>/SKILL.md` — fluxo específico por stack (6 stacks)
 - `skills/requirements/SKILL.md` — ingestão de requisitos
 - `skills/architecture/SKILL.md` — geração de `docs/architecture/`
 - `skills/testing/SKILL.md` — camada de testes integrada às 5 fases

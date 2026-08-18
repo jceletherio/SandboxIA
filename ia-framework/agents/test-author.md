@@ -78,7 +78,7 @@ vira cenário. Use Playwright API request context quando há backend + UI no mes
 Rode o teste uma vez:
 
 ```
-cd frontend && npx vitest run <path>
+cd src/frontend && npx vitest run <path>
 cd src/backend/nodejs && npx vitest run <path>
 cd src/backend/spring && ./mvnw test -Dtest=<Classe>
 cd src/backend/go && go test ./<package>/
@@ -100,7 +100,7 @@ Contrato informal (sem schema dedicado ainda):
     { "path": "src/frontend/src/app/orders/orders.component.spec.ts",
       "change": "adiciona testes para estados loading/erro/vazio via TestBed + HttpTestingController" }
   ],
-  "how_to_validate": "cd frontend && npx vitest run src/app/orders/orders.component.spec.ts",
+  "how_to_validate": "cd src/frontend && npx vitest run src/app/orders/orders.component.spec.ts",
   "blockers": [] }
 ```
 

@@ -20,7 +20,7 @@ Deep-dive por módulo entra como `module-<nome>.md` quando vale — não é obri
 ```yaml
 ---
 title: <título>
-stack: angular | nodejs | spring | go | postgres | multi
+stack: angular | react | nodejs | spring | go | postgres | multi
 updated: 2026-08-05
 kpis: { health: green | yellow | red }
 ---

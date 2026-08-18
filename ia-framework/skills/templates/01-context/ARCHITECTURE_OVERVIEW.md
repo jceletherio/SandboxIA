@@ -12,23 +12,25 @@ kpis: { health: green }
 ## Camadas (padrão por stack)
 
 ```
-[ Angular SPA ]  ──HTTPS/JWT──▶  [ Backend REST ]  ──SQL/pool──▶  [ PostgreSQL ]
- src/frontend/                          src/backend/{nodejs|spring|go}/       src/BD/
+[ Frontend SPA ]  ──HTTPS/JWT──▶  [ Backend REST ]  ──SQL/pool──▶  [ PostgreSQL ]
+ src/frontend/ (Angular)  OU  src/react/ (React)          src/backend/{nodejs|spring|go}/       src/BD/
 ```
 
 Cada backend expõe contratos versionados (`/api/v1/...`). Frontend nunca acessa BD direto.
 
 ## Responsabilidades
 
-- **Angular** — UI, validação de input (zenity), estado de loading/erro/vazio, lazy routes.
-  Sem regra de negócioAutoritativa — só cache local.
+- **Frontend** — UI, validação de input (zenity), estado de loading/erro/vazio, lazy routes
+  (Angular `httpResource`/React TanStack Query). Sem regra de negócioAutoritativa — só
+  cache local.
 - **Backend** — regra de negócioAutoritativa, orquestração de transação, autorização.
 - **Postgres** — integridade de dados (FK, CHECK, UNIQUE), RLS para isolamento de tenant,
   índices para hot path, particionamento para escala.
 
 ## Fluxo request → response (representativo)
 
-1. Angular usa `httpResource()`/`HttpClient` com `withFetch` e `provideHttpClient`.
+1. Frontend (Angular `httpResource`/`HttpClient`, ou React `useQuery` via `core/api/`) chama
+   a API com Bearer JWT.
 2. Backend valida (Bean Validation/Zod/`go-playground/validator`), autentica (JWT), aplica
    regras de domínio, abre transação, persiste.
 3. Postgres executa sob RLS; pool gerenciado por `pgbouncer`/HikariCP/`pgxpool`.

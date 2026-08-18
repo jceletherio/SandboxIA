@@ -48,6 +48,11 @@ Você revisa uma entrega verificando a spec **contra o código real**. Não impl
    sem `markForCheck`; tokens em vez de hex; `aria-*` em controle custom; `httpResource`/
    `resource` com `parse` guard.
 
+   **React**: estados loading/erro/vazio (`isPending`/`isError`/`data`); sem
+   `dangerouslySetInnerHTML` sem `DOMPurify.sanitize`; queries por `role`/`aria`; server
+   state via TanStack Query (sem `fetch` solto no componente); `React.lazy` + guard wrapper;
+   tokens em vez de hex; sem class components/`any`/`PropTypes`.
+
    **NodeJS**: schema (zod) na borda de todo handler novo; `@Transactional` boundary no
    service (não no controller/repo); SQL parameterized (`$1`); erros via `AppError`
    subclasses; `req.log`/pino em logs; `AbortController` em streams/fetch.

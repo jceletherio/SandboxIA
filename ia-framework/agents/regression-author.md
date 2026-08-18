@@ -59,7 +59,7 @@ O teste **deve falhar antes do fix** (red). Documente no teste:
 ### 4. Rodar o teste para confirmar red
 
 ```
-cd frontend && npx vitest run <test-file>
+cd src/frontend && npx vitest run <test-file>
 cd src/backend/nodejs && npx vitest run <test-file>
 cd src/backend/spring && ./mvnw test -Dtest=<Teste>
 cd src/backend/go && go test ./<package>/ -run TestRegression

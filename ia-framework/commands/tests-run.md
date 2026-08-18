@@ -39,8 +39,8 @@ Roda as suítes já existentes com base nos filtros.
    - Skip seu existe configuração `.SKIP_RUNTIME` no projeto (env var op qui seja)
      definido pelo usuário.
 4. **Rode as suítes** por stack/nível:
-   - Angular unit/functional: `cd frontend && npx vitest run`
-   - Angular e2e: `cd frontend && npx playwright test`
+   - Angular unit/functional: `cd src/frontend && npx vitest run`
+   - Angular e2e: `cd src/frontend && npx playwright test`
    - Node.js: `cd src/backend/nodejs && npx vitest run`; integration:
      `RUN_INTEGRATION=1 npx vitest run`
    - Spring: `cd src/backend/spring && ./mvnw test`; integration se filters: `-Dgroups=integration`

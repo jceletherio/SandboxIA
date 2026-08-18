@@ -1,5 +1,5 @@
 ---
-description: Gera ou atualiza documentação de arquitetura do projeto em `docs/architecture/` — um doc por stack ativa + `overview.md` cross-stack. Delega aos 15 agentes `<stack>-arquiteto` existentes via agente `architecture-writer`. Markdown + Mermaid. Use após decisões arquiteturais maduras (post-spec ou pre-release).
+description: Gera ou atualiza documentação de arquitetura do projeto em `docs/architecture/` — um doc por stack ativa + `overview.md` cross-stack. Delega aos 6 agentes `<stack>-arquiteto` existentes via agente `architecture-writer`. Markdown + Mermaid. Use após decisões arquiteturais maduras (post-spec ou pre-release).
 args: [--stack=<id|all>]
 ---
 
@@ -53,6 +53,7 @@ Persiste decisões arquiteturais em `docs/architecture/`.
 docs/architecture/
   overview.md                       # stack: multi
   frontend-angular.md              # se angular ativo
+  frontend-react.md                # se react ativo
   backend-nodejs.md                # se nodejs ativo
   backend-spring.md                # se spring ativo
   backend-go.md                    # se go ativo

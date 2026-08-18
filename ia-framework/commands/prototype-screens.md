@@ -72,7 +72,7 @@ o SDD Enxuto: **divisão em partes coesas** e **revisão de completude** contra 
   - **Registra a rota**: cria `prototype.routes.ts` (lazy) e a rota raiz `/prototype` no
     `app.routes.ts` (única exceção à regra de rotas globais; template
     `templates/prototype-routes-template.ts`).
-- Rode `cd frontend && npx tsc --noEmit` (se o frontend estiver montado) e corrija o que
+- Rode `cd src/frontend && npx tsc --noEmit` (se o frontend estiver montado) e corrija o que
   aparecer. Não rode `ng serve`/`ng build` em sessão a menos que o usuário autorize.
 
 ### F4 — Review (completude + conformidade)
@@ -95,7 +95,7 @@ o SDD Enxuto: **divisão em partes coesas** e **revisão de completude** contra 
     provider — componentes intactos (link p/ `references/mock-data-contract.md`).
   - Lacunas `[AMBIGUO]` abertas para o negócio.
 - Sugira próximo passo: rodar o protótipo localmente
-  (`cd frontend && npm start`, abrir `http://localhost:4200/prototype/...`) para validação
+  (`cd src/frontend && npm start`, abrir `http://localhost:4200/prototype/...`) para validação
   visual humana; depois `/plan-from-requirements` para as trilhas SDD de produção
   reutilizando os designs.
 

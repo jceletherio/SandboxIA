@@ -8,7 +8,7 @@ alimentarão a spec SDD da trilha.
 
 ## Argumentos
 
-- `--stack=<id>` obrigatório. `<id>` ∈ `angular | nodejs | spring | go | postgres`. Se
+- `--stack=<id>` obrigatório. `<id>` ∈ `angular | react | nodejs | spring | go | postgres`. Se
   ausente, pergunte em uma rodada só.
 - `[tópico]` opcional: descrição curta do problema em aberto (ex.: "modelo de dados para
   pedidos multi-tenant com heterarquia de clientes").

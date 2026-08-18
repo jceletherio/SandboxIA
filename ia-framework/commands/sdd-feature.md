@@ -14,7 +14,8 @@ decisão de produto pendente.
 
 1. Se `$ARGUMENTS` contém `--stack=<id>`, use-a.
 2. Senão, leia `ia-framework/STACK.md` e infera da raiz touched (`src/frontend/` → angular;
-   `src/backend/nodejs/` → nodejs; `src/backend/spring/` → spring; `src/backend/go/` → go; `src/BD/` →
+   `src/react/` → react; `src/backend/nodejs/` → nodejs; `src/backend/spring/` → spring;
+   `src/backend/go/` → go; `src/BD/` →
    postgres). Se ainda ambíguo, pergunte.
 
 ## Pipeline equivalente no orquestrador

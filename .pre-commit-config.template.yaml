@@ -44,13 +44,13 @@ repos:
   #   hooks:
   #     - id: angular-eslint
   #       name: Angular ESLint
-  #       entry: bash -c 'cd frontend && npx ng lint'
+  #       entry: bash -c 'cd src/frontend && npx ng lint'
   #       language: system
   #       files: ^src/frontend/.*\.(ts|html)$
   #       pass_filenames: false
   #     - id: angular-tsc
   #       name: Angular tsc --noEmit
-  #       entry: bash -c 'cd frontend && npx tsc --noEmit'
+  #       entry: bash -c 'cd src/frontend && npx tsc --noEmit'
   #       language: system
   #       files: ^src/frontend/.*\.ts$
   #       pass_filenames: false

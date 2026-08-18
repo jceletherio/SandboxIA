@@ -51,7 +51,7 @@ test-add ok
 level: functional | stack: angular
 files:
 - src/frontend/src/app/orders/orders.component.spec.ts (criado)
-how_to_validate: cd frontend && npx vitest run src/app/orders/orders.component.spec.ts
+how_to_validate: cd src/frontend && npx vitest run src/app/orders/orders.component.spec.ts
 ```
 
 ## Limitação

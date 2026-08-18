@@ -8,7 +8,7 @@ artefatos, gerando findings OWASP mapeados e verdict ready|blocked.
 
 ## Argumentos
 
-- `--stack=<id>` obrigatório. `<id>` ∈ `angular | nodejs | spring | go | postgres`.
+- `--stack=<id>` obrigatório. `<id>` ∈ `angular | react | nodejs | spring | go | postgres`.
 - `--files=<paths...>` para apontar arquivos específicos a revisar (ex.: após mudança
   pontual).
 - `--trilha=<NNN>` para revisar todos os arquivos alterados da trilha SDD indicada.
